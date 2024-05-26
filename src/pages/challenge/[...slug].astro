@@ -1,0 +1,32 @@
+---
+import Main from "../../components/main";
+import challenges from "../../data/challengesList.json";
+import "../../globals.css";
+import Layout from "../../layouts/Layout.astro"
+
+const session = null
+const { slug } = Astro.params;
+const { pathname } = new URL(Astro.request.url);
+if (slug === undefined) return Astro.redirect("/404");
+const challenge = challenges.some((challenge) => challenge === slug)
+if (!challenge) return Astro.redirect("/404");
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<!-- <Main client:only="react" {pathname} slug={slug} user={session.user} /> -->
+		{
+			session === null ? (
+				<Main client:only="react" {pathname} slug={slug} user={null} />
+			) : (
+				<Main client:only="react" {pathname} slug={slug} user={session.user} />
+			)
+		}
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+	}
+</style>
