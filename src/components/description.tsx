@@ -76,6 +76,7 @@ export default function DescriptionComponent() {
 						</Tabs>
 					</div>
 				</Navbar>
+				<h1>Uncompress</h1>
 			</div>
 		</div>
 	);
