@@ -98,3 +98,76 @@ export const SignInIcon = () => {
 		<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M479.62-140v-60h268.07q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H479.62v-60h268.07Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H479.62Zm-54.23-169.23-41.54-43.39L481.23-450H140v-60h341.23l-97.38-97.38 41.54-43.39L596.15-480 425.39-309.23Z"/></svg>
 		)
 }
+
+export const ListIcon = ({ size }: { size: string }) => {
+	return (
+		<svg
+			role="img"
+			aria-label="svgImage"
+			xmlns="http://www.w3.org/2000/svg"
+			width={size}
+			height={size}
+			viewBox="0 0 24 24"
+			strokeWidth="1.5"
+			stroke="currentColor"
+			fill="none"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		>
+			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+			<path d="M13 5h8" />
+			<path d="M13 9h5" />
+			<path d="M13 15h8" />
+			<path d="M13 19h5" />
+			<path d="M3 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+			<path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
+		</svg>
+	);
+};
+
+export const PlayIcon = ({ size }: { size: string }) => {
+	return (
+		<svg
+			role="img"
+			aria-label="svgImage"
+			stroke="currentColor"
+			fill="currentColor"
+			strokeWidth="0"
+			viewBox="0 0 16 16"
+			height={size}
+			width={size}
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+		</svg>
+	);
+};
+
+export const BugIcon = ({ size }: { size: string }) => {
+	return (
+		<svg
+			role="img"
+			aria-label="svgImage"
+			xmlns="http://www.w3.org/2000/svg"
+			width={size}
+			height={size}
+			viewBox="0 0 24 24"
+			strokeWidth="1.5"
+			stroke="currentColor"
+			fill="none"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		>
+			<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+			<path d="M9 9v-1a3 3 0 0 1 6 0v1" />
+			<path d="M8 9h8a6 6 0 0 1 1 3v3a5 5 0 0 1 -10 0v-3a6 6 0 0 1 1 -3" />
+			<path d="M3 13l4 0" />
+			<path d="M17 13l4 0" />
+			<path d="M12 20l0 -6" />
+			<path d="M4 19l3.35 -2" />
+			<path d="M20 19l-3.35 -2" />
+			<path d="M4 7l3.75 2.4" />
+			<path d="M20 7l-3.75 2.4" />
+		</svg>
+	);
+};
