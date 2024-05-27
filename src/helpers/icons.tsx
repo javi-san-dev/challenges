@@ -171,3 +171,83 @@ export const BugIcon = ({ size }: { size: string }) => {
 		</svg>
 	);
 };
+
+export const CheckSolutionIcon = ({ size }: { size: string }) => {
+	return (
+		<svg
+			role="img"
+			aria-label="svgImage"
+			stroke="currentColor"
+			fill="currentColor"
+			strokeWidth="0"
+			viewBox="0 0 512 512"
+			height={size}
+			width={size}
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path d="M168.531 215.469l-29.864 29.864 96 96L448 128l-29.864-29.864-183.469 182.395-66.136-65.062zm236.802 189.864H106.667V106.667H320V64H106.667C83.198 64 64 83.198 64 106.667v298.666C64 428.802 83.198 448 106.667 448h298.666C428.802 448 448 428.802 448 405.333V234.667h-42.667v170.666z" />
+		</svg>
+	);
+};
+
+export const DescriptionIcon = () => {
+	return (
+		<svg
+			role="img"
+			aria-label="svgImage"
+			stroke="currentColor"
+			fill="currentColor"
+			strokeWidth="0"
+			viewBox="0 0 24 24"
+			height="1.7em"
+			width="1.7em"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path d="M18 22a2 2 0 0 0 2-2V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12zM13 4l5 5h-5V4zM7 8h3v2H7V8zm0 4h10v2H7v-2zm0 4h10v2H7v-2z" />
+		</svg>
+	);
+};
+
+export const TestIcon = ({ size }: { size: string }) => {
+	return (
+		<svg
+			role="img"
+			aria-label="svgImage"
+			stroke="currentColor"
+			fill="currentColor"
+			strokeWidth="0"
+			viewBox="0 0 24 24"
+			height={size}
+			width={size}
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				fill="none"
+				strokeWidth="2"
+				d="M8.9997,0.99999995 L8.9997,8.0003 L1.9997,20.0003 L1.9997,23.0003 L21.9997,23.0003 L21.9997,20.0003 L14.9997,8.0003 L14.9997,0.99999995 M15,18 C15.5522847,18 16,17.5522847 16,17 C16,16.4477153 15.5522847,16 15,16 C14.4477153,16 14,16.4477153 14,17 C14,17.5522847 14.4477153,18 15,18 Z M9,20 C9.55228475,20 10,19.5522847 10,19 C10,18.4477153 9.55228475,18 9,18 C8.44771525,18 8,18.4477153 8,19 C8,19.5522847 8.44771525,20 9,20 Z M18,13 C11,9.99999996 12,17.0000002 6,14 M5.9997,1.0003 L17.9997,1.0003"
+			/>
+		</svg>
+	);
+};
+
+export const VideoIcon = () => {
+	return (
+		<svg
+			aria-hidden="true"
+			focusable="false"
+			height="24"
+			role="presentation"
+			viewBox="0 0 24 24"
+			width="24"
+			fill="none"
+		>
+			<path d="M14.7295 2H9.26953V6.36H14.7295V2Z" fill="currentColor" />
+			<path d="M16.2305 2V6.36H21.8705C21.3605 3.61 19.3305 2.01 16.2305 2Z" fill="currentColor" />
+			<path
+				d="M2 7.85938V16.1894C2 19.8294 4.17 21.9994 7.81 21.9994H16.19C19.83 21.9994 22 19.8294 22 16.1894V7.85938H2ZM14.44 16.1794L12.36 17.3794C11.92 17.6294 11.49 17.7594 11.09 17.7594C10.79 17.7594 10.52 17.6894 10.27 17.5494C9.69 17.2194 9.37 16.5394 9.37 15.6594V13.2594C9.37 12.3794 9.69 11.6994 10.27 11.3694C10.85 11.0294 11.59 11.0894 12.36 11.5394L14.44 12.7394C15.21 13.1794 15.63 13.7994 15.63 14.4694C15.63 15.1394 15.2 15.7294 14.44 16.1794Z"
+				fill="currentColor"
+			/>
+			<path d="M7.76891 2C4.66891 2.01 2.63891 3.61 2.12891 6.36H7.76891V2Z" fill="currentColor" />
+		</svg>
+	);
+};
