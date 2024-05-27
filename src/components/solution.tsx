@@ -103,7 +103,7 @@ export default function SolutionComponent() {
 								<li>
 									<Button
 										isIconOnly
-										variant="bordered"
+										variant="solid"
 										aria-label="Zoom in"
 										size="sm"
 										radius="sm"
@@ -115,7 +115,7 @@ export default function SolutionComponent() {
 								<li>
 									<Button
 										isIconOnly
-										variant="bordered"
+										variant="solid"
 										aria-label="Zoom out"
 										size="sm"
 										radius="sm"
@@ -127,7 +127,7 @@ export default function SolutionComponent() {
 								<li>
 									<Button
 										isIconOnly
-										variant="bordered"
+										variant="solid"
 										aria-label="settings"
 										size="sm"
 										radius="sm"
@@ -139,7 +139,7 @@ export default function SolutionComponent() {
 								<li>
 									<Button
 										isIconOnly
-										variant="bordered"
+										variant="solid"
 										aria-label="settings"
 										size="sm"
 										radius="sm"
