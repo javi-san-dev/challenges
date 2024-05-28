@@ -2,25 +2,18 @@ import {
 	Button,
 	Chip,
 	Dropdown,
-	DropdownTrigger,
-	DropdownMenu,
 	DropdownItem,
+	DropdownMenu,
+	DropdownTrigger,
 	Input,
 	Modal,
 	ModalBody,
 	ModalContent,
 	ModalHeader,
-	useDisclosure
+	useDisclosure,
 } from "@nextui-org/react";
-import {
-	DarkThemeIcon,
-	AddIcon,
-	MinusIcon,
-	SearchIcon,
-	SettingsIcon,
-	SignInIcon,
-} from "../helpers/icons";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
+import { AddIcon, DarkThemeIcon, MinusIcon, SearchIcon, SettingsIcon, SignInIcon } from "../helpers/icons";
 
 export default function NavBarComponent() {
 	const [selectedKeys, setSelectedKeys] = useState(new Set(["dark"]));
@@ -28,7 +21,7 @@ export default function NavBarComponent() {
 
 	useEffect(() => {
 		const htmlElement = document.getElementById("htmlElement") as HTMLElement;
-		htmlElement.style.fontSize = '16px';
+		htmlElement.style.fontSize = "16px";
 	}, []);
 
 	useEffect(() => {
@@ -41,27 +34,21 @@ export default function NavBarComponent() {
 	const zoomIn = () => {
 		const htmlElement = document.getElementById("htmlElement") as HTMLElement;
 		const fontSize = Number(htmlElement.style.fontSize.replace(/[^0-9]/g, ""));
-		htmlElement.style.fontSize = '${fontSize + 1}px';
+		htmlElement.style.fontSize = `${fontSize + 1}px`;
 	};
 
 	const zoomOut = () => {
 		const htmlElement = document.getElementById("htmlElement") as HTMLElement;
 		const fontSize = Number(htmlElement.style.fontSize.replace(/[^0-9]/g, ""));
-		htmlElement.style.fontSize = '${fontSize - 1}px';
+		htmlElement.style.fontSize = `${fontSize - 1}px`;
 	};
 
 	return (
 		<nav className="bg-white dark:bg-black">
 			<div className="flex flex-wrap items-center justify-between mx-auto px-4 py-2">
 				<a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-					<img
-						src="https://flowbite.com/docs/images/logo.svg"
-						className="h-8"
-						alt="Flowbite Logo"
-					/>
-					<span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-						Challenges
-					</span>
+					<img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
+					<span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Challenges</span>
 					<Chip color="warning" variant="flat">
 						Beta
 					</Chip>
@@ -74,7 +61,7 @@ export default function NavBarComponent() {
 								aria-label="search for challenge"
 								size="md"
 								radius="sm"
-								className={''}
+								className={""}
 								onPress={onOpen}
 							>
 								{<SearchIcon size={"1.2rem"} />}Type to search...
@@ -141,7 +128,7 @@ export default function NavBarComponent() {
 								aria-label="Zoom in"
 								size="md"
 								radius="sm"
-								className={'w-[4rem]'}
+								className={"w-[4rem]"}
 								onClick={zoomIn}
 							>
 								{<AddIcon size={"1.2rem"} />}
@@ -154,21 +141,14 @@ export default function NavBarComponent() {
 								aria-label="Zoom out"
 								size="md"
 								radius="sm"
-								className={'w-[4rem]'}
+								className={"w-[4rem]"}
 								onClick={zoomOut}
 							>
 								{<MinusIcon size={"1.2rem"} />}
 							</Button>
 						</li>
 						<li>
-							<Button
-								isIconOnly
-								variant="bordered"
-								aria-label="settings"
-								size="md"
-								radius="sm"
-								className={'w-[4rem]'}
-							>
+							<Button isIconOnly variant="bordered" aria-label="settings" size="md" radius="sm" className={"w-[4rem]"}>
 								{<SettingsIcon size={"1.1rem"} />}
 							</Button>
 						</li>
@@ -181,7 +161,7 @@ export default function NavBarComponent() {
 										aria-label="settings"
 										size="md"
 										radius="sm"
-										className={'w-[4rem]'}
+										className={"w-[4rem]"}
 									>
 										<DarkThemeIcon size="1.3rem" />
 									</Button>
@@ -200,13 +180,7 @@ export default function NavBarComponent() {
 							</Dropdown>
 						</li>
 						<li>
-							<Button
-								variant="bordered"
-								aria-label="sign in"
-								size="md"
-								radius="sm"
-								className={''}
-							>
+							<Button variant="bordered" aria-label="sign in" size="md" radius="sm" className={""}>
 								<SignInIcon />
 								Sign in
 							</Button>
