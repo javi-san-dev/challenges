@@ -1,11 +1,7 @@
-import { Button, Navbar, Tab, Tabs } from "@nextui-org/react";
-import { useContext, useEffect, useRef, useState } from "react";
-import {
-	CheckSolutionIcon,
-	DescriptionIcon,
-	TestIcon,
-	VideoIcon,
-} from "../helpers/icons";
+import { Navbar, Tab, Tabs } from "@nextui-org/react";
+import { useRef, useState } from "react";
+import { CheckSolutionIcon, DescriptionIcon, TestIcon, VideoIcon } from "../helpers/icons";
+import ChallengeDescription from "./challengeDescription";
 
 export default function DescriptionComponent() {
 	const [order] = useState(["0", "1", "2", "3"]);
@@ -14,13 +10,12 @@ export default function DescriptionComponent() {
 
 	const tabClickHandler = (index: number) => {
 		setSelectedKey(order[index]);
-		onTabChange(index);
 	};
 
 	return (
-		<div className="border-2 border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden">
+		<div className="border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden">
 			<div className="relative h-[100%] overflow-scroll">
-				<Navbar isBlurred={false} maxWidth="full" className={`h-[3.3rem]`}>
+				<Navbar isBlurred={false} maxWidth="full" className={"h-[3.3rem]"}>
 					<div className="flex w-full flex-col justify-center">
 						<Tabs
 							selectedKey={selectedKey}
@@ -30,8 +25,7 @@ export default function DescriptionComponent() {
 							variant="underlined"
 							onSelectionChange={(key) => tabClickHandler(Number(key))}
 							classNames={{
-								tabList:
-									"gap-6 w-full relative rounded-none p-0  border-divider",
+								tabList: "gap-6 w-full relative rounded-none p-0  border-divider",
 								cursor: "w-full bg-cyan-400",
 								tab: "max-w-fit p-0 h-12",
 								tabContent: "group-data-[selected=true]:text-cyan-400",
@@ -76,7 +70,7 @@ export default function DescriptionComponent() {
 						</Tabs>
 					</div>
 				</Navbar>
-				<h1>Uncompress</h1>
+				<ChallengeDescription />
 			</div>
 		</div>
 	);

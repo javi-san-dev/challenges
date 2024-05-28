@@ -45,7 +45,7 @@ export default function SolutionComponent() {
 	};
 
 	return (
-		<div className="border-2 border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden">
+		<div className="border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden">
 			<div className="relative h-[100%] overflow-scroll">
 				<Navbar isBlurred={false} maxWidth="full" className={`h-[3.3rem]`}>
 					<div className="flex w-full items-center">
