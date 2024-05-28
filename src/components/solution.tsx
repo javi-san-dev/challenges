@@ -47,7 +47,7 @@ export default function SolutionComponent() {
 	return (
 		<div className="border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden">
 			<div className="relative h-[100%] overflow-scroll">
-				<Navbar isBlurred={false} maxWidth="full" className={`h-[3.3rem]`}>
+				<Navbar isBlurred={false} maxWidth="full" className={'h-[3.3rem]'}>
 					<div className="flex w-full items-center">
 						<Tabs
 							selectedKey={selectedKey}
@@ -107,7 +107,7 @@ export default function SolutionComponent() {
 										aria-label="Zoom in"
 										size="sm"
 										radius="sm"
-										className={``}
+										className={''}
 									>
 										{<AddIcon size={"1.2rem"} />}
 									</Button>
@@ -119,7 +119,7 @@ export default function SolutionComponent() {
 										aria-label="Zoom out"
 										size="sm"
 										radius="sm"
-										className={``}
+										className={''}
 									>
 										{<MinusIcon size={"1.2rem"} />}
 									</Button>
@@ -131,7 +131,7 @@ export default function SolutionComponent() {
 										aria-label="settings"
 										size="sm"
 										radius="sm"
-										className={``}
+										className={''}
 									>
 										{<SettingsIcon size={"1.1rem"} />}
 									</Button>
@@ -143,7 +143,7 @@ export default function SolutionComponent() {
 										aria-label="settings"
 										size="sm"
 										radius="sm"
-										className={``}
+										className={''}
 									>
 										<DarkThemeIcon size="1.3rem" />
 									</Button>

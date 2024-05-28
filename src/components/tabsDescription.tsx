@@ -1,14 +1,15 @@
-import { Navbar, Tab, Tabs } from "@nextui-org/react";
+import { Button, Navbar, Tab, Tabs } from "@nextui-org/react";
 import { useRef, useState } from "react";
-import { CheckSolutionIcon, DescriptionIcon, TestIcon, VideoIcon } from "../helpers/icons";
+import { CheckSolutionIcon, DarkThemeIcon, DescriptionIcon, TestIcon, VideoIcon } from "../helpers/icons";
 
-export default function TabsDescription() {
+export default function TabsDescription({ onTabChange }: { onTabChange: (index: number) => void }) {
 	const [order] = useState(["0", "1", "2", "3"]);
 	const [selectedKey, setSelectedKey] = useState(order[0]);
 	const tabsRef = useRef(null);
 
 	const tabClickHandler = (index: number) => {
 		setSelectedKey(order[index]);
+		onTabChange(index);
 	};
 
 	return (
@@ -66,6 +67,9 @@ export default function TabsDescription() {
 					/>
 				</Tabs>
 			</div>
+			<Button isIconOnly variant="solid" aria-label="settings" size="sm" radius="sm" className={""}>
+				<DarkThemeIcon size="1.3rem" />
+			</Button>
 		</Navbar>
 	);
 }

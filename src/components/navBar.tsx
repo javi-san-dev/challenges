@@ -28,7 +28,7 @@ export default function NavBarComponent() {
 
 	useEffect(() => {
 		const htmlElement = document.getElementById("htmlElement") as HTMLElement;
-		htmlElement.style.fontSize = `16px`;
+		htmlElement.style.fontSize = '16px';
 	}, []);
 
 	useEffect(() => {
@@ -41,13 +41,13 @@ export default function NavBarComponent() {
 	const zoomIn = () => {
 		const htmlElement = document.getElementById("htmlElement") as HTMLElement;
 		const fontSize = Number(htmlElement.style.fontSize.replace(/[^0-9]/g, ""));
-		htmlElement.style.fontSize = `${fontSize + 1}px`;
+		htmlElement.style.fontSize = '${fontSize + 1}px';
 	};
 
 	const zoomOut = () => {
 		const htmlElement = document.getElementById("htmlElement") as HTMLElement;
 		const fontSize = Number(htmlElement.style.fontSize.replace(/[^0-9]/g, ""));
-		htmlElement.style.fontSize = `${fontSize - 1}px`;
+		htmlElement.style.fontSize = '${fontSize - 1}px';
 	};
 
 	return (
@@ -74,7 +74,7 @@ export default function NavBarComponent() {
 								aria-label="search for challenge"
 								size="md"
 								radius="sm"
-								className={``}
+								className={''}
 								onPress={onOpen}
 							>
 								{<SearchIcon size={"1.2rem"} />}Type to search...
@@ -141,7 +141,7 @@ export default function NavBarComponent() {
 								aria-label="Zoom in"
 								size="md"
 								radius="sm"
-								className={`w-[4rem]`}
+								className={'w-[4rem]'}
 								onClick={zoomIn}
 							>
 								{<AddIcon size={"1.2rem"} />}
@@ -154,7 +154,7 @@ export default function NavBarComponent() {
 								aria-label="Zoom out"
 								size="md"
 								radius="sm"
-								className={`w-[4rem]`}
+								className={'w-[4rem]'}
 								onClick={zoomOut}
 							>
 								{<MinusIcon size={"1.2rem"} />}
@@ -167,7 +167,7 @@ export default function NavBarComponent() {
 								aria-label="settings"
 								size="md"
 								radius="sm"
-								className={`w-[4rem]`}
+								className={'w-[4rem]'}
 							>
 								{<SettingsIcon size={"1.1rem"} />}
 							</Button>
@@ -181,7 +181,7 @@ export default function NavBarComponent() {
 										aria-label="settings"
 										size="md"
 										radius="sm"
-										className={`w-[4rem]`}
+										className={'w-[4rem]'}
 									>
 										<DarkThemeIcon size="1.3rem" />
 									</Button>
@@ -205,10 +205,10 @@ export default function NavBarComponent() {
 								aria-label="sign in"
 								size="md"
 								radius="sm"
-								className={``}
+								className={''}
 							>
 								<SignInIcon />
-								Sign in with Google
+								Sign in
 							</Button>
 						</li>
 					</ul>
