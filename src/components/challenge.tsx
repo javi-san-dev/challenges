@@ -4,7 +4,7 @@ import NavBarComponent from "./navBar";
 import FooterComponent from "./footer";
 import Split from "react-split";
 import Description from "./description"
-import Solution from "./solution"
+import RightBoxComponent from "./rightBox"
 
 export default function Challenge({
 	slug,
@@ -29,7 +29,7 @@ export default function Challenge({
 				cursor="col-resize"
 			>
 				<Description />
-				<Solution />
+				<RightBoxComponent />
 			</Split>
 			<FooterComponent />
 		</div>
