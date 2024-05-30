@@ -16,10 +16,8 @@ export default function RightBoxComponent() {
 				dragInterval={1}
 				direction="vertical"
 			>
-				<div className={"border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden"}>
-					<CodeEditor />
-				</div>
-				<div className={"border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden"}>
+				<CodeEditor />
+				<div className="border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden">
 					<Console />
 				</div>
 			</Split>

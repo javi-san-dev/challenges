@@ -13,7 +13,7 @@ export default function TabsDescription({ onTabChange }: { onTabChange: (index: 
 	};
 
 	return (
-		<Navbar isBlurred={false} maxWidth="full" className={"h-[3.3rem]"}>
+		<Navbar isBlurred={false} maxWidth="full" className={"h-[3.3rem]"} classNames={{wrapper:"px-4"}}>
 			<div className="flex w-full flex-col justify-center">
 				<Tabs
 					selectedKey={selectedKey}

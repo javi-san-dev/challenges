@@ -27,7 +27,7 @@ export default function CodeEditorTabs() {
 	};
 
 	return (
-		<Navbar isBlurred={false} maxWidth="full" className={"h-[3.3rem]"}>
+		<Navbar isBlurred={false} maxWidth="full" className={"h-[3.3rem]"} classNames={{ wrapper: "px-4" }}>
 			<div className="flex w-full items-center">
 				<Tabs
 					selectedKey={selectedKey}

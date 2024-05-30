@@ -13,10 +13,8 @@ export default function ConsoleTabs() {
 		<Navbar
 			isBlurred={false}
 			maxWidth="full"
-			className={
-				"h-[3.3rem] border-b border-neutral-100 shadow-lg shadow-neutral-200/50 dark:border-neutral-950 dark:shadow-neutral-950/50"
-			}
-			classNames={{ wrapper: "" }}
+			className="h-[3.3rem] border-b border-neutral-100 shadow-lg shadow-neutral-200/50 dark:border-neutral-950 dark:shadow-neutral-950/50"
+			classNames={{wrapper:"px-4"}}
 		>
 			<div className="flex w-full flex-col justify-center">
 				<Tabs
