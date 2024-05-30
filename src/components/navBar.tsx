@@ -13,11 +13,20 @@ import {
 	useDisclosure,
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import { AddIcon, DarkThemeIcon, MinusIcon, SearchIcon, SettingsIcon, SignInIcon } from "../helpers/icons";
+import {
+	AddIcon,
+	DarkThemeIcon,
+	LightThemeIcon,
+	MinusIcon,
+	SearchIcon,
+	SettingsIcon,
+	SignInIcon,
+} from "../helpers/icons";
 
 export default function NavBarComponent() {
 	const [selectedKeys, setSelectedKeys] = useState(new Set(["dark"]));
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+	const [isDarTheme, setIsDarkTheme] = useState(true);
 
 	useEffect(() => {
 		const htmlElement = document.getElementById("htmlElement") as HTMLElement;
@@ -25,10 +34,13 @@ export default function NavBarComponent() {
 	}, []);
 
 	useEffect(() => {
+		const selectedKeyVal = Array.from(selectedKeys)[0];
 		const htmlElement = document.getElementById("htmlElement") as HTMLElement;
 		htmlElement.classList.remove("light");
 		htmlElement.classList.remove("dark");
-		htmlElement.classList.add(Array.from(selectedKeys)[0]);
+		htmlElement.classList.add(selectedKeyVal);
+		if (selectedKeyVal === "dark") setIsDarkTheme(true);
+		if (selectedKeyVal === "light") setIsDarkTheme(false);
 	}, [selectedKeys]);
 
 	const zoomIn = () => {
@@ -155,15 +167,8 @@ export default function NavBarComponent() {
 						<li>
 							<Dropdown>
 								<DropdownTrigger>
-									<Button
-										isIconOnly
-										variant="bordered"
-										aria-label="settings"
-										size="md"
-										radius="sm"
-										className={"w-[4rem]"}
-									>
-										<DarkThemeIcon size="1.3rem" />
+									<Button isIconOnly variant="bordered" aria-label="theme" size="md" radius="sm" className={"w-[4rem]"}>
+										{isDarTheme ? <DarkThemeIcon size="1.3rem" /> : <LightThemeIcon size="1.3rem" />}
 									</Button>
 								</DropdownTrigger>
 								<DropdownMenu

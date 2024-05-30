@@ -12,3 +12,30 @@
 	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
 	cursor: col-resize;
 }
+
+p {
+	margin-top: 1rem;
+}
+h3 {
+	font-size: 1.5rem;
+	margin: 1rem 0;
+}
+.splitHorizontal {
+	padding: 0;
+	height: 100%;
+}
+.monaco-editor-background,
+.margin,
+.margin-view-overlays,
+.margin-view-overlays>div,
+.monaco-editor {
+	background: transparent !important;
+}
+.monaco-editor .editor-widget {
+	display: none !important;
+	visibility: hidden !important;
+}
+.hiddeNavBars {
+	display: none;
+}
+
