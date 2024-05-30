@@ -18,6 +18,7 @@ export default function Challenge({
 			<NavBarComponent />
 			<Split
 				className="split grow overflow-hidden bg-none flex px-4"
+				id="mainSplit"
 				sizes={[50, 50]}
 				minSize={100}
 				expandToMin={false}

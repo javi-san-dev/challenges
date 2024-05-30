@@ -37,6 +37,15 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 		onTabChange(index);
 	};
 
+	const setFullScreen = () => {
+		const navElement = document.getElementsByTagName("nav")[0];
+		const footerElement = document.getElementsByTagName("footer")[0];
+		navElement.classList.toggle("hiddeNavBars");
+		footerElement.classList.toggle("hiddeNavBars");
+		const mainSplitElement = document.getElementById("mainSplit");
+		mainSplit.classList.toggle("py-4");
+	};
+
 	return (
 		<Navbar isBlurred={false} maxWidth="full" className={"h-[3.3rem]"} classNames={{ wrapper: "px-4" }}>
 			<div className="flex w-full items-center">
@@ -74,7 +83,7 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 					/>
 				</Tabs>
 				<div className="hidden w-full md:block md:w-auto ml-auto" id="navbar-default">
-					<ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0">
+					<ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row space-x-1 rtl:space-x-reverse md:mt-0">
 						<li>
 							<Select size="sm" defaultSelectedKeys={["cpp"]} className="w-[130px]">
 								{animals.map((animal) => (
@@ -124,7 +133,15 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 							</Button>
 						</li>
 						<li>
-							<Button isIconOnly variant="solid" aria-label="settings" size="sm" radius="sm" className={""}>
+							<Button
+								isIconOnly
+								variant="solid"
+								aria-label="settings"
+								size="sm"
+								radius="sm"
+								className=""
+								onClick={() => setFullScreen()}
+							>
 								<FullScreenIcon size="1.1rem" />
 							</Button>
 						</li>
