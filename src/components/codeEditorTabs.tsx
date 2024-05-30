@@ -1,8 +1,19 @@
 import { Button, Navbar, Select, SelectItem, Tab, Tabs } from "@nextui-org/react";
 import { useRef, useState } from "react";
-import { AddIcon, CheckSolutionIcon, DarkThemeIcon, DescriptionIcon, MinusIcon, SettingsIcon } from "../helpers/icons";
+import {
+	AddIcon,
+	CheckSolutionIcon,
+	CodeIcon,
+	CopyIcon,
+	DarkThemeIcon,
+	DescriptionIcon,
+	FullScreenIcon,
+	MinusIcon,
+	ReloadIcon,
+	SettingsIcon,
+} from "../helpers/icons";
 
-export default function CodeEditorTabs() {
+export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 	const [order] = useState(["0", "1", "2", "3"]);
 	const [selectedKey, setSelectedKey] = useState(order[0]);
 	const tabsRef = useRef(null);
@@ -74,23 +85,47 @@ export default function CodeEditorTabs() {
 							</Select>
 						</li>
 						<li>
-							<Button isIconOnly variant="solid" aria-label="Zoom in" size="sm" radius="sm" className={""}>
-								{<AddIcon size={"1.2rem"} />}
+							<Button
+								isIconOnly
+								variant="solid"
+								aria-label="Zoom in"
+								size="sm"
+								radius="sm"
+								className=""
+								onClick={() => formatCode()}
+							>
+								{<CodeIcon size={"1.1rem"} />}
 							</Button>
 						</li>
 						<li>
-							<Button isIconOnly variant="solid" aria-label="Zoom out" size="sm" radius="sm" className={""}>
-								{<MinusIcon size={"1.2rem"} />}
+							<Button
+								isIconOnly
+								variant="solid"
+								aria-label="Zoom out"
+								size="sm"
+								radius="sm"
+								className=""
+								onClick={() => resetCode()}
+							>
+								{<ReloadIcon size={"1.1rem"} />}
+							</Button>
+						</li>
+						<li>
+							<Button
+								isIconOnly
+								variant="solid"
+								aria-label="settings"
+								size="sm"
+								radius="sm"
+								className=""
+								onClick={() => copyCode()}
+							>
+								{<CopyIcon size={"1.1rem"} />}
 							</Button>
 						</li>
 						<li>
 							<Button isIconOnly variant="solid" aria-label="settings" size="sm" radius="sm" className={""}>
-								{<SettingsIcon size={"1.1rem"} />}
-							</Button>
-						</li>
-						<li>
-							<Button isIconOnly variant="solid" aria-label="settings" size="sm" radius="sm" className={""}>
-								<DarkThemeIcon size="1.3rem" />
+								<FullScreenIcon size="1.1rem" />
 							</Button>
 						</li>
 					</ul>

@@ -38,9 +38,31 @@ export default function CodeEditor() {
 		window.history.pushState({}, "", url.toString());
 	}
 
+	const formatCode = () => {
+		editorRef.current.getAction("editor.action.formatDocument").run();
+	};
+
+	const resetCode = () => {
+		editorRef?.current?.setValue(currentCode);
+		editorRef.current.getAction("editor.action.formatDocument").run();
+	};
+
+	const copyCode = async () => {
+		const getCodeValue = editorRef?.current?.getValue();
+		try {
+			await navigator.clipboard.writeText(getCodeValue);
+			// setIsClipBoardClicked(true);
+			// setTimeout(() => {
+			// 	setIsClipBoardClicked(false);
+			// }, 4000);
+		} catch (err) {
+			console.error("Failed to copy: ", err);
+		}
+	};
+
 	return (
 		<div className="flex flex-col border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden">
-			<CodeEditorTabs />
+			<CodeEditorTabs formatCode={formatCode} resetCode={resetCode} copyCode={copyCode} />
 			<Editor
 				className="px-0 pt-5 flex-1"
 				height="100%"
