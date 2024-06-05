@@ -26,8 +26,8 @@
 		"startedCode": {
 			"javascript": "function uncompress(s) {\n  // Write your solution...\n  return true;\n}",
 			"python": "def uncompress(s) -> str:\n  # write your solution...",
-      "java": "class Uncompress {\n   public static String uncompress(String s) {\n      // Write your solution...\n   }\n}",
-      "cpp": "string uncompress(const string& s) {\n   // Write your solution...\n}"
+			"java": "class Uncompress {\n   public static String uncompress(String s) {\n      // Write your solution...\n   }\n}",
+			"cpp": "string uncompress(const string& s) {\n   // Write your solution...\n}"
 		},
 		"solutionCode": {
 			"javascript": [
@@ -36,12 +36,12 @@
 			"python": [
 				"def uncompress(s):\n   numbers = '0123456789'\n   result = []\n   p1 = 0\n   p2 = 0\n   while p2 < len(s):\n      if s[p2] in numbers:\n         p2 += 1\n      else:\n         if p1 != p2:\n            val = int(s[p1:p2])\n            result.extend(s[p2] * val)\n         p2 += 1\n         p1 = p2\n   return ''.join(result)"
 			],
-      "java": [
-        "class Uncompress {\n   public static String uncompress(String s) {\n      String numbers = \"0123456789\";\n      StringBuilder result = new StringBuilder();\n      int p1 = 0;\n      int p2 = 0;\n      while (p2 <= s.length()) {\n         if (p2 < s.length() && numbers.indexOf(s.charAt(p2)) != -1) {\n            p2++;\n         } else {\n            if (p1 != p2) {\n               int val = Integer.parseInt(s.substring(p1, p2));\n               for (int x = 0; x < val; x++) {\n                  result.append(s.charAt(p2));\n               }\n            }\n            p2++;\n            p1 = p2;\n         }\n      }\n   return result.toString();\n   }\n}"
-      ],
-      "cpp": [
-        "string uncompress(const string& s) {\n   string numbers = '0123456789';\n   string result;\n   int p1 = 0;\n   int p2 = 0;\n   while (p2 <= s.length()) {\n      if (p2 < s.length() && numbers.find(s[p2]) != string::npos) {\n         p2++;\n      } else {\n         int val = stoi(s.substr(p1, p2 - p1));\n         for (int x = 0; x < val; x++) {\n            result += s[p2];\n         }\n         p2++;\n         p1 = p2;\n      }\n   }\n   return result;\n}"
-      ]
+			"java": [
+				"class Uncompress {\n   public static String uncompress(String s) {\n      String numbers = \"0123456789\";\n      StringBuilder result = new StringBuilder();\n      int p1 = 0;\n      int p2 = 0;\n      while (p2 <= s.length()) {\n         if (p2 < s.length() && numbers.indexOf(s.charAt(p2)) != -1) {\n            p2++;\n         } else {\n            if (p1 != p2) {\n               int val = Integer.parseInt(s.substring(p1, p2));\n               for (int x = 0; x < val; x++) {\n                  result.append(s.charAt(p2));\n               }\n            }\n            p2++;\n            p1 = p2;\n         }\n      }\n   return result.toString();\n   }\n}"
+			],
+			"cpp": [
+				"string uncompress(const string& s) {\n   string numbers = '0123456789';\n   string result;\n   int p1 = 0;\n   int p2 = 0;\n   while (p2 <= s.length()) {\n      if (p2 < s.length() && numbers.find(s[p2]) != string::npos) {\n         p2++;\n      } else {\n         int val = stoi(s.substr(p1, p2 - p1));\n         for (int x = 0; x < val; x++) {\n            result += s[p2];\n         }\n         p2++;\n         p1 = p2;\n      }\n   }\n   return result;\n}"
+			]
 		},
 		"submittedCode": {
 			"javascript": ""
@@ -74,6 +74,87 @@
 			"Test_5": {
 				"test_input": ["127y"],
 				"test_expected": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+				"code_output": null,
+				"passed_test": false
+			}
+		},
+		"platform": "structy"
+	},
+	"mostFrequentChar": {
+		"refName": "mostFrequentChar",
+		"refNumber": 2,
+		"category": "String",
+		"difficulty": "Easy",
+		"title": "Most Frequent Char",
+		"tags": ["Easy", "String"],
+		"description": "<p>Write a function, mostFrequentChar, that takes in a string as an argument. The function should return the most frequent character of the string. If there are ties, return the character that appears earlier in the string.</p><p>You can assume that the input string is non-empty.</p>",
+		"examples": {
+			"example1": {
+				"input": "str = 'bookeeper';",
+				"output": "'e'"
+			},
+			"example2": {
+				"input": "str = 'david';",
+				"output": "'d'"
+			}
+		},
+		"hints": {
+			"hint_1": "...",
+			"hint_2": "...",
+			"hint_3": "...",
+			"Optimal_Space__Time_Complexity": "..."
+		},
+		"startedCode": {
+			"javascript": "function mostFrequentChar(s) {\n  // Write your solution...\n  return true;\n}"
+		},
+		"solutionCode": {
+			"javascript": [
+				"// solution 1\n// n = length of string\n// Time: O(n)\n// Space: O(n)\nfunction mostFrequentChar(s) {\n    const list = new Map();\n    for (const char of s) {\n        if (list.has(char)) {\n            const val = list.get(char);\n            list.set(char, val + 1);\n        } else {\n            list.set(char, 1);\n        }\n    }\n    let best = null;\n    for (const char of s) {\n        if (best === null || list.get(char) > list.get(best)) {\n            best = char;\n        }\n    }\n    return best;\n}"
+			]
+		},
+		"submittedCode": {
+			"javascript": ""
+		},
+		"testCases": {
+			"Test_1": {
+				"test_input": ["bookeeper"],
+				"test_expected": "e",
+				"code_output": null,
+				"passed_test": false
+			},
+			"Test_2": {
+				"test_input": ["david"],
+				"test_expected": "d",
+				"code_output": null,
+				"passed_test": false
+			},
+			"Test_3": {
+				"test_input": ["abby"],
+				"test_expected": "b",
+				"code_output": null,
+				"passed_test": false
+			},
+			"Test_4": {
+				"test_input": ["mississippi"],
+				"test_expected": "i",
+				"code_output": null,
+				"passed_test": false
+			},
+			"Test_5": {
+				"test_input": ["potato"],
+				"test_expected": "o",
+				"code_output": null,
+				"passed_test": false
+			},
+			"Test_6": {
+				"test_input": ["eleventennine"],
+				"test_expected": "e",
+				"code_output": null,
+				"passed_test": false
+			},
+			"Test_7": {
+				"test_input": ["riverbed"],
+				"test_expected": "r",
 				"code_output": null,
 				"passed_test": false
 			}
