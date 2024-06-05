@@ -1,14 +1,15 @@
 import { Button } from "@nextui-org/react";
 import { BugIcon, ListIcon, PlayIcon, HelpIcon } from "../helpers/icons";
 import PatternsModal from "./patternsModal";
+import ChallengeList from "./challengeList"
 
 export default function FooterComponent() {
 	return (
 		<footer className="w-full px-4 py-2 flex items-center justify-center relative">
 			<ul className="flex gap-2">
 				<li>
-					<Button isIconOnly variant="flat" aria-label="Zoom in" size="md" radius="sm" className={"w-[4rem]"}>
-						{<BugIcon size={"1.2rem"} />}
+					<Button variant="flat" aria-label="Zoom in" size="md" radius="sm" className={""}>
+						{<BugIcon size={"1.2rem"} />} Report bug
 					</Button>
 				</li>
 				<li>
@@ -29,9 +30,7 @@ export default function FooterComponent() {
 					</Button>
 				</li>
 				<li>
-					<Button variant="flat" aria-label="Zoom in" size="md" radius="sm" className={""}>
-						<ListIcon size="1.2rem" /> Challenge list
-					</Button>
+					<ChallengeList />
 				</li>
 				<li>
 					<Button isIconOnly variant="flat" aria-label="Zoom in" size="md" radius="sm" className={"w-[4rem]"}>
