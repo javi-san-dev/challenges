@@ -16,14 +16,17 @@
 p {
 	margin-top: 1rem;
 }
+
 h3 {
 	font-size: 1.5rem;
 	margin: 1rem 0;
 }
+
 .splitHorizontal {
 	padding: 0;
 	height: 100%;
 }
+
 .monaco-editor-background,
 .margin,
 .margin-view-overlays,
@@ -31,11 +34,17 @@ h3 {
 .monaco-editor {
 	background: transparent !important;
 }
+
 .monaco-editor .editor-widget {
 	display: none !important;
 	visibility: hidden !important;
 }
+
 .hiddeNavBars {
 	display: none;
 }
 
+.list {
+	list-style: circle;
+	margin-left: 1rem;
+}

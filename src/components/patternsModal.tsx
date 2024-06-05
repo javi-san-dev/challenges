@@ -10,7 +10,7 @@ import {
 	useDisclosure,
 } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import { HelpInfo } from "../data/aa";
+import { HelpInfo } from "../data/patterns";
 import { dataStructureList } from "../helpers/constants";
 import { HelpIcon, ListIcon, PlayIcon } from "../helpers/icons";
 
@@ -33,7 +33,7 @@ export default function PatternsModal() {
 	const updateComponent = (functionName, goBackFlag) => {
 		if (functionName === undefined) return;
 		const importSpecificComponent = async () => {
-			const module = await import("../data/aa");
+			const module = await import("../data/patterns");
 			const Element: JSX.Element = module[functionName] as JSX.Element;
 			setContent(<Element updateComponent={updateComponent} />);
 			setCurrentFunction((currArray) => {
