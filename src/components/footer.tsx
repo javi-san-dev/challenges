@@ -1,26 +1,25 @@
 import { Button } from "@nextui-org/react";
-import { BugIcon, ListIcon, PlayIcon } from "../helpers/icons";
+import { BugIcon, ListIcon, PlayIcon, HelpIcon } from "../helpers/icons";
+import PatternsModal from "./patternsModal";
 
 export default function FooterComponent() {
 	return (
 		<footer className="w-full px-4 py-2 flex items-center justify-center relative">
 			<ul className="flex gap-2">
 				<li>
-					<Button isIconOnly variant="bordered" aria-label="Zoom in" size="md" radius="sm" className={"w-[4rem]"}>
+					<Button isIconOnly variant="flat" aria-label="Zoom in" size="md" radius="sm" className={"w-[4rem]"}>
 						{<BugIcon size={"1.2rem"} />}
 					</Button>
 				</li>
 				<li>
-					<Button variant="bordered" aria-label="Zoom in" size="md" radius="sm" className={""}>
-						{<BugIcon size={"1.2rem"} />} Help
-					</Button>
+					<PatternsModal />
 				</li>
 			</ul>
 			<ul className="flex gap-2 items-center text-sm font-medium text-gray-500 dark:text-gray-400 absolute">
 				<li>
 					<Button
 						isIconOnly
-						variant="bordered"
+						variant="flat"
 						aria-label="Zoom in"
 						size="md"
 						radius="sm"
@@ -30,24 +29,24 @@ export default function FooterComponent() {
 					</Button>
 				</li>
 				<li>
-					<Button variant="bordered" aria-label="Zoom in" size="md" radius="sm" className={""}>
+					<Button variant="flat" aria-label="Zoom in" size="md" radius="sm" className={""}>
 						<ListIcon size="1.2rem" /> Challenge list
 					</Button>
 				</li>
 				<li>
-					<Button isIconOnly variant="bordered" aria-label="Zoom in" size="md" radius="sm" className={"w-[4rem]"}>
+					<Button isIconOnly variant="flat" aria-label="Zoom in" size="md" radius="sm" className={"w-[4rem]"}>
 						{<PlayIcon size={"1.2rem"} />}
 					</Button>
 				</li>
 			</ul>
 			<ul className="flex gap-2 flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 mt-0 ml-auto">
 				<li>
-					<Button variant="bordered" aria-label="Zoom in" size="md" radius="sm" className={""}>
+					<Button variant="flat" aria-label="Zoom in" size="md" radius="sm" className={""}>
 						{<PlayIcon size={"1.2rem"} />} Run
 					</Button>
 				</li>
 				<li>
-					<Button variant="bordered" aria-label="Zoom in" size="md" radius="sm" className={""}>
+					<Button variant="flat" aria-label="Zoom in" size="md" radius="sm" className={""}>
 						Submit
 					</Button>
 				</li>

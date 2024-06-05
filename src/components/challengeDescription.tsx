@@ -67,7 +67,7 @@ export default function ChallengeDescription() {
 		<div className="px-4 pb-4">
 			<header className="my-2 flex items-center">
 				{svg}
-				<h1 className="p-3 text-3xl font-light dark:text-neutral-400">{challenge.title}</h1>
+				<h1 className="p-3 text-3xl font-light dark:text-neutral-100">{challenge.title}</h1>
 			</header>
 			<div className="mb-8 flex items-center text-neutral-500">
 				<Chip color={ChipColor(challenge.tags[0])} variant="flat" className={"mr-5"}>

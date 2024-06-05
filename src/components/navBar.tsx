@@ -69,11 +69,11 @@ export default function NavBarComponent() {
 					<ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0">
 						<li>
 							<Button
-								variant="bordered"
+								variant="flat"
 								aria-label="search for challenge"
 								size="md"
 								radius="sm"
-								className={""}
+								className={" pr-24"}
 								onPress={onOpen}
 							>
 								{<SearchIcon size={"1.2rem"} />}Type to search...
@@ -117,7 +117,7 @@ export default function NavBarComponent() {
 											<ModalHeader className="flex flex-col gap-1 p-2">
 												<Input
 													placeholder="Type to search..."
-													variant="bordered"
+													variant="flat"
 													startContent={<SearchIcon />}
 													classNames={{
 														base: "border-none",
@@ -136,7 +136,7 @@ export default function NavBarComponent() {
 						<li>
 							<Button
 								isIconOnly
-								variant="bordered"
+								variant="flat"
 								aria-label="Zoom in"
 								size="md"
 								radius="sm"
@@ -149,7 +149,7 @@ export default function NavBarComponent() {
 						<li>
 							<Button
 								isIconOnly
-								variant="bordered"
+								variant="flat"
 								aria-label="Zoom out"
 								size="md"
 								radius="sm"
@@ -160,14 +160,14 @@ export default function NavBarComponent() {
 							</Button>
 						</li>
 						<li>
-							<Button isIconOnly variant="bordered" aria-label="settings" size="md" radius="sm" className={"w-[4rem]"}>
+							<Button isIconOnly variant="flat" aria-label="settings" size="md" radius="sm" className={"w-[4rem]"}>
 								{<SettingsIcon size={"1.1rem"} />}
 							</Button>
 						</li>
 						<li>
 							<Dropdown>
 								<DropdownTrigger>
-									<Button isIconOnly variant="bordered" aria-label="theme" size="md" radius="sm" className={"w-[4rem]"}>
+									<Button isIconOnly variant="flat" aria-label="theme" size="md" radius="sm" className={"w-[4rem]"}>
 										{isDarTheme ? <DarkThemeIcon size="1.3rem" /> : <LightThemeIcon size="1.3rem" />}
 									</Button>
 								</DropdownTrigger>
@@ -185,7 +185,7 @@ export default function NavBarComponent() {
 							</Dropdown>
 						</li>
 						<li>
-							<Button variant="bordered" aria-label="sign in" size="md" radius="sm" className={""}>
+							<Button variant="flat" aria-label="sign in" size="md" radius="sm" className={""}>
 								<SignInIcon />
 								Sign in
 							</Button>

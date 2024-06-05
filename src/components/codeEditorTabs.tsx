@@ -96,7 +96,7 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 						<li>
 							<Button
 								isIconOnly
-								variant="solid"
+								variant="flat"
 								aria-label="Zoom in"
 								size="sm"
 								radius="sm"
@@ -109,7 +109,7 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 						<li>
 							<Button
 								isIconOnly
-								variant="solid"
+								variant="flat"
 								aria-label="Zoom out"
 								size="sm"
 								radius="sm"
@@ -122,7 +122,7 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 						<li>
 							<Button
 								isIconOnly
-								variant="solid"
+								variant="flat"
 								aria-label="settings"
 								size="sm"
 								radius="sm"
@@ -135,7 +135,7 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 						<li>
 							<Button
 								isIconOnly
-								variant="solid"
+								variant="flat"
 								aria-label="settings"
 								size="sm"
 								radius="sm"
