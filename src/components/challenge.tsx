@@ -1,5 +1,5 @@
 import { Button } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import Split from "react-split";
 import type { userType } from "../helpers/types";

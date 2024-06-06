@@ -12,7 +12,8 @@ import {
 	ModalHeader,
 	useDisclosure,
 } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { DataContext } from "../helpers/dataContext";
 import {
 	AddIcon,
 	DarkThemeIcon,
@@ -24,9 +25,10 @@ import {
 } from "../helpers/icons";
 
 export default function NavBarComponent() {
-	const [selectedKeys, setSelectedKeys] = useState(new Set(["dark"]));
+	const { data, updateData } = useContext(DataContext);
+	const [selectedKeys, setSelectedKeys] = useState(new Set([data.theme]));
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
-	const [isDarTheme, setIsDarkTheme] = useState(true);
+	const [isDarTheme, setIsDarkTheme] = useState(() => data.theme === "dark");
 
 	useEffect(() => {
 		const htmlElement = document.getElementById("htmlElement") as HTMLElement;
@@ -39,8 +41,11 @@ export default function NavBarComponent() {
 		htmlElement.classList.remove("light");
 		htmlElement.classList.remove("dark");
 		htmlElement.classList.add(selectedKeyVal);
-		if (selectedKeyVal === "dark") setIsDarkTheme(true);
-		if (selectedKeyVal === "light") setIsDarkTheme(false);
+		const isDarkTheme = selectedKeyVal === "dark";
+		if (isDarkTheme) setIsDarkTheme(true);
+		if (!isDarkTheme) setIsDarkTheme(false);
+		localStorage.setItem("theme", isDarkTheme ? "dark" : "light");
+		updateData({ theme: isDarkTheme ? "dark" : "light" });
 	}, [selectedKeys]);
 
 	const zoomIn = () => {
@@ -185,7 +190,13 @@ export default function NavBarComponent() {
 							</Dropdown>
 						</li>
 						<li>
-							<Button variant="flat" aria-label="sign in" size="md" radius="sm" className={"border border-cyan-400 text-cyan-400 bg-transparent"}>
+							<Button
+								variant="flat"
+								aria-label="sign in"
+								size="md"
+								radius="sm"
+								className={"border border-cyan-400 text-cyan-400 bg-transparent"}
+							>
 								<SignInIcon />
 								Sign in
 							</Button>

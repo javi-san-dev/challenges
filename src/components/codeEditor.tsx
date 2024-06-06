@@ -5,19 +5,27 @@ import beautify from "js-beautify";
 import type { editor } from "monaco-editor";
 import { useContext, useEffect, useRef, useState } from "react";
 import { getHighlighter } from "shiki";
+import { DataContext } from "../helpers/dataContext";
 import CodeEditorTabs from "./codeEditorTabs";
 
 export default function CodeEditor({ allStartedCode }) {
+	const { data } = useContext(DataContext);
 	const editorRef = useRef(null);
 	const monacoEditor = useRef(null);
-	const codeLanguage = "javascript";
-	const startedCode = allStartedCode[codeLanguage];
+	const codeLanguage = data.codeLanguage;
+	const [startedCode, setStartedCode] = useState(allStartedCode[codeLanguage]);
 	const params = new URLSearchParams(window.location.search);
 	const getParam = params.get("code");
 	const currentCode = getParam !== null ? decode(decodeURIComponent(getParam)) : startedCode;
-
-	const currentTheme = "dark-plus";
 	const fontSize = "13px";
+
+	useEffect(() => {
+		const startedCode = allStartedCode[data.codeLanguage];
+		setStartedCode(startedCode);
+		updateHashedCode(startedCode);
+		editorRef?.current?.setValue(startedCode);
+		editorRef?.current?.getAction("editor.action.formatDocument").run();
+	}, [data.codeLanguage]);
 
 	const handleEditorDidMount = async (editor: editor.IStandaloneCodeEditor, monaco: typeof import("monaco-editor")) => {
 		editorRef.current = editor;
@@ -27,7 +35,7 @@ export default function CodeEditor({ allStartedCode }) {
 		monaco.languages.register({ id: codeLanguage });
 		const highlighter = await getHighlighter({
 			themes: ["dark-plus", "light-plus"],
-			langs: ["javascript"],
+			langs: ["javascript", "java", "python", "cpp"],
 		});
 		shikiToMonaco(highlighter, monaco);
 	};
@@ -47,7 +55,7 @@ export default function CodeEditor({ allStartedCode }) {
 	};
 
 	const resetCode = () => {
-		updateHashedCode(startedCode)
+		updateHashedCode(startedCode);
 		editorRef?.current?.setValue(startedCode);
 		editorRef.current.getAction("editor.action.formatDocument").run();
 	};
@@ -76,7 +84,7 @@ export default function CodeEditor({ allStartedCode }) {
 				value={currentCode}
 				// beforeMount={handleEditorWillMount}
 				onMount={(editor, monaco) => handleEditorDidMount(editor, monaco)}
-				theme={currentTheme}
+				theme={data.theme === "dark" ? "dark-plus" : "light-plus"}
 				onChange={(value: string | undefined) => updateHashedCode(value)}
 				options={{
 					minimap: { enabled: false },

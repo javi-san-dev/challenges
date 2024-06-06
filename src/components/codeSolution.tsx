@@ -1,29 +1,32 @@
 import { Tab, Tabs } from "@nextui-org/react";
 import { transformerNotationDiff, transformerNotationHighlight } from "@shikijs/transformers";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
-import challenges from "../data/challenges.json";
+import { DataContext } from "../helpers/dataContext";
 
 export default function CodeSolution({ allCodeSolutions }) {
-	const challenge = challenges.uncompress;
+	const { data } = useContext(DataContext);
 	const [html, setHtml] = useState("");
-	const codeLanguage = "javascript";
+	const [codeLanguage, setCodeLanguage] = useState(data.codeLanguage);
 	const lang = codeLanguage;
-	const solutionCode = allCodeSolutions[codeLanguage][0];
-	const theme = "dark-plus";
+	const [solutionCode, setSolutionCode] = useState(allCodeSolutions[codeLanguage]);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
+		setCodeLanguage(data.codeLanguage);
+		setSolutionCode(allCodeSolutions[data.codeLanguage]);
+
+		const solutionCode = allCodeSolutions[data.codeLanguage];
 		async function transform() {
-			const result = await codeToHtml(solutionCode, {
-				lang,
-				theme,
+			const result = await codeToHtml(solutionCode[0], {
+				lang: data.codeLanguage,
+				theme: data.theme === "dark" ? "dark-plus" : "light-plus",
 				transformers: [transformerNotationHighlight(), transformerNotationDiff()],
 			});
 			setHtml(result);
 		}
 		void transform();
-	}, []);
+	}, [data.codeLanguage, data.theme]);
 
 	return (
 		<div className="flex flex-col">
@@ -38,7 +41,7 @@ export default function CodeSolution({ allCodeSolutions }) {
 				<div className={"border-t w-full flex-1 px-6 py-2"}>
 					<div className="flex w-full flex-col">
 						<Tabs aria-label="Options" variant="light">
-							{challenge.solutionCode[codeLanguage].map((solution: string, i: number) => {
+							{solutionCode.map((solution: string, i: number) => {
 								return <Tab key={`Solution ${i + 1}`} title={`Solution ${i + 1}`} />;
 							})}
 						</Tabs>
