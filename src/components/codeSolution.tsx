@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
 import challenges from "../data/challenges.json";
 
-export default function CodeSolution() {
+export default function CodeSolution({ allCodeSolutions }) {
 	const challenge = challenges.uncompress;
 	const [html, setHtml] = useState("");
 	const codeLanguage = "javascript";
 	const lang = codeLanguage;
-	const solutionCode = challenge.solutionCode[codeLanguage][0];
+	const solutionCode = allCodeSolutions[codeLanguage][0];
 	const theme = "dark-plus";
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>

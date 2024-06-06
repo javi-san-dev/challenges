@@ -2,13 +2,10 @@ import { Accordion, AccordionItem } from "@nextui-org/react";
 import { transformerNotationDiff, transformerNotationHighlight } from "@shikijs/transformers";
 import beautify from "js-beautify";
 import { codeToHtml } from "shiki";
-import challenges from "../data/challenges.json";
 import { CheckedIcon, RoundedErrorIcon } from "../helpers/icons";
 
-export default function TestCases() {
-	const challenge = challenges.uncompress;
+export default function TestCases({ testCases }) {
 	const passesAllTests = false;
-	const testCases = challenge.testCases;
 	const lang = "javascript";
 	const theme = "dark-plus";
 

@@ -40,12 +40,12 @@ export default function FooterComponent() {
 			</ul>
 			<ul className="flex gap-2 flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 mt-0 ml-auto">
 				<li>
-					<Button variant="flat" aria-label="Zoom in" size="md" radius="sm" className={""}>
+					<Button variant="flat" aria-label="Zoom in" size="md" radius="sm" className={"border border-cyan-400 text-cyan-400 bg-transparent"}>
 						{<PlayIcon size={"1.2rem"} />} Run
 					</Button>
 				</li>
 				<li>
-					<Button variant="flat" aria-label="Zoom in" size="md" radius="sm" className={""}>
+					<Button variant="flat" aria-label="Zoom in" size="md" radius="sm" className={" text-white dark:text-black bg-black dark:bg-white"}>
 						Submit
 					</Button>
 				</li>

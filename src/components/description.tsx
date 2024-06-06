@@ -4,7 +4,7 @@ import CodeSolution from "./codeSolution";
 import TabsDescription from "./tabsDescription";
 import TestCases from "./testCases";
 
-export default function DescriptionComponent() {
+export default function DescriptionComponent({ challenge }) {
 	const [index, setIndex] = useState<number>(0);
 
 	return (
@@ -16,9 +16,9 @@ export default function DescriptionComponent() {
 						return {};
 					}}
 				/>
-				{index === 0 && <ChallengeDescription />}
-				{index === 1 && <CodeSolution />}
-				{index === 2 && <TestCases />}
+				{index === 0 && <ChallengeDescription challenge={challenge} />}
+				{index === 1 && <TestCases testCases={challenge.testCases} />}
+				{index === 2 && <CodeSolution allCodeSolutions={challenge.solutionCode} />}
 			</div>
 		</div>
 	);

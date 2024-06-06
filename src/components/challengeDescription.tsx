@@ -4,17 +4,15 @@ import parse from "html-react-parser";
 import beautify from "js-beautify";
 import { useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
-import challenges from "../data/challenges.json";
-import { CheckedIcon, ClockIcon, RoundedErrorIcon } from "../helpers/icons";
+import { CheckedIcon, ClockIcon, JavaIcon, PythonIcon, RoundedErrorIcon } from "../helpers/icons";
 
-export default function ChallengeDescription() {
-	const challenge = challenges.uncompress;
+export default function ChallengeDescription({ challenge }) {
 	const [inputCode, setInputCode] = useState("");
 	const [outputCode, setOutputCode] = useState("");
-	const hints = challenges.uncompress.hints;
+	const hints = challenge.hints;
 	const theme = "dark-plus";
 	const svg =
-		challenge.submittedCode === "string" ? <CheckedIcon size={"2rem"} /> : <RoundedErrorIcon size={"2.3rem"} />;
+		challenge.submittedCode === "string" ? <CheckedIcon size={"1.2rem"} /> : <RoundedErrorIcon size={"1.4rem"} />;
 
 	const ChipColor = (
 		tagName: string,
@@ -66,20 +64,34 @@ export default function ChallengeDescription() {
 	return (
 		<div className="px-4 pb-4">
 			<header className="my-2 flex items-center">
-				{svg}
-				<h1 className="p-3 text-3xl font-light dark:text-neutral-100">{challenge.title}</h1>
+				{/* {svg} */}
+				<h1 className="py-3 text-3xl font-light dark:text-neutral-100">{challenge.title}</h1>
 			</header>
 			<div className="mb-8 flex items-center text-neutral-500">
-				<Chip color={ChipColor(challenge.tags[0])} variant="flat" className={"mr-5"}>
+				<Chip color={ChipColor(challenge.tags[0])} variant="flat" className={"mr-4"}>
 					{challenge.tags[0]}
 				</Chip>
-				<Chip color="primary" variant="flat" className="mr-5" classNames={{ base: "", content: "text-cyan-400" }}>
+				<Chip color="primary" variant="flat" className="mr-4" classNames={{ base: "", content: "text-cyan-400" }}>
 					{challenge.tags[1]}
 				</Chip>
 				<ClockIcon size={"1.4rem"} />
-				<p className="m-0 ml-2 mr-5 p-0 font-light text-neutral-500">10 mins</p>
-				<CheckedIcon size={"1.2rem"} />
-				<p className="m-0 ml-2 p-0 font-light text-neutral-500">100 completed</p>
+				<p className="m-0 ml-2 mr-4 p-0 font-light text-neutral-500">10 mins</p>
+				{svg}
+				<p className="m-0 ml-2 p-0 font-light text-neutral-500 mr-4">Completed</p>
+				<div aria-labelledby=":r2ri:" className="mt-1 flex items-center gap-x-2">
+					<span className="inline-flex items-center rounded bg-yellow-500 px-2 py-0.5 text-xs font-semibold text-black dark:bg-neutral-800 dark:text-yellow-500">
+						JS
+					</span>
+					<span className="inline-flex items-center rounded bg-[#cccbcb] px-2 py-1 text-xs font-semibold text-white dark:bg-neutral-800 dark:text-[#3178c6]">
+						<PythonIcon size="0.8rem" />
+					</span>
+					<span className="inline-flex items-center rounded bg-[#f1adad] px-2 py-0.5 text-xs font-semibold text-white dark:bg-neutral-800 dark:text-[#3178c6]">
+						<JavaIcon size="1rem" />
+					</span>
+					<span className="inline-flex items-center rounded bg-[#5d5d5d] px-2 py-0.5 text-xs font-semibold text-white dark:bg-neutral-800 dark:text-[#3178c6]">
+						C++
+					</span>
+				</div>
 			</div>
 			<div className="font-extralight dark:text-neutral-400">{parse(challenge.description)}</div>
 			<h3>Example</h3>

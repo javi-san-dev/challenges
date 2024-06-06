@@ -2,7 +2,7 @@ import Split from "react-split";
 import CodeEditor from "./codeEditor";
 import Console from "./console";
 
-export default function RightBoxComponent() {
+export default function RightBoxComponent({ allStartedCode }) {
 	return (
 		<div>
 			<Split
@@ -16,7 +16,7 @@ export default function RightBoxComponent() {
 				dragInterval={1}
 				direction="vertical"
 			>
-				<CodeEditor />
+				<CodeEditor allStartedCode={allStartedCode} />
 				<div className="border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden">
 					<Console />
 				</div>

@@ -7,11 +7,11 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { getHighlighter } from "shiki";
 import CodeEditorTabs from "./codeEditorTabs";
 
-export default function CodeEditor() {
+export default function CodeEditor({ allStartedCode }) {
 	const editorRef = useRef(null);
 	const monacoEditor = useRef(null);
 	const codeLanguage = "javascript";
-	const currentCode = "function prueba(){}";
+	const currentCode = allStartedCode[codeLanguage];
 	const currentTheme = "dark-plus";
 	const fontSize = "13px";
 

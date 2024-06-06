@@ -43,7 +43,7 @@ export default function TabsDescription({ onTabChange }: { onTabChange: (index: 
 						title={
 							<div className="flex items-center space-x-2">
 								<CheckSolutionIcon size="1.5rem" />
-								<span>Solution</span>
+								<span>Test Cases</span>
 							</div>
 						}
 					/>
@@ -52,7 +52,7 @@ export default function TabsDescription({ onTabChange }: { onTabChange: (index: 
 						title={
 							<div className="flex items-center space-x-2">
 								<TestIcon size="1.2rem" />
-								<span>Test Cases</span>
+								<span>Solution code</span>
 							</div>
 						}
 					/>
@@ -61,7 +61,7 @@ export default function TabsDescription({ onTabChange }: { onTabChange: (index: 
 						title={
 							<div className="flex items-center space-x-2">
 								<VideoIcon />
-								<span>Video</span>
+								<span>Video description</span>
 							</div>
 						}
 					/>

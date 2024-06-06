@@ -185,7 +185,7 @@ export default function NavBarComponent() {
 							</Dropdown>
 						</li>
 						<li>
-							<Button variant="flat" aria-label="sign in" size="md" radius="sm" className={""}>
+							<Button variant="flat" aria-label="sign in" size="md" radius="sm" className={"border border-cyan-400 text-cyan-400 bg-transparent"}>
 								<SignInIcon />
 								Sign in
 							</Button>
