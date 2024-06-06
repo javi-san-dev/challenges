@@ -11,7 +11,11 @@ export default function CodeEditor({ allStartedCode }) {
 	const editorRef = useRef(null);
 	const monacoEditor = useRef(null);
 	const codeLanguage = "javascript";
-	const currentCode = allStartedCode[codeLanguage];
+	const startedCode = allStartedCode[codeLanguage];
+	const params = new URLSearchParams(window.location.search);
+	const getParam = params.get("code");
+	const currentCode = getParam !== null ? decode(decodeURIComponent(getParam)) : startedCode;
+
 	const currentTheme = "dark-plus";
 	const fontSize = "13px";
 
@@ -43,7 +47,8 @@ export default function CodeEditor({ allStartedCode }) {
 	};
 
 	const resetCode = () => {
-		editorRef?.current?.setValue(currentCode);
+		updateHashedCode(startedCode)
+		editorRef?.current?.setValue(startedCode);
 		editorRef.current.getAction("editor.action.formatDocument").run();
 	};
 
