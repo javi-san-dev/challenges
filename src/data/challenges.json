@@ -105,12 +105,18 @@
 			"Optimal_Space__Time_Complexity": "..."
 		},
 		"startedCode": {
-			"javascript": "function mostFrequentChar(s) {\n  // Write your solution...\n  return true;\n}"
+			"javascript": "function mostFrequentChar(s) {\n  // Write your solution...\n  return true;\n}",
+			"python": "def mostFrequentChar(s) -> str:\n  # write your solution...",
+			"java": "class MostFrequentChar {\n   public static String mostFrequentChar(String s) {\n      // Write your solution...\n   }\n}",
+			"cpp": "string mostFrequentChar(const string& s) {\n   // Write your solution...\n}"
 		},
 		"solutionCode": {
 			"javascript": [
 				"// solution 1\n// n = length of string\n// Time: O(n)\n// Space: O(n)\nfunction mostFrequentChar(s) {\n    const list = new Map();\n    for (const char of s) {\n        if (list.has(char)) {\n            const val = list.get(char);\n            list.set(char, val + 1);\n        } else {\n            list.set(char, 1);\n        }\n    }\n    let best = null;\n    for (const char of s) {\n        if (best === null || list.get(char) > list.get(best)) {\n            best = char;\n        }\n    }\n    return best;\n}"
-			]
+			],
+			"python": ["def mostFrequentChar(s) -> str:\n  # write your solution..."],
+			"java": ["class MostFrequentChar {\n   public static String mostFrequentChar(String s) {\n      // Write your solution...\n   }\n}"],
+			"cpp": ["string mostFrequentChar(const string& s) {\n   // Write your solution...\n}"]
 		},
 		"submittedCode": {
 			"javascript": ""

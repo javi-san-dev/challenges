@@ -27,12 +27,21 @@ export default function CodeEditor({ allStartedCode }) {
 		editorRef?.current?.getAction("editor.action.formatDocument").run();
 	}, [data.codeLanguage]);
 
+	useEffect(() => {
+		const startedCode = allStartedCode[data.codeLanguage];
+		setStartedCode(startedCode);
+		updateHashedCode(startedCode);
+		updateHashedCode(startedCode);
+		editorRef?.current?.setValue(startedCode);
+		editorRef?.current?.getAction("editor.action.formatDocument").run();
+	}, [allStartedCode]);
+
 	const handleEditorDidMount = async (editor: editor.IStandaloneCodeEditor, monaco: typeof import("monaco-editor")) => {
 		editorRef.current = editor;
 		editorRef.current.getModel().updateOptions({ tabSize: 3, indentSize: 3 });
 		monacoEditor.current = monaco;
-		monaco.languages.typescript.javascriptDefaults.setEagerModelSync(true);
-		monaco.languages.register({ id: codeLanguage });
+		// monaco.languages.typescript.javascriptDefaults.setEagerModelSync(true);
+		// monaco.languages.register({ id: codeLanguage });
 		const highlighter = await getHighlighter({
 			themes: ["dark-plus", "light-plus"],
 			langs: ["javascript", "java", "python", "cpp"],

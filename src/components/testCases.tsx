@@ -1,13 +1,28 @@
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import { transformerNotationDiff, transformerNotationHighlight } from "@shikijs/transformers";
 import beautify from "js-beautify";
+import { useContext, useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
+import { DataContext } from "../helpers/dataContext";
 import { CheckedIcon, RoundedErrorIcon } from "../helpers/icons";
+import { serviceWorker } from "../helpers/workerService";
 
 export default function TestCases({ testCases }) {
-	const passesAllTests = false;
-	const lang = "javascript";
-	const theme = "dark-plus";
+	const { data } = useContext(DataContext);
+	const passesAllTests = data.passesAllTests;
+	const lang = data.codeLanguage;
+	const [currentTests, setCurrentTests] = useState(testCases);
+	const theme = data.theme === "dark" ? "dark-plus" : "light-plus";
+
+	useEffect(() => {
+		serviceWorker.evento = (payload) => {
+			setTimeout(() => {
+				if (payload.type === "test") {
+					setCurrentTests(payload.testCases);
+				}
+			}, 500);
+		};
+	}, []);
 
 	const setInputCode = async (code: string) => {
 		const beautyCode = beautify(code, { indent_size: 3, space_in_empty_paren: true });
@@ -32,7 +47,7 @@ export default function TestCases({ testCases }) {
 
 			<div className={"border my-6 rounded-xl p-5"}>
 				<Accordion variant="splitted" selectionMode="multiple" isCompact className="mt-4 py-8 pt-0">
-					{Object.entries(testCases).map(([_, value], i) => {
+					{Object.entries(currentTests).map(([_, value], i) => {
 						const { test_input, test_expected, code_output, passed_test } = value;
 						const icon = passed_test ? <CheckedIcon size="2.5rem" /> : <RoundedErrorIcon size="2.5rem" />;
 						const testTitle = passed_test ? "Test passed" : "Test failed";
