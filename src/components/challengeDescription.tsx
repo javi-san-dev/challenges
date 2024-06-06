@@ -2,11 +2,13 @@ import { Accordion, AccordionItem, Chip } from "@nextui-org/react";
 import { transformerNotationDiff, transformerNotationHighlight } from "@shikijs/transformers";
 import parse from "html-react-parser";
 import beautify from "js-beautify";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { codeToHtml } from "shiki";
+import { DataContext } from "../helpers/dataContext";
 import { CheckedIcon, ClockIcon, JavaIcon, PythonIcon, RoundedErrorIcon } from "../helpers/icons";
 
 export default function ChallengeDescription({ challenge }) {
+	const { data } = useContext(DataContext);
 	const [inputCode, setInputCode] = useState("");
 	const [outputCode, setOutputCode] = useState("");
 	const hints = challenge.hints;
@@ -35,13 +37,13 @@ export default function ChallengeDescription({ challenge }) {
 			const lang = "javascript";
 			const result = await codeToHtml(code, {
 				lang,
-				theme,
+				theme: data.theme === "dark" ? "dark-plus" : "light-plus",
 				transformers: [transformerNotationHighlight(), transformerNotationDiff()],
 			});
 			setInputCode(result);
 		}
 		void transform();
-	}, [challenge]);
+	}, [challenge, data.theme]);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
@@ -53,13 +55,13 @@ export default function ChallengeDescription({ challenge }) {
 			const lang = "javascript";
 			const result = await codeToHtml(code, {
 				lang,
-				theme,
+				theme: data.theme === "dark" ? "dark-plus" : "light-plus",
 				transformers: [transformerNotationHighlight(), transformerNotationDiff()],
 			});
 			setOutputCode(result);
 		}
 		void transform();
-	}, [challenge]);
+	}, [challenge, data.theme]);
 
 	return (
 		<div className="px-4 pb-4">
