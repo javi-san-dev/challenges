@@ -16,6 +16,28 @@ export default function FooterComponent({ refName, testCases }) {
 		serviceWorker.executeWorker(payload);
 	};
 
+	const sendCode = async () => {
+		// setLoadingButton(true);
+		const code = decodeURIComponent(params.get("code")) as string;
+		const res = await fetch("/api/testCode.json", {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				code,
+				lang: codeLanguage,
+				functionName: currentProblem.refName,
+				testCases: currentProblem.testCases,
+			}),
+		});
+		const compilerOutput = await res.json();
+		const codeOutput = JSON.parse(compilerOutput.stdout);
+		console.log("CODE OUTPUT: ", codeOutput);
+		// setLoadingButton(false);
+	};
+
 	return (
 		<footer className="w-full px-4 py-2 flex items-center justify-center relative">
 			<ul className="flex gap-2">
