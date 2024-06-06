@@ -17,9 +17,7 @@ export default function RightBoxComponent({ allStartedCode }) {
 				direction="vertical"
 			>
 				<CodeEditor allStartedCode={allStartedCode} />
-				<div className="border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden">
-					<Console />
-				</div>
+				<Console />
 			</Split>
 		</div>
 	);

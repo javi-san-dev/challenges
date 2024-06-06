@@ -8,7 +8,7 @@ export default function DescriptionComponent({ challenge }) {
 	const [index, setIndex] = useState<number>(0);
 
 	return (
-		<div className="border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden">
+		<div className="border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden bg-white dark:bg-transparent">
 			<div className="relative h-[100%] overflow-scroll">
 				<TabsDescription
 					onTabChange={(num: number) => {

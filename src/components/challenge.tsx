@@ -28,7 +28,7 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 	if (challenge === undefined) return <p>Loading</p>;
 
 	return (
-		<div className="flex h-[100vh] flex-col overflow-hidden bg-white dark:bg-black">
+		<div className="flex h-[100vh] flex-col overflow-hidden  bg-neutral-100 dark:bg-transparent">
 			<NavBarComponent />
 			<Split
 				className="split grow overflow-hidden bg-none flex px-4"
