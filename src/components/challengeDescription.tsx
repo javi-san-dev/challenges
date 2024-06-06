@@ -41,7 +41,7 @@ export default function ChallengeDescription({ challenge }) {
 			setInputCode(result);
 		}
 		void transform();
-	}, []);
+	}, [challenge]);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
@@ -59,7 +59,7 @@ export default function ChallengeDescription({ challenge }) {
 			setOutputCode(result);
 		}
 		void transform();
-	}, []);
+	}, [challenge]);
 
 	return (
 		<div className="px-4 pb-4">
