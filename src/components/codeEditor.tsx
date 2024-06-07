@@ -17,7 +17,7 @@ export default function CodeEditor({ allStartedCode }) {
 	const params = new URLSearchParams(window.location.search);
 	const getParam = params.get("code");
 	const currentCode = getParam !== null ? decode(decodeURIComponent(getParam)) : startedCode;
-	const fontSize = "13px";
+	const [fontSize, setFontSize] = useState("13px");
 
 	useEffect(() => {
 		const startedCode = allStartedCode[data.codeLanguage];
@@ -82,9 +82,13 @@ export default function CodeEditor({ allStartedCode }) {
 		}
 	};
 
+	const updateFont = (val) => {
+		setFontSize(val.target.value);
+	};
+
 	return (
 		<div className="flex flex-col border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden bg-white dark:bg-transparent">
-			<CodeEditorTabs formatCode={formatCode} resetCode={resetCode} copyCode={copyCode} />
+			<CodeEditorTabs formatCode={formatCode} resetCode={resetCode} copyCode={copyCode} updateFont={updateFont} />
 			<Editor
 				className="px-0 pt-5 flex-1"
 				height="100%"

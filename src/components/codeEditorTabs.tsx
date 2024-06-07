@@ -21,7 +21,17 @@ const languages = [
 	{ label: "c++", value: "cpp", description: "c++ programming language" },
 ];
 
-export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
+const fontSize = [
+	{ label: "12px", value: "12px", description: "font size code 12 px" },
+	{ label: "13px", value: "13px", description: "font size code 13 px" },
+	{ label: "14px", value: "14px", description: "font size code 14 px" },
+	{ label: "15px", value: "15px", description: "font size code 15 px" },
+	{ label: "16px", value: "16px", description: "font size code 16 px" },
+	{ label: "17px", value: "17px", description: "font size code 17 px" },
+	{ label: "18px", value: "18px", description: "font size code 18 px" }
+];
+
+export default function CodeEditorTabs({ formatCode, resetCode, copyCode, updateFont }) {
 	const { data, updateData } = useContext(DataContext);
 	const [order] = useState(["0", "1", "2", "3"]);
 	const [selectedKey, setSelectedKey] = useState(order[0]);
@@ -47,7 +57,12 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 	};
 
 	return (
-		<Navbar isBlurred={false} maxWidth="full" className={"h-[3.3rem] bg-white dark:bg-transparent"} classNames={{ wrapper: "px-4" }}>
+		<Navbar
+			isBlurred={false}
+			maxWidth="full"
+			className={"h-[3.3rem] bg-white dark:bg-transparent"}
+			classNames={{ wrapper: "px-4" }}
+		>
 			<div className="flex w-full items-center">
 				<Tabs
 					selectedKey={selectedKey}
@@ -94,7 +109,6 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 								labelPlacement="outside"
 								size="sm"
 								onChange={(e) => updateLanguage(e)}
-								className="w-[130px]"
 								classNames={{
 									trigger: "border border-default-200 rounded-small w-[120px] text-default-500",
 								}}
@@ -107,6 +121,27 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 							</Select>
 						</li>
 						<li>
+							<Select
+								items={fontSize}
+								label=""
+								placeholder=""
+								variant="bordered"
+								defaultSelectedKeys={["13px"]}
+								labelPlacement="outside"
+								size="sm"
+								onChange={(e) => updateFont(e)}
+								classNames={{
+									trigger: "border border-default-200 rounded-small w-[90px] text-default-500",
+								}}
+							>
+								{(language) => (
+									<SelectItem key={language.value} value={language.value}>
+										{language.label}
+									</SelectItem>
+								)}
+							</Select>
+						</li>
+						{/* <li>
 							<Button
 								isIconOnly
 								variant="flat"
@@ -118,15 +153,15 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 							>
 								{<CodeIcon size={"1.1rem"} />}
 							</Button>
-						</li>
+						</li> */}
 						<li>
 							<Button
 								isIconOnly
-								variant="flat"
+								variant="bordered"
 								aria-label="Zoom out"
 								size="sm"
 								radius="sm"
-								className=""
+								className="border"
 								onClick={() => resetCode()}
 							>
 								{<ReloadIcon size={"1.1rem"} />}
@@ -135,11 +170,11 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 						<li>
 							<Button
 								isIconOnly
-								variant="flat"
+								variant="bordered"
 								aria-label="settings"
 								size="sm"
 								radius="sm"
-								className=""
+								className="border"
 								onClick={() => copyCode()}
 							>
 								{<CopyIcon size={"1.1rem"} />}
@@ -148,11 +183,11 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode }) {
 						<li>
 							<Button
 								isIconOnly
-								variant="flat"
+								variant="bordered"
 								aria-label="settings"
 								size="sm"
 								radius="sm"
-								className=""
+								className="border"
 								onClick={() => setFullScreen()}
 							>
 								<FullScreenIcon size="1.1rem" />
