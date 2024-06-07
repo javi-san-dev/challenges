@@ -45,8 +45,8 @@ export default function TestCases({ testCases }) {
 				)}
 			</header>
 
-			<div className={"border my-6 rounded-xl p-5"}>
-				<Accordion variant="splitted" selectionMode="multiple" isCompact className="mt-4 py-8 pt-0">
+		
+				<Accordion variant="splitted" selectionMode="multiple" isCompact className="">
 					{Object.entries(currentTests).map(([_, value], i) => {
 						const { test_input, test_expected, code_output, passed_test } = value;
 						const icon = passed_test ? <CheckedIcon size="2.5rem" /> : <RoundedErrorIcon size="2.5rem" />;
@@ -57,25 +57,26 @@ export default function TestCases({ testCases }) {
 								startContent={icon}
 								aria-label={"Test ${i + 1}"}
 								title={testTitle}
-								className={"m-0 border-[0.5px] p-0 font-medium"}
+								// className={"m-0 border-[0.5px] p-0 font-medium"}
+								className=" !shadow-none border border-neutral-300 dark:border-none !bg-neutral-50 dark:!bg-content1"
 							>
 								<p className="m-0 mb-2">Input</p>
-								<div className="p-3 overflow-hidden rounded-xl border border-default-200 text-sm dark:border-default-100">
+								<div className="p-3 overflow-hidden rounded-xl border border-default-200 text-sm dark:border-default-100 bg-white dark:bg-black">
 									<div className="w-[0px] flex-1" dangerouslySetInnerHTML={{ __html: test_input }} />
 								</div>
 								<p className="m-0 mb-2">Expected output</p>
-								<div className="p-3 overflow-hidden rounded-xl border border-default-200 text-sm dark:border-default-100">
+								<div className="p-3 overflow-hidden rounded-xl border border-default-200 text-sm dark:border-default-100 bg-white dark:bg-black">
 									<div className="w-[0px] flex-1" dangerouslySetInnerHTML={{ __html: test_expected }} />
 								</div>
 								<p className="m-0 mb-2">Your output</p>
-								<div className="p-3 overflow-hidden rounded-xl border border-default-200 text-sm dark:border-default-100">
+								<div className="p-3 overflow-hidden rounded-xl border border-default-200 text-sm dark:border-default-100 bg-white dark:bg-black">
 									<div className="w-[0px] flex-1" dangerouslySetInnerHTML={{ __html: code_output }} />
 								</div>
 							</AccordionItem>
 						);
 					})}
 				</Accordion>
-			</div>
+	
 		</div>
 	);
 }
