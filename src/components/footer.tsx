@@ -79,7 +79,7 @@ export default function FooterComponent({ refName, testCases }) {
 						aria-label="Zoom in"
 						size="md"
 						radius="sm"
-						className={"border border-cyan-400 text-cyan-400 bg-transparent"}
+						className={"border border-cyan-400 text-cyan-400 bg-white dark:bg-transparent"}
 						onClick={runCode}
 					>
 						{<PlayIcon size={"1.2rem"} />} Run
@@ -91,7 +91,7 @@ export default function FooterComponent({ refName, testCases }) {
 						aria-label="Zoom in"
 						size="md"
 						radius="sm"
-						className={" text-white dark:text-black bg-black dark:bg-white"}
+						className={" text-white dark:text-white bg-green-600 dark:bg-green-700"}
 					>
 						Submit
 					</Button>

@@ -26,7 +26,7 @@
 		"startedCode": {
 			"javascript": "function uncompress(s) {\n  // Write your solution...\n  return true;\n}",
 			"python": "def uncompress(s) -> str:\n  # write your solution...",
-			"java": "class Uncompress {\n   public static String uncompress(String s) {\n      // Write your solution...\n   }\n}",
+			"java": "import java.util.*;\n\nclass Solution {\n   public static String uncompress(String s) {\n      // Write your solution...\n   }\n}",
 			"cpp": "string uncompress(const string& s) {\n   // Write your solution...\n}"
 		},
 		"solutionCode": {
@@ -107,7 +107,7 @@
 		"startedCode": {
 			"javascript": "function mostFrequentChar(s) {\n  // Write your solution...\n  return true;\n}",
 			"python": "def mostFrequentChar(s) -> str:\n  # write your solution...",
-			"java": "class MostFrequentChar {\n   public static String mostFrequentChar(String s) {\n      // Write your solution...\n   }\n}",
+			"java": "import java.util.*;\n\nclass Solution {\n   public static String mostFrequentChar(String s) {\n      // Write your solution...\n   }\n}",
 			"cpp": "string mostFrequentChar(const string& s) {\n   // Write your solution...\n}"
 		},
 		"solutionCode": {
