@@ -617,3 +617,4 @@ export function JavaIcon({ size }: { size: string }) {
 		</svg>
 	);
 }
+
