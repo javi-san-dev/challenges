@@ -67,9 +67,6 @@ export default function TabsDescription({ onTabChange }: { onTabChange: (index: 
 					/>
 				</Tabs>
 			</div>
-			<Button isIconOnly variant="solid" aria-label="settings" size="sm" radius="sm" className={""}>
-				<DarkThemeIcon size="1.3rem" />
-			</Button>
 		</Navbar>
 	);
 }

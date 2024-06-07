@@ -1,8 +1,9 @@
-import { Tab, Tabs } from "@nextui-org/react";
+import { Button, Tab, Tabs } from "@nextui-org/react";
 import { transformerNotationDiff, transformerNotationHighlight } from "@shikijs/transformers";
 import { useContext, useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
 import { DataContext } from "../helpers/dataContext";
+import { CopyIcon } from "../helpers/icons";
 
 export default function CodeSolution({ allCodeSolutions }) {
 	const { data } = useContext(DataContext);
@@ -10,6 +11,7 @@ export default function CodeSolution({ allCodeSolutions }) {
 	const [codeLanguage, setCodeLanguage] = useState(data.codeLanguage);
 	const lang = codeLanguage;
 	const [solutionCode, setSolutionCode] = useState(allCodeSolutions[codeLanguage]);
+	const [index, setIndex] = useState(0);
 
 	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
@@ -18,9 +20,8 @@ export default function CodeSolution({ allCodeSolutions }) {
 		updateCode();
 	}, [data.codeLanguage, data.theme]);
 
-	const updateCode = async (index = 0) => {
+	const updateCode = async () => {
 		const solutionCode = allCodeSolutions[data.codeLanguage];
-		console.log;
 		const result = await codeToHtml(solutionCode[index], {
 			lang: data.codeLanguage,
 			theme: data.theme === "dark" ? "dark-plus" : "light-plus",
@@ -32,11 +33,12 @@ export default function CodeSolution({ allCodeSolutions }) {
 	const tabHandler = (val) => {
 		const indexString = val.match(/\d+/);
 		const index = Number(indexString[0]) - 1;
-		updateCode(index);
+		setIndex(index);
+		updateCode();
 	};
 
 	return (
-		<div className="flex flex-col h-[100%]">
+		<div className="relative flex flex-col h-[100%]">
 			{/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
 			<div
 				className="ml-6 mt-4 w-[0px] flex-1"
@@ -55,6 +57,17 @@ export default function CodeSolution({ allCodeSolutions }) {
 					</div>
 				</div>
 			</div>
+			<Button
+				isIconOnly
+				variant="flat"
+				aria-label="settings"
+				size="sm"
+				radius="sm"
+				className={"absolute right-0 mr-4"}
+				onClick={() => navigator.clipboard.writeText(solutionCode[index])}
+			>
+				<CopyIcon size="1.3rem" />
+			</Button>
 		</div>
 	);
 }
