@@ -16,9 +16,25 @@ import {
 	cn,
 	useDisclosure,
 } from "@nextui-org/react";
-import { useEffect, useRef } from "react";
+import { useRef, useState } from "react";
 import { BugIcon, DownIcon, HelpIcon, ListIcon, PlayIcon, SearchIcon } from "../helpers/icons";
 import TableChallenges from "./tableChallenges";
+
+const categories = [
+	"All",
+	"String",
+	"Array",
+	"Linked List",
+	"Stacks & Queues",
+	"Graphs",
+	"Binary Tree",
+	"Dynamic Programming",
+	"Recursion",
+	"Searching",
+	"Sorting",
+	"Famous algorithms",
+	"JavaScript",
+];
 
 export default function ChallengeList({ isSearch }) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -27,11 +43,12 @@ export default function ChallengeList({ isSearch }) {
 	const text = isSearch ? "Type to search..." : "Challenge list";
 	const inputClass = isSearch ? "pr-24" : "";
 	const inputRef = useRef(null);
-	if (inputRef.current !== null && isSearch) console.log("EEEEEEE");
+	const [selectedKeys, setSelectedKeys] = useState(new Set(["easy"]));
+	const [selectedCategoryKeys, setSelectedCategoryKeys] = useState(new Set(["all"]));
 
-	useEffect(() => {
-		if (inputRef.current !== null && isSearch) console.log("EEEEEEE");
-	}, []);
+	const setCategory = () => {
+		
+	}
 
 	return (
 		<>
@@ -83,44 +100,28 @@ export default function ChallengeList({ isSearch }) {
 												Category
 											</Button>
 										</DropdownTrigger>
-										<DropdownMenu variant="faded" aria-label="Dropdown menu with description">
-											<DropdownSection title="Actions">
-												<DropdownItem
-													key="new"
-													shortcut="⌘N"
-													description="Create a new file"
-													startContent={<ListIcon size="2rem" className={iconClasses} />}
-												>
-													New file
-												</DropdownItem>
-												<DropdownItem
-													key="copy"
-													shortcut="⌘C"
-													description="Copy the file link"
-													startContent={<ListIcon size="2rem" className={iconClasses} />}
-												>
-													Copy link
-												</DropdownItem>
-												<DropdownItem
-													key="edit"
-													shortcut="⌘⇧E"
-													description="Allows you to edit the file"
-													startContent={<ListIcon size="2rem" className={iconClasses} />}
-												>
-													Edit file
-												</DropdownItem>
-											</DropdownSection>
-											<DropdownSection title="Danger zone">
-												<DropdownItem
-													key="delete"
-													className="text-danger"
-													color="danger"
-													shortcut="⌘⇧D"
-													description="Permanently delete the file"
-													startContent={<ListIcon size="2rem" className={cn(iconClasses, "text-danger")} />}
-												>
-													Delete file
-												</DropdownItem>
+										<DropdownMenu
+											aria-label="Multiple selection example"
+											variant="flat"
+											closeOnSelect={false}
+											disallowEmptySelection
+											selectionMode="single"
+											selectedKeys={selectedCategoryKeys}
+											onSelectionChange={setSelectedCategoryKeys}
+										>
+											<DropdownSection title="Filter by Category">
+												{categories.map((category, i) => {
+													return (
+														<DropdownItem
+															key={`${i} ${category}`}
+															description={`${category} base Algorithms`}
+															startContent={<ListIcon size="2rem" className={iconClasses} />}
+															onClick={() => setCategory(category)}
+														>
+															{category}
+														</DropdownItem>
+													);
+												})}
 											</DropdownSection>
 										</DropdownMenu>
 									</Dropdown>
@@ -137,43 +138,39 @@ export default function ChallengeList({ isSearch }) {
 												Difficulty
 											</Button>
 										</DropdownTrigger>
-										<DropdownMenu variant="faded" aria-label="Dropdown menu with description">
-											<DropdownSection title="Actions">
+										<DropdownMenu
+											aria-label="Multiple selection example"
+											variant="flat"
+											closeOnSelect={false}
+											disallowEmptySelection
+											selectionMode="multiple"
+											selectedKeys={selectedKeys}
+											onSelectionChange={setSelectedKeys}
+										>
+											<DropdownSection title="Filter by difficulty">
 												<DropdownItem
-													key="new"
-													shortcut="⌘N"
-													description="Create a new file"
+													description="Easy base Algorithms"
+													color="success"
+													key="easy"
 													startContent={<ListIcon size="2rem" className={iconClasses} />}
 												>
-													New file
+													Easy
 												</DropdownItem>
 												<DropdownItem
-													key="copy"
-													shortcut="⌘C"
-													description="Copy the file link"
+													description="Medium base Algorithms"
+													color="warning"
+													key="medium"
 													startContent={<ListIcon size="2rem" className={iconClasses} />}
 												>
-													Copy link
+													Medium
 												</DropdownItem>
 												<DropdownItem
-													key="edit"
-													shortcut="⌘⇧E"
-													description="Allows you to edit the file"
-													startContent={<ListIcon size="2rem" className={iconClasses} />}
-												>
-													Edit file
-												</DropdownItem>
-											</DropdownSection>
-											<DropdownSection title="Danger zone">
-												<DropdownItem
-													key="delete"
-													className="text-danger"
+													description="Hard base Algorithms"
 													color="danger"
-													shortcut="⌘⇧D"
-													description="Permanently delete the file"
-													startContent={<ListIcon size="2rem" className={cn(iconClasses, "text-danger")} />}
+													key="hard"
+													startContent={<ListIcon size="2rem" className={iconClasses} />}
 												>
-													Delete file
+													Hard
 												</DropdownItem>
 											</DropdownSection>
 										</DropdownMenu>
