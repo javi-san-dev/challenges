@@ -16,18 +16,28 @@ import {
 	cn,
 	useDisclosure,
 } from "@nextui-org/react";
-import React from "react";
+import { useEffect, useRef } from "react";
 import { BugIcon, DownIcon, HelpIcon, ListIcon, PlayIcon, SearchIcon } from "../helpers/icons";
-import TableChallenges from "./tableChallenges"
+import TableChallenges from "./tableChallenges";
 
-export default function ChallengeList() {
+export default function ChallengeList({ isSearch }) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const iconClasses = "text-xl text-default-500 pointer-events-none flex-shrink-0";
+	const icon = isSearch ? <SearchIcon size="1.2rem" /> : <ListIcon size="1.2rem" />;
+	const text = isSearch ? "Type to search..." : "Challenge list";
+	const inputClass = isSearch ? "pr-24" : "";
+	const inputRef = useRef(null);
+	if (inputRef.current !== null && isSearch) console.log("EEEEEEE");
+
+	useEffect(() => {
+		if (inputRef.current !== null && isSearch) console.log("EEEEEEE");
+	}, []);
 
 	return (
 		<>
-			<Button onPress={onOpen} variant="flat" aria-label="Zoom in" size="md" radius="sm" className={""}>
-				<ListIcon size="1.2rem" /> Challenge list
+			<Button onPress={onOpen} variant="flat" aria-label="Zoom in" size="md" radius="sm" className={`${inputClass}`}>
+				{/* <ListIcon size="1.2rem" /> Challenge list */}
+				{icon} {text}
 			</Button>
 			<Modal
 				isOpen={isOpen}
@@ -45,6 +55,8 @@ export default function ChallengeList() {
 							<ModalHeader className="flex flex-col gap-1">
 								<div className="flex gap-3">
 									<Input
+										autofocus
+										ref={inputRef}
 										isClearable
 										classNames={{
 											base: "w-full sm:max-w-[44%]",
@@ -121,7 +133,9 @@ export default function ChallengeList() {
 										}}
 									>
 										<DropdownTrigger>
-											<Button variant="flat" size="md" endContent={<DownIcon className="text-small" />}>Difficulty</Button>
+											<Button variant="flat" size="md" endContent={<DownIcon className="text-small" />}>
+												Difficulty
+											</Button>
 										</DropdownTrigger>
 										<DropdownMenu variant="faded" aria-label="Dropdown menu with description">
 											<DropdownSection title="Actions">

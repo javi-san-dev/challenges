@@ -55,7 +55,7 @@ export default function TableChallenges() {
 						</div>
 						<div>
 							<h1>{challenge[0]}</h1>
-							<span class="text-tiny text-default-500">
+							<span className="text-tiny text-default-500">
 								<span className="text-black dark:text-white">{challenge[2]}</span> base algorithm
 							</span>
 						</div>

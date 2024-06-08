@@ -23,6 +23,7 @@ import {
 	SettingsIcon,
 	SignInIcon,
 } from "../helpers/icons";
+import ChallengeList from "./challengeList";
 
 export default function NavBarComponent() {
 	const { data, updateData } = useContext(DataContext);
@@ -73,70 +74,7 @@ export default function NavBarComponent() {
 				<div className="hidden w-full md:block md:w-auto" id="navbar-default">
 					<ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0">
 						<li>
-							<Button
-								variant="flat"
-								aria-label="search for challenge"
-								size="md"
-								radius="sm"
-								className={" pr-24"}
-								onPress={onOpen}
-							>
-								{<SearchIcon size={"1.2rem"} />}Type to search...
-							</Button>
-							<Modal
-								hideCloseButton={true}
-								backdrop="opaque"
-								isOpen={isOpen}
-								onOpenChange={onOpenChange}
-								placement="top"
-								classNames={{
-									base: "overflow-hidden border border-default-200 bg-gradient-to-br from-white to-default-100 dark:from-black dark:to-default-50 h-[400px]",
-									header: "border-b-[1px] border-default-200",
-									footer: "border-t-[1px] border-default-200",
-									closeButton: "hover:bg-white/5 active:bg-white/10",
-								}}
-								motionProps={{
-									variants: {
-										enter: {
-											y: 0,
-											opacity: 1,
-											transition: {
-												duration: 0.3,
-												ease: "easeOut",
-											},
-										},
-										exit: {
-											y: -20,
-											opacity: 0,
-											transition: {
-												duration: 0.2,
-												ease: "easeIn",
-											},
-										},
-									},
-								}}
-							>
-								<ModalContent>
-									{() => (
-										<>
-											<ModalHeader className="flex flex-col gap-1 p-2">
-												<Input
-													placeholder="Type to search..."
-													variant="flat"
-													startContent={<SearchIcon />}
-													classNames={{
-														base: "border-none",
-														inputWrapper: "border-none",
-														innerWrapper: "border-none",
-														input: "border-none",
-													}}
-												/>
-											</ModalHeader>
-											<ModalBody />
-										</>
-									)}
-								</ModalContent>
-							</Modal>
+						<ChallengeList isSearch={true} />
 						</li>
 						<li>
 							<Button
