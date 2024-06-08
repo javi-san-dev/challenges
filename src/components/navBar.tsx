@@ -165,11 +165,6 @@ export default function NavBarComponent() {
 							</Button>
 						</li>
 						<li>
-							<Button isIconOnly variant="flat" aria-label="settings" size="md" radius="sm" className={"w-[4rem]"}>
-								{<SettingsIcon size={"1.1rem"} />}
-							</Button>
-						</li>
-						<li>
 							<Dropdown>
 								<DropdownTrigger>
 									<Button isIconOnly variant="flat" aria-label="theme" size="md" radius="sm" className={"w-[4rem]"}>
