@@ -12,18 +12,20 @@ import PatternsModal from "./patternsModal";
 export default function FooterComponent({ refName, testCases }) {
 	const { data, updateData } = useContext(DataContext);
 	const isJavaScript = data.codeLanguage === "javascript";
+	const [loadingButton, setLoadingButton] = useState(false);
 
 	const runCode = () => {
-		// setLoadingButton(true);
+		setLoadingButton(true);
 		const params = new URLSearchParams(window.location.search);
 		const getParam = params.get("code") as string;
 		const fun = decode(decodeURIComponent(getParam));
 		const payload: { fun: string; refName: string; testCases: object } = { fun, refName, testCases };
 		serviceWorker.executeWorker(payload);
+		setLoadingButton(false);
 	};
 
 	const sendCode = async () => {
-		// setLoadingButton(true);
+		setLoadingButton(true);
 		const params = new URLSearchParams(window.location.search);
 		const code = decodeURIComponent(params.get("code")) as string;
 		const res = await fetch("/api/testCode.json", {
@@ -59,7 +61,7 @@ export default function FooterComponent({ refName, testCases }) {
 			i++;
 		}
 		updateData({ testCases: currentTestCases, passesAllTests });
-		// setLoadingButton(false);
+		setLoadingButton(false);
 	};
 
 	return (
@@ -99,6 +101,7 @@ export default function FooterComponent({ refName, testCases }) {
 			<ul className="flex gap-2 flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 mt-0 ml-auto">
 				<li>
 					<Button
+					isLoading={!!loadingButton}
 						variant="flat"
 						aria-label="Zoom in"
 						size="md"
@@ -106,7 +109,8 @@ export default function FooterComponent({ refName, testCases }) {
 						className={"border border-cyan-400 text-cyan-400 bg-white dark:bg-transparent"}
 						onClick={isJavaScript ? runCode : sendCode}
 					>
-						{<PlayIcon size={"1.2rem"} />} Run
+						{!loadingButton && <PlayIcon size="1.2rem" />}
+						Run
 					</Button>
 				</li>
 				<li>
