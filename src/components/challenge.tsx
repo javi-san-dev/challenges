@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import Split from "react-split";
 import type { userType } from "../helpers/types";
 import Description from "./description";
+import Firework from "./firework";
 import FooterComponent from "./footer";
 import NavBarComponent from "./navBar";
 import RightBoxComponent from "./rightBox";
@@ -47,6 +48,7 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 				<RightBoxComponent allStartedCode={challenge.startedCode} />
 			</Split>
 			<FooterComponent refName={challenge.refName} testCases={challenge.testCases} />
+			<Firework />
 		</div>
 	);
 }
