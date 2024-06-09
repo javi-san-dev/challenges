@@ -26,7 +26,7 @@
 		"startedCode": {
 			"javascript": "function uncompress(s) {\n  // Write your solution...\n  return true;\n}",
 			"python": "def uncompress(s) -> str:\n  # write your solution...",
-			"java": "import java.util.*;\n\nclass Solution {\n   public static String uncompress(String s) {\n      // Write your solution...\n   }\n}",
+			"java": "import java.util.*;\n\npublic class Uncompress {\n   public static String uncompress(String s) {\n      // Write your solution...\n   }\n}",
 			"cpp": "string uncompress(const string& s) {\n   // Write your solution...\n}"
 		},
 		"solutionCode": {
@@ -37,10 +37,10 @@
 				"def uncompress(s):\n   numbers = '0123456789'\n   result = []\n   p1 = 0\n   p2 = 0\n   while p2 < len(s):\n      if s[p2] in numbers:\n         p2 += 1\n      else:\n         if p1 != p2:\n            val = int(s[p1:p2])\n            result.extend(s[p2] * val)\n         p2 += 1\n         p1 = p2\n   return ''.join(result)"
 			],
 			"java": [
-				"class Uncompress {\n   public static String uncompress(String s) {\n      String numbers = \"0123456789\";\n      StringBuilder result = new StringBuilder();\n      int p1 = 0;\n      int p2 = 0;\n      while (p2 <= s.length()) {\n         if (p2 < s.length() && numbers.indexOf(s.charAt(p2)) != -1) {\n            p2++;\n         } else {\n            if (p1 != p2) {\n               int val = Integer.parseInt(s.substring(p1, p2));\n               for (int x = 0; x < val; x++) {\n                  result.append(s.charAt(p2));\n               }\n            }\n            p2++;\n            p1 = p2;\n         }\n      }\n   return result.toString();\n   }\n}"
+				"public class Uncompress {\n   public static String uncompress(String s) {\n      String numbers = \"0123456789\";\n      StringBuilder result = new StringBuilder();\n      int p1 = 0;\n      int p2 = 0;\n      while (p2 <= s.length()) {\n         if (p2 < s.length() && numbers.indexOf(s.charAt(p2)) != -1) {\n            p2++;\n         } else {\n            if (p1 != p2) {\n               int val = Integer.parseInt(s.substring(p1, p2));\n               for (int x = 0; x < val; x++) {\n                  result.append(s.charAt(p2));\n               }\n            }\n            p2++;\n            p1 = p2;\n         }\n      }\n   return result.toString();\n   }\n}"
 			],
 			"cpp": [
-				"string uncompress(const string& s) {\n   string numbers = '0123456789';\n   string result;\n   int p1 = 0;\n   int p2 = 0;\n   while (p2 <= s.length()) {\n      if (p2 < s.length() && numbers.find(s[p2]) != string::npos) {\n         p2++;\n      } else {\n         int val = stoi(s.substr(p1, p2 - p1));\n         for (int x = 0; x < val; x++) {\n            result += s[p2];\n         }\n         p2++;\n         p1 = p2;\n      }\n   }\n   return result;\n}"
+				"#include <cctype>\n#include <string>\nusing namespace std;\n\nstring uncompress(const string& s) {\n   string result;\n   int p1 = 0;\n   int p2 = 0;\n   while (p2 < s.length()) {\n      while (p2 < s.length() && isdigit(s[p2])) {\n         p2++;\n      }\n      int val = stoi(s.substr(p1, p2 - p1));\n      if (p2 < s.length() && isalpha(s[p2])) {\n         char ch = s[p2];\n         for (int x = 0; x < val; x++) {\n               result += ch;\n         }\n         p2++;\n      }\n      p1 = p2;\n   }\n   return result;\n}"
 			]
 		},
 		"submittedCode": {
@@ -107,7 +107,7 @@
 		"startedCode": {
 			"javascript": "function mostFrequentChar(s) {\n  // Write your solution...\n  return true;\n}",
 			"python": "def mostFrequentChar(s) -> str:\n  # write your solution...",
-			"java": "import java.util.*;\n\nclass Solution {\n   public static String mostFrequentChar(String s) {\n      // Write your solution...\n   }\n}",
+			"java": "import java.util.*;\n\npublic class MostFrequentChar {\n   public static String mostFrequentChar(String s) {\n      // Write your solution...\n   }\n}",
 			"cpp": "string mostFrequentChar(const string& s) {\n   // Write your solution...\n}"
 		},
 		"solutionCode": {
@@ -116,7 +116,7 @@
 			],
 			"python": ["def mostFrequentChar(s) -> str:\n  # write your solution..."],
 			"java": [
-				"class MostFrequentChar {\n   public static String mostFrequentChar(String s) {\n      // Write your solution...\n   }\n}"
+				"public class MostFrequentChar {\n   public static String mostFrequentChar(String s) {\n      // Write your solution...\n   }\n}"
 			],
 			"cpp": ["string mostFrequentChar(const string& s) {\n   // Write your solution...\n}"]
 		},

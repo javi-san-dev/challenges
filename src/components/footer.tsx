@@ -1,12 +1,18 @@
 import { Button } from "@nextui-org/react";
 import { decode } from "js-base64";
-import { useEffect, useState } from "react";
+import isEqual from "lodash.isequal";
+import sortBy from "lodash.sortby";
+import { useContext, useEffect, useState } from "react";
+import { DataContext } from "../helpers/dataContext";
 import { BugIcon, HelpIcon, ListIcon, PlayIcon } from "../helpers/icons";
 import { serviceWorker } from "../helpers/workerService";
 import ChallengeList from "./challengeList";
 import PatternsModal from "./patternsModal";
 
 export default function FooterComponent({ refName, testCases }) {
+	const { data, updateData } = useContext(DataContext);
+	const isJavaScript = data.codeLanguage === "javascript";
+
 	const runCode = () => {
 		// setLoadingButton(true);
 		const params = new URLSearchParams(window.location.search);
@@ -18,6 +24,7 @@ export default function FooterComponent({ refName, testCases }) {
 
 	const sendCode = async () => {
 		// setLoadingButton(true);
+		const params = new URLSearchParams(window.location.search);
 		const code = decodeURIComponent(params.get("code")) as string;
 		const res = await fetch("/api/testCode.json", {
 			method: "POST",
@@ -27,14 +34,31 @@ export default function FooterComponent({ refName, testCases }) {
 			},
 			body: JSON.stringify({
 				code,
-				lang: codeLanguage,
-				functionName: currentProblem.refName,
-				testCases: currentProblem.testCases,
+				lang: data.codeLanguage,
+				functionName: refName,
+				testCases: testCases,
 			}),
 		});
 		const compilerOutput = await res.json();
-		const codeOutput = JSON.parse(compilerOutput.stdout);
-		console.log("CODE OUTPUT: ", codeOutput);
+		const stdout = JSON.parse(compilerOutput.stdout);
+		console.log("CODE OUTPUT: ", stdout);
+
+		const solution = stdout;
+		const currentTestCases = structuredClone(testCases);
+		let i = 0;
+		let passesAllTests = true;
+		for (const test in currentTestCases) {
+			currentTestCases[test].code_output = solution[i];
+			const code_output = solution[i];
+			const test_expected = currentTestCases[test].test_expected;
+			const passTest = currentTestCases[test].unOrdered
+				? isEqual(sortBy(code_output), sortBy(test_expected))
+				: isEqual(code_output, test_expected);
+			currentTestCases[test].passed_test = passTest;
+			passesAllTests = passTest;
+			i++;
+		}
+		updateData({ testCases: currentTestCases, passesAllTests });
 		// setLoadingButton(false);
 	};
 
@@ -80,7 +104,7 @@ export default function FooterComponent({ refName, testCases }) {
 						size="md"
 						radius="sm"
 						className={"border border-cyan-400 text-cyan-400 bg-white dark:bg-transparent"}
-						onClick={runCode}
+						onClick={isJavaScript ? runCode : sendCode}
 					>
 						{<PlayIcon size={"1.2rem"} />} Run
 					</Button>
