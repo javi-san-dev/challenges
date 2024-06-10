@@ -42,15 +42,16 @@ export default function FooterComponent({ refName, testCases }) {
 			}),
 		});
 		const compilerOutput = await res.json();
-		const stdout = JSON.parse(compilerOutput.stdout);
-		console.log("CODE OUTPUT: ", stdout);
 		if (compilerOutput.stderr !== null) {
 			setLoadingButton(false);
-			console.error(compilerOutput.stderr)
-			return
+			updateData({ errorMsg: compilerOutput.stderr });
+			return;
 		}
-
-		const solution = stdout;
+		const a = compilerOutput.stdout.indexOf("$0lu1i0n") + "$0lu1i0n".length;
+		const b = compilerOutput.stdout.lastIndexOf("$0lu1i0n");
+		const stdoutSolution = JSON.parse(compilerOutput.stdout.slice(a, b));
+		updateData({ consoleMsg: JSON.stringify(compilerOutput.stdout.slice(0, a)) });
+		const solution = stdoutSolution;
 		const currentTestCases = structuredClone(testCases);
 		let i = 0;
 		let passesAllTests = true;
@@ -106,7 +107,7 @@ export default function FooterComponent({ refName, testCases }) {
 			<ul className="flex gap-2 flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 mt-0 ml-auto">
 				<li>
 					<Button
-					isLoading={!!loadingButton}
+						isLoading={!!loadingButton}
 						variant="flat"
 						aria-label="Zoom in"
 						size="md"

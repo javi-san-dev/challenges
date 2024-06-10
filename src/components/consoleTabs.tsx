@@ -2,12 +2,8 @@ import { Button, Navbar, Tab, Tabs } from "@nextui-org/react";
 import { useRef } from "react";
 import { BinIcon, TerminalIcon } from "../helpers/icons";
 
-export default function ConsoleTabs() {
+export default function ConsoleTabs({ removeLogs }) {
 	const tabsRef = useRef(null);
-
-	const removeLogs = () => {
-		updateData({ consoleLogs: [] });
-	};
 
 	return (
 		<Navbar isBlurred={false} maxWidth="full" className="h-[3.3rem]" classNames={{ wrapper: "px-4" }}>
@@ -37,7 +33,15 @@ export default function ConsoleTabs() {
 				</Tabs>
 			</div>
 			<div>
-				<Button isIconOnly variant="solid" aria-label="settings" size="sm" radius="sm" className={""}>
+				<Button
+					onClick={removeLogs}
+					isIconOnly
+					variant="solid"
+					aria-label="settings"
+					size="sm"
+					radius="sm"
+					className={""}
+				>
 					<BinIcon />
 				</Button>
 			</div>

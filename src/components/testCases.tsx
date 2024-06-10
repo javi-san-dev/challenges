@@ -25,7 +25,7 @@ export default function TestCases({ testCases }) {
 	}, []);
 
 	useEffect(() => {
-		if (data.testCases === undefined) return;
+		if (data.testCases === null) return;
 		setCurrentTests(data.testCases);
 	}, [data.currentTests]);
 

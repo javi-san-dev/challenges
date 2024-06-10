@@ -10,7 +10,7 @@ export default function TabsDescription({ onTabChange }: { onTabChange: (index: 
 	const tabsRef = useRef(null);
 
 	useEffect(() => {
-		if (data.passesAllTests === undefined) return;
+		if (data.passesAllTests === null) return;
 		setSelectedKey(order[1]);
 		onTabChange(Number(order[1]));
 	}, [data.passesAllTests]);

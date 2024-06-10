@@ -7,6 +7,8 @@ export interface DefaultStateType {
 	theme: string;
 	passesAllTests: boolean | null;
 	testCases: null | object;
+	errorMsg: string;
+	consoleMsg: string;
 }
 
 export interface DataContextType {
@@ -19,6 +21,8 @@ const defaultState: DefaultStateType = {
 	theme: "dark",
 	passesAllTests: null,
 	testCases: null,
+	errorMsg: "",
+	consoleMsg: "",
 };
 
 const defaultContextValue: DataContextType = {
@@ -38,7 +42,7 @@ const DataProvider = ({ children }) => {
 	const theme = localStorage.getItem("theme");
 
 	useEffect(() => {
-		setData({ codeLanguage, theme });
+		updateData({ codeLanguage, theme });
 
 		const htmlElement = document.getElementById("htmlElement") as HTMLElement;
 		htmlElement.classList.remove("light");
