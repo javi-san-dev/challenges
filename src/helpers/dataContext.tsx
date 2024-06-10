@@ -5,7 +5,7 @@ import { type ReactNode, createContext, useCallback, useEffect, useState } from 
 export interface DefaultStateType {
 	codeLanguage: string;
 	theme: string;
-	passesAllTests: boolean;
+	passesAllTests: boolean | null;
 	testCases: null | object;
 }
 
@@ -17,7 +17,7 @@ export interface DataContextType {
 const defaultState: DefaultStateType = {
 	codeLanguage: "cpp",
 	theme: "dark",
-	passesAllTests: false,
+	passesAllTests: null,
 	testCases: null,
 };
 

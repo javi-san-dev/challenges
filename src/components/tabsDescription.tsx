@@ -1,11 +1,19 @@
 import { Button, Navbar, Tab, Tabs } from "@nextui-org/react";
-import { useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { DataContext } from "../helpers/dataContext";
 import { CheckSolutionIcon, DarkThemeIcon, DescriptionIcon, TestIcon, VideoIcon } from "../helpers/icons";
 
 export default function TabsDescription({ onTabChange }: { onTabChange: (index: number) => void }) {
+	const { data } = useContext(DataContext);
 	const [order] = useState(["0", "1", "2", "3"]);
 	const [selectedKey, setSelectedKey] = useState(order[0]);
 	const tabsRef = useRef(null);
+
+	useEffect(() => {
+		if (data.passesAllTests === undefined) return;
+		setSelectedKey(order[1]);
+		onTabChange(Number(order[1]));
+	}, [data.passesAllTests]);
 
 	const tabClickHandler = (index: number) => {
 		setSelectedKey(order[index]);
@@ -13,7 +21,12 @@ export default function TabsDescription({ onTabChange }: { onTabChange: (index: 
 	};
 
 	return (
-		<Navbar isBlurred={false} maxWidth="full" className={"h-[3.3rem] bg-white dark:bg-black"} classNames={{wrapper:"px-4"}}>
+		<Navbar
+			isBlurred={false}
+			maxWidth="full"
+			className={"h-[3.3rem] bg-white dark:bg-black"}
+			classNames={{ wrapper: "px-4" }}
+		>
 			<div className="flex w-full flex-col justify-center">
 				<Tabs
 					selectedKey={selectedKey}

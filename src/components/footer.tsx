@@ -44,6 +44,11 @@ export default function FooterComponent({ refName, testCases }) {
 		const compilerOutput = await res.json();
 		const stdout = JSON.parse(compilerOutput.stdout);
 		console.log("CODE OUTPUT: ", stdout);
+		if (compilerOutput.stderr !== null) {
+			setLoadingButton(false);
+			console.error(compilerOutput.stderr)
+			return
+		}
 
 		const solution = stdout;
 		const currentTestCases = structuredClone(testCases);
