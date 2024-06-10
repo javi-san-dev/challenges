@@ -30,7 +30,7 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 
 	return (
 		<div className="flex h-[100vh] flex-col overflow-hidden  bg-neutral-100 dark:bg-transparent">
-			<NavBarComponent />
+			<NavBarComponent user={user} />
 			<Split
 				className="split grow overflow-hidden bg-none flex px-4"
 				id="mainSplit"

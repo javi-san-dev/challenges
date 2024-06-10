@@ -12,6 +12,7 @@ import {
 	ModalHeader,
 	useDisclosure,
 } from "@nextui-org/react";
+import { signIn, signOut } from "auth-astro/client";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../helpers/dataContext";
 import {
@@ -24,8 +25,9 @@ import {
 	SignInIcon,
 } from "../helpers/icons";
 import ChallengeList from "./challengeList";
+import SignInButton from "./signInButton";
 
-export default function NavBarComponent() {
+export default function NavBarComponent({ user }) {
 	const { data, updateData } = useContext(DataContext);
 	const [selectedKeys, setSelectedKeys] = useState(new Set([data.theme]));
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -74,7 +76,7 @@ export default function NavBarComponent() {
 				<div className="hidden w-full md:block md:w-auto" id="navbar-default">
 					<ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0">
 						<li>
-						<ChallengeList isSearch={true} />
+							<ChallengeList isSearch={true} />
 						</li>
 						<li>
 							<Button
@@ -122,17 +124,8 @@ export default function NavBarComponent() {
 								</DropdownMenu>
 							</Dropdown>
 						</li>
-						<li>
-							<Button
-								variant="flat"
-								aria-label="sign in"
-								size="md"
-								radius="sm"
-								className={"border border-cyan-400 text-cyan-400 bg-transparent"}
-							>
-								<SignInIcon />
-								Sign in
-							</Button>
+						<li className="flex items-center pr-2">
+							<SignInButton user={user} />
 						</li>
 					</ul>
 				</div>

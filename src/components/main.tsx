@@ -3,7 +3,7 @@ import { StaticRouter } from "react-router-dom/server";
 import type { userType } from "../helpers/types.ts";
 import App from "./App.tsx";
 
-export default ({ pathname, slug, user }: { pathname: string; slug: string; user: userType }) =>
+export default ({ pathname, slug, user }: { pathname: string; slug: string; user: userType | null }) =>
 	import.meta.env.SSR ? (
 		<StaticRouter location={pathname}>
 			<App slug={slug} user={user} />
