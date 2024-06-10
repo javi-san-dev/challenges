@@ -14,14 +14,25 @@ export default function FooterComponent({ refName, testCases }) {
 	const isJavaScript = data.codeLanguage === "javascript";
 	const [loadingButton, setLoadingButton] = useState(false);
 
+	useEffect(() => {
+		serviceWorker.evento = (payload) => {
+			console.log("ZZZZ", payload);
+			if (payload.type === "test") {
+				updateData({ testCases: payload.testCases, passesAllTests: payload.passesAllTests, consoleMsg: payload.logs });
+			}
+		};
+	}, []);
+
 	const runCode = () => {
 		setLoadingButton(true);
-		const params = new URLSearchParams(window.location.search);
-		const getParam = params.get("code") as string;
-		const fun = decode(decodeURIComponent(getParam));
-		const payload: { fun: string; refName: string; testCases: object } = { fun, refName, testCases };
-		serviceWorker.executeWorker(payload);
-		setLoadingButton(false);
+		setTimeout(() => {
+			const params = new URLSearchParams(window.location.search);
+			const getParam = params.get("code") as string;
+			const fun = decode(decodeURIComponent(getParam));
+			const payload: { fun: string; refName: string; testCases: object } = { fun, refName, testCases };
+			serviceWorker.executeWorker(payload);
+			setLoadingButton(false);
+		}, 800);
 	};
 
 	const sendCode = async () => {

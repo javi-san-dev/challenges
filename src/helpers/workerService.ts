@@ -54,12 +54,14 @@ class ServiceWorker {
 					type: "test",
 					passesAllTests: true,
 					testCases: event.data?.testCases,
+					logs: event.data?.logs,
 				});
 			} else {
 				this.evento({
 					type: "test",
 					passesAllTests: false,
 					testCases: event.data?.testCases,
+					logs: event.data?.logs,
 				});
 			}
 		}

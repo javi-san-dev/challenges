@@ -36,11 +36,11 @@ export default function ConsoleTabs({ removeLogs }) {
 				<Button
 					onClick={removeLogs}
 					isIconOnly
-					variant="solid"
+					variant="bordered"
 					aria-label="settings"
 					size="sm"
 					radius="sm"
-					className={""}
+					className={"border"}
 				>
 					<BinIcon />
 				</Button>

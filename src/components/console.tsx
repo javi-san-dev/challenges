@@ -35,7 +35,7 @@ export default function Console() {
 	};
 
 	const consoleComponent = () => {
-		const messages = consoleMsg.split("\\n");
+		const messages = Array.isArray(consoleMsg) ? consoleMsg : consoleMsg.split("\\n");
 		const a = messages.map((msg, i) => {
 			return (
 				<div
@@ -53,8 +53,8 @@ export default function Console() {
 	};
 
 	const removeLogs = () => {
-		setLogs("")
-	}
+		setLogs("");
+	};
 
 	return (
 		<div className="border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden bg-white dark:bg-transparent">

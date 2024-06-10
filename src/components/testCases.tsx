@@ -15,16 +15,6 @@ export default function TestCases({ testCases }) {
 	const theme = data.theme === "dark" ? "dark-plus" : "light-plus";
 
 	useEffect(() => {
-		serviceWorker.evento = (payload) => {
-			setTimeout(() => {
-				if (payload.type === "test") {
-					setCurrentTests(payload.testCases);
-				}
-			}, 500);
-		};
-	}, []);
-
-	useEffect(() => {
 		if (data.testCases === null) return;
 		setCurrentTests(data.testCases);
 	}, [data.currentTests]);

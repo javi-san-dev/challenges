@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 import isEqual from "lodash.isequal";
 import sortBy from "lodash.sortby";
+let logs = [];
 
-// Definir una función que se ejecutará en el Worker
 async function executeFunction(event) {
 	try {
 		const data = event.data;
@@ -11,6 +11,7 @@ async function executeFunction(event) {
 		const refName = data.refName;
 		const result = await asyncBoucle(refName, testCases, stringFunction);
 		console.log("<----- ALL TEST ENDS ----->");
+		logs = [];
 		globalThis.postMessage(result);
 	} catch (err) {
 		console.error(err);
@@ -37,7 +38,7 @@ async function asyncBoucle(refName, testCases, stringFunction) {
 		testCases[testCase] = { test_input, test_expected, code_output, passed_test };
 	}
 
-	return { passedAllTests, testCases };
+	return { passedAllTests, testCases, logs };
 }
 
 function getParamsByName(code, functionName) {
@@ -51,36 +52,35 @@ function getParamsByName(code, functionName) {
 }
 
 function logsCapture() {
-	const captureLogs = (event) => globalThis.postMessage(event);
 	const originalConsoleLog = console.log;
 	console.log = (...args) => {
-		captureLogs({ type: "log", content: args });
+		logs = [...logs, ...args];
 		originalConsoleLog.apply(console, args);
 	};
 }
 
-function warnCapture() {
-	const captureWarn = (event) => globalThis.postMessage(event);
-	const originalConsoleWarn = console.warn;
-	console.warn = (...args) => {
-		captureWarn({ type: "warn", content: args });
-		originalConsoleWarn.apply(console, args);
-	};
-}
+// function warnCapture() {
+// 	const captureWarn = (event) => globalThis.postMessage(event);
+// 	const originalConsoleWarn = console.warn;
+// 	console.warn = (...args) => {
+// 		captureWarn({ type: "warn", content: args });
+// 		originalConsoleWarn.apply(console, args);
+// 	};
+// }
 
-function errorCapture() {
-	const captureError = (event) => globalThis.postMessage(event);
-	const originalConsoleError = console.error;
-	console.error = (...args) => {
-		captureError({ type: "error", content: args });
-		originalConsoleError.apply(console, args);
-	};
-}
+// function errorCapture() {
+// 	const captureError = (event) => globalThis.postMessage(event);
+// 	const originalConsoleError = console.error;
+// 	console.error = (...args) => {
+// 		captureError({ type: "error", content: args });
+// 		originalConsoleError.apply(console, args);
+// 	};
+// }
 
 globalThis.onmessage = (event) => {
 	executeFunction(event);
 };
 
 logsCapture();
-warnCapture();
-errorCapture();
+// warnCapture();
+// errorCapture();
