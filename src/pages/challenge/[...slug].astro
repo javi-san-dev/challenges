@@ -24,12 +24,11 @@ if (!challenge) return Astro.redirect("/404");
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<!-- <Main client:only="react" {pathname} slug={slug} user={session.user} /> -->
 		{
 			session === null ? (
 				<Main client:only="react" {pathname} slug={slug} user={null} />
 			) : (
-				<Main client:only="react" {pathname} slug={slug} user={session.user} />
+				<Main client:only="react" {pathname} slug={slug} user={null} />
 			)
 		}
 	</main>
