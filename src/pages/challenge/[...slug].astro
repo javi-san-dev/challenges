@@ -3,7 +3,7 @@ import Main from "../../components/main";
 import challenges from "../../data/challengeList.json";
 import "../../globals.css";
 import Layout from "../../layouts/Layout.astro";
-// import { getSession } from "auth-astro/server";
+import { getSession } from "auth-astro/server";
 
 const titleToRef = (title: string) => {
 	return title
@@ -11,8 +11,8 @@ const titleToRef = (title: string) => {
 		.replace(/^./, (match) => match.toLowerCase()); // replace first letter to lowercase
 };
 
-// const session = await getSession(Astro.request);
-const session = false;
+const session = await getSession(Astro.request);
+// const session = false;
 const { slug } = Astro.params;
 const { pathname } = new URL(Astro.request.url);
 if (slug === undefined) return Astro.redirect("/404");
