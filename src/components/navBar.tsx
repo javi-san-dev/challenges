@@ -12,7 +12,6 @@ import {
 	ModalHeader,
 	useDisclosure,
 } from "@nextui-org/react";
-import { signIn, signOut } from "auth-astro/client";
 import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../helpers/dataContext";
 import {
