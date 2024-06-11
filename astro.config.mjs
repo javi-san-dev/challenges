@@ -7,9 +7,7 @@ import auth from "auth-astro";
 export default defineConfig({
 	integrations: [tailwind(), react(), auth()],
 	output: "server",
-	adapter: cloudflare({
-		imageService: 'cloudflare'
- }),
+	adapter: cloudflare(),
 	vite: {
 		ssr: {
 			external: ["node:path"],
