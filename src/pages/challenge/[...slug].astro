@@ -10,8 +10,8 @@ const titleToRef = (title: string) => {
 		.replace(/\s+/g, "") // remove spaces
 		.replace(/^./, (match) => match.toLowerCase()); // replace first letter to lowercase
 };
-console.log("AAAAAA345")
-console.log(import.meta.env.AUTH_SECRET)
+console.log("AAAAAA345");
+console.log(import.meta.env.AUTH_SECRET);
 
 const session = await getSession(Astro.request);
 // const session = false;

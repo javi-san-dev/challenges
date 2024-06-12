@@ -11,6 +11,9 @@ export default defineConfig({
 	vite: {
 		ssr: {
 			external: ["node:path"],
+			define: {
+				'process.env.AUTH_SECRET': JSON.stringify(process.env.AUTH_SECRET)
+			}
 		},
 	},
 });
