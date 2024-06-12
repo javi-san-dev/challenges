@@ -26,6 +26,15 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 		void getChallenge();
 	}, [location.pathname]);
 
+	useEffect(() => {
+		const getSession = async () => {
+			const response = await fetch("/api/getEnvVars.json");
+			const data = await response.json();
+			console.log("DATA", data);
+		};
+		getSession()
+	}, []);
+
 	if (challenge === undefined) return <p>Loading</p>;
 
 	return (
