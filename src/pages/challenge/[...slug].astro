@@ -21,7 +21,9 @@ const challenge = challenges.All.All.some(
 );
 if (!challenge) return Astro.redirect("/404");
 
-
+const { env } = Astro.locals.runtime;
+const myVariable = env.AUTH_SECRET;
+console.log("var:", myVariable)
 ---
 
 <Layout title="Welcome to Astro.">
