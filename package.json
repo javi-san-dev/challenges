@@ -26,6 +26,7 @@
 		"astro": "^4.9.1",
 		"auth-astro": "^4.1.1",
 		"canvas-confetti": "^1.9.3",
+		"dotenv": "^16.4.5",
 		"framer-motion": "^11.2.6",
 		"html-react-parser": "^5.1.10",
 		"js-base64": "^3.7.7",
