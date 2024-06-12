@@ -4,6 +4,7 @@ import challenges from "../../data/challengeList.json";
 import "../../globals.css";
 import Layout from "../../layouts/Layout.astro";
 // import { getSession } from "auth-astro/server";
+import { getSession } from "../../helpers/getSession";
 
 const titleToRef = (title: string) => {
 	return title
@@ -11,8 +12,6 @@ const titleToRef = (title: string) => {
 		.replace(/^./, (match) => match.toLowerCase()); // replace first letter to lowercase
 };
 
-// const session = await getSession(Astro.request);
-const session = false;
 const { slug } = Astro.params;
 const { pathname } = new URL(Astro.request.url);
 if (slug === undefined) return Astro.redirect("/404");
@@ -21,9 +20,12 @@ const challenge = challenges.All.All.some(
 );
 if (!challenge) return Astro.redirect("/404");
 
-const { env } = Astro.locals.runtime;
-const myVariable = env.AUTH_SECRET;
-console.log("var:", myVariable)
+const runtime = Astro.locals.runtime;
+const AUTH_SECRET =
+	runtime === undefined ? import.meta.env.AUTH_SECRET : runtime.env.AUTH_SECRET;
+const session = await getSession(Astro.request, AUTH_SECRET);
+console.log("AUTH_SECRET:", AUTH_SECRET);
+console.log("SESSION:", session);
 ---
 
 <Layout title="Welcome to Astro.">
