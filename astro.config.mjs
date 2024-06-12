@@ -10,7 +10,7 @@ export default defineConfig({
 	adapter: cloudflare(),
 	vite: {
 		ssr: {
-			external: ["node:path", 'dotenv'],
+			external: ["node:path", "path", "os", "crypto"],
 		},
 	},
 });
