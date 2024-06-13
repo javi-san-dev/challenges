@@ -3,8 +3,6 @@ import Main from "../../components/main";
 import challenges from "../../data/challengeList.json";
 import "../../globals.css";
 import Layout from "../../layouts/Layout.astro";
-// import { getSession } from "auth-astro/server";
-import { getSession } from "../../helpers/getSession";
 
 const titleToRef = (title: string) => {
 	return title
@@ -23,9 +21,8 @@ if (!challenge) return Astro.redirect("/404");
 const runtime = Astro.locals.runtime;
 const AUTH_SECRET =
 	runtime === undefined ? import.meta.env.AUTH_SECRET : runtime.env.AUTH_SECRET;
-const session = await getSession(Astro.request, AUTH_SECRET);
 console.log("AUTH_SECRET:", AUTH_SECRET);
-console.log("SESSION:", session);
+// console.log("SESSION:", session);
 ---
 
 <Layout title="Welcome to Astro.">
