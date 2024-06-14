@@ -8,6 +8,7 @@ import {
 	DropdownTrigger,
 	User,
 } from "@nextui-org/react";
+import { signIn, signOut } from "auth-astro/client";
 import type { userType } from "../../helpers/types.ts";
 import { SignInIcon } from "../helpers/icons";
 
@@ -105,7 +106,7 @@ export default function SignInButton({ user }: ComponentProp) {
 
 					<DropdownSection aria-label="Help & Feedback">
 						<DropdownItem key="help_and_feedback">Help & Feedback</DropdownItem>
-						<DropdownItem key="logout">
+						<DropdownItem key="logout" onClick={() => signOut()}>
 							Log Out
 						</DropdownItem>
 					</DropdownSection>
@@ -121,6 +122,7 @@ export default function SignInButton({ user }: ComponentProp) {
 			size="md"
 			radius="sm"
 			className={"border border-cyan-400 text-cyan-400 bg-transparent"}
+			onClick={() => signIn("google")}
 		>
 			<SignInIcon />
 			Sign in
