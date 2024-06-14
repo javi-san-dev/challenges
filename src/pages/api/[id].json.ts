@@ -1,6 +1,9 @@
 import challenges from "../../data/challenges.json";
+import { getSession } from "auth-astro/server";
 
-export function GET({ params, redirect }: { params: { id: string }; redirect: (url: string) => void }) {
+export async function GET({ params, redirect, request }: { params: { id: string }; redirect: (url: string) => void }) {
+	const session = await getSession(request);
+	console.log("SESION:", session)
 	const id = params.id;
 	const challenge = challenges[id as keyof typeof challenges];
 	if (challenge === undefined) {
