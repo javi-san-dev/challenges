@@ -1,5 +1,4 @@
-import { Button } from "@nextui-org/react";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Split from "react-split";
 import type { userType } from "../helpers/types";
@@ -47,7 +46,7 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 				<Description challenge={challenge} />
 				<RightBoxComponent allStartedCode={challenge.startedCode} />
 			</Split>
-			<FooterComponent refName={challenge.refName} testCases={challenge.testCases} />
+			<FooterComponent refName={challenge.refName} testCases={challenge.testCases} session={user} />
 			<Firework />
 		</div>
 	);

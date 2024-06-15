@@ -42,6 +42,8 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.7.3",
-		"@types/js-beautify": "^1.14.3"
+		"@types/js-beautify": "^1.14.3",
+		"@types/lodash.isequal": "^4.5.8",
+		"@types/lodash.sortby": "^4.7.9"
 	}
 }

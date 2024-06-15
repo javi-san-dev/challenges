@@ -8,9 +8,11 @@ import {
 	DropdownTrigger,
 	User,
 } from "@nextui-org/react";
-import { signIn, signOut } from "auth-astro/client";
+import { signOut } from "auth-astro/client";
+import { useState } from "react";
 import type { userType } from "../../helpers/types.ts";
 import { SignInIcon } from "../helpers/icons";
+import SignIn from "./signIn";
 
 interface ComponentProp {
 	currentTheme: {
@@ -22,6 +24,8 @@ interface ComponentProp {
 }
 
 export default function SignInButton({ user }: ComponentProp) {
+	const [openModal, setOpenModal] = useState(false);
+
 	if (user !== null) {
 		return (
 			<Dropdown
@@ -116,16 +120,19 @@ export default function SignInButton({ user }: ComponentProp) {
 	}
 
 	return (
-		<Button
-			variant="flat"
-			aria-label="sign in"
-			size="md"
-			radius="sm"
-			className={"border border-cyan-400 text-cyan-400 bg-transparent"}
-			onClick={() => signIn("google")}
-		>
-			<SignInIcon />
-			Sign in
-		</Button>
+		<>
+			<Button
+				variant="flat"
+				aria-label="sign in"
+				size="md"
+				radius="sm"
+				className={"border border-cyan-400 text-cyan-400 bg-transparent"}
+				onClick={() => setOpenModal((openModal) => !openModal)}
+			>
+				<SignInIcon />
+				Sign in
+			</Button>
+			<SignIn openModal={openModal} />
+		</>
 	);
 }

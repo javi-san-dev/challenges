@@ -1,85 +1,18 @@
 import { Button } from "@nextui-org/react";
-import { decode } from "js-base64";
-import isEqual from "lodash.isequal";
-import sortBy from "lodash.sortby";
-import { useContext, useEffect, useState } from "react";
-import { DataContext } from "../helpers/dataContext";
-import { BugIcon, HelpIcon, ListIcon, PlayIcon } from "../helpers/icons";
-import { serviceWorker } from "../helpers/workerService";
+import { BugIcon, PlayIcon } from "../helpers/icons";
+import type { sessionType, testCasesType } from "../helpers/types";
 import ChallengeList from "./challengeList";
 import PatternsModal from "./patternsModal";
+import RunCode from "./runCode";
+import SubmitCode from "./submitCode";
 
-export default function FooterComponent({ refName, testCases }) {
-	const { data, updateData } = useContext(DataContext);
-	const isJavaScript = data.codeLanguage === "javascript";
-	const [loadingButton, setLoadingButton] = useState(false);
+type componentProps = {
+	refName: string;
+	testCases: testCasesType;
+	session: sessionType;
+};
 
-	useEffect(() => {
-		serviceWorker.evento = (payload) => {
-			if (payload.type === "test") {
-				updateData({ testCases: payload.testCases, passesAllTests: payload.passesAllTests, consoleMsg: payload.logs });
-			}
-		};
-	}, []);
-
-	const runCode = () => {
-		setLoadingButton(true);
-		setTimeout(() => {
-			const params = new URLSearchParams(window.location.search);
-			const getParam = params.get("code") as string;
-			const fun = decode(decodeURIComponent(getParam));
-			const payload: { fun: string; refName: string; testCases: object } = { fun, refName, testCases };
-			serviceWorker.executeWorker(payload);
-			setLoadingButton(false);
-		}, 800);
-	};
-
-	const sendCode = async () => {
-		setLoadingButton(true);
-		const params = new URLSearchParams(window.location.search);
-		const code = decodeURIComponent(params.get("code")) as string;
-		const res = await fetch("/api/testCode.json", {
-			method: "POST",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({
-				code,
-				lang: data.codeLanguage,
-				functionName: refName,
-				testCases: testCases,
-			}),
-		});
-		const compilerOutput = await res.json();
-		if (compilerOutput.stderr !== null) {
-			setLoadingButton(false);
-			updateData({ errorMsg: compilerOutput.stderr });
-			return;
-		}
-		const a = compilerOutput.stdout.indexOf("$0lu1i0n") + "$0lu1i0n".length;
-		const b = compilerOutput.stdout.lastIndexOf("$0lu1i0n");
-		const stdoutSolution = JSON.parse(compilerOutput.stdout.slice(a, b));
-		updateData({ consoleMsg: JSON.stringify(compilerOutput.stdout.slice(0, a)) });
-		const solution = stdoutSolution;
-		const currentTestCases = structuredClone(testCases);
-		let i = 0;
-		let passesAllTests = true;
-		for (const test in currentTestCases) {
-			currentTestCases[test].code_output = solution[i];
-			const code_output = solution[i];
-			const test_expected = currentTestCases[test].test_expected;
-			const passTest = currentTestCases[test].unOrdered
-				? isEqual(sortBy(code_output), sortBy(test_expected))
-				: isEqual(code_output, test_expected);
-			currentTestCases[test].passed_test = passTest;
-			passesAllTests = passTest;
-			i++;
-		}
-		updateData({ testCases: currentTestCases, passesAllTests });
-		setLoadingButton(false);
-	};
-
+export default function FooterComponent({ refName, testCases, session }: componentProps) {
 	return (
 		<footer className="w-full px-4 py-2 flex items-center justify-center relative">
 			<ul className="flex gap-2">
@@ -106,7 +39,7 @@ export default function FooterComponent({ refName, testCases }) {
 					</Button>
 				</li>
 				<li>
-					<ChallengeList />
+					<ChallengeList isSearch={false} />
 				</li>
 				<li>
 					<Button isIconOnly variant="flat" aria-label="Zoom in" size="md" radius="sm" className={"w-[4rem]"}>
@@ -116,29 +49,10 @@ export default function FooterComponent({ refName, testCases }) {
 			</ul>
 			<ul className="flex gap-2 flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 mt-0 ml-auto">
 				<li>
-					<Button
-						isLoading={!!loadingButton}
-						variant="flat"
-						aria-label="Zoom in"
-						size="md"
-						radius="sm"
-						className={"border border-cyan-400 text-cyan-400 bg-white dark:bg-transparent"}
-						onClick={isJavaScript ? runCode : sendCode}
-					>
-						{!loadingButton && <PlayIcon size="1.2rem" />}
-						Run
-					</Button>
+					<RunCode refName={refName} testCases={testCases} session={session} />
 				</li>
 				<li>
-					<Button
-						variant="flat"
-						aria-label="Zoom in"
-						size="md"
-						radius="sm"
-						className={" text-white dark:text-white bg-green-600 dark:bg-green-700"}
-					>
-						Submit
-					</Button>
+					<SubmitCode session={session} />
 				</li>
 			</ul>
 		</footer>
