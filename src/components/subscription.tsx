@@ -23,6 +23,7 @@ export default function Subscription() {
 				isOpen={isOpen}
 				size="md"
 				hideCloseButton
+				backdrop="transparent"
 				// onOpenChange={onOpenChange}
 				classNames={{
 					base: "bg-white dark:bg-black border border-neutral-500 dark:border-neutral-800",
@@ -32,10 +33,10 @@ export default function Subscription() {
 					{(onClose) => (
 						<>
 							<ModalBody className=" flex items-center text-center p-8">
-								<LockIcon size="8rem" />
+								<span className="text-black dark:text-white"><LockIcon size="8rem" /></span>
 								<p className="mb-4 text-neutral-500 font-extralight text-large">
-									To access this question, <span className="underlineAnimation font-bold text-black dark:text-white cursor-pointer">purchase</span> a premium subscription. If you already have a subscription,
-									please <span className="underlineAnimation font-bold text-black dark:text-white cursor-pointer">Log in</span> to continue.
+									To access this question, <span className="underlineAnimation font-bold text-black dark:text-white cursor-pointer before:bg-black dark:before:bg-white">purchase</span> a premium subscription. If you already have a subscription,
+									please <span className="underlineAnimation font-bold text-black dark:text-white cursor-pointer before:bg-black dark:before:bg-white">Log in</span> to continue.
 								</p>
 								{isLoading && <Spinner size="lg" />}
 								

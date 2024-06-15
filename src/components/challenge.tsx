@@ -27,8 +27,8 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 		void getChallenge();
 	}, [location.pathname]);
 
-	return <Subscription />
-	return <Protected />
+	// return <Subscription />
+	// return <Protected />
 
 	if (challenge === undefined) return <p>Loading</p>;
 

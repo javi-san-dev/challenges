@@ -23,6 +23,7 @@ export default function Protected() {
 				isOpen={isOpen}
 				size="sm"
 				hideCloseButton
+				backdrop="transparent"
 				// onOpenChange={onOpenChange}
 				classNames={{
 					base: "bg-white dark:bg-black border border-neutral-500 dark:border-neutral-800",
