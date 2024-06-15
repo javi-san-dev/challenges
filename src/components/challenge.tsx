@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Split from "react-split";
 import type { userType } from "../helpers/types";
+import Protected from "./protected";
 import Description from "./description";
 import Firework from "./firework";
 import FooterComponent from "./footer";
 import NavBarComponent from "./navBar";
 import RightBoxComponent from "./rightBox";
+import Subscription from "./subscription"
 
 export default function Challenge({ slug, user }: { slug: string; user: userType }) {
 	const [challenge, setChallenge] = useState();
@@ -24,6 +26,9 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 
 		void getChallenge();
 	}, [location.pathname]);
+
+	return <Subscription />
+	return <Protected />
 
 	if (challenge === undefined) return <p>Loading</p>;
 

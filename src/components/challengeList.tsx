@@ -46,9 +46,7 @@ export default function ChallengeList({ isSearch }) {
 	const [selectedKeys, setSelectedKeys] = useState(new Set(["easy"]));
 	const [selectedCategoryKeys, setSelectedCategoryKeys] = useState(new Set(["all"]));
 
-	const setCategory = () => {
-		
-	}
+	const setCategory = () => {};
 
 	return (
 		<>
@@ -57,6 +55,7 @@ export default function ChallengeList({ isSearch }) {
 				{icon} {text}
 			</Button>
 			<Modal
+				placement="top"
 				isOpen={isOpen}
 				onOpenChange={onOpenChange}
 				size="2xl"

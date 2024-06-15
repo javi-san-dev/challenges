@@ -27,24 +27,7 @@ export default function FooterComponent({ refName, testCases, session }: compone
 			</ul>
 			<ul className="flex gap-2 items-center text-sm font-medium text-gray-500 dark:text-gray-400 absolute">
 				<li>
-					<Button
-						isIconOnly
-						variant="flat"
-						aria-label="Zoom in"
-						size="md"
-						radius="sm"
-						className={"rotate-180 w-[4rem]"}
-					>
-						{<PlayIcon size={"1.2rem"} />}
-					</Button>
-				</li>
-				<li>
 					<ChallengeList isSearch={false} />
-				</li>
-				<li>
-					<Button isIconOnly variant="flat" aria-label="Zoom in" size="md" radius="sm" className={"w-[4rem]"}>
-						{<PlayIcon size={"1.2rem"} />}
-					</Button>
 				</li>
 			</ul>
 			<ul className="flex gap-2 flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 mt-0 ml-auto">

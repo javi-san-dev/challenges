@@ -690,28 +690,51 @@ export const GitHubIcon = ({ size }: { size: string }) => {
 export const TickAnimation = () => {
 	return (
 		<div className=" text-center">
-		<svg className="tickAnimation" role="img" aria-label="svgImage" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130.2 130.2">
-			<circle
-				class="path circle"
-				fill="none"
-				stroke="#73AF55"
-				stroke-width="6"
-				stroke-miterlimit="10"
-				cx="65.1"
-				cy="65.1"
-				r="62.1"
-			/>
-			<polyline
-				class="path check"
-				fill="none"
-				stroke="#73AF55"
-				stroke-width="6"
-				stroke-linecap="round"
-				stroke-miterlimit="10"
-				points="100.2,40.2 51.5,88.8 29.8,67.5 "
-			/>
-		</svg>
-		<h1 className="mt-4">Submit Success</h1>
+			<svg
+				className="tickAnimation"
+				role="img"
+				aria-label="svgImage"
+				version="1.1"
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 130.2 130.2"
+			>
+				<circle
+					class="path circle"
+					fill="none"
+					stroke="#73AF55"
+					stroke-width="6"
+					stroke-miterlimit="10"
+					cx="65.1"
+					cy="65.1"
+					r="62.1"
+				/>
+				<polyline
+					class="path check"
+					fill="none"
+					stroke="#73AF55"
+					stroke-width="6"
+					stroke-linecap="round"
+					stroke-miterlimit="10"
+					points="100.2,40.2 51.5,88.8 29.8,67.5 "
+				/>
+			</svg>
+			<h1 className="mt-4">Submit Success</h1>
 		</div>
+	);
+};
+
+export const LockIcon = ({ size }: { size: string }) => {
+	return (
+		<svg
+			role="img"
+			aria-label="svgImage"
+			xmlns="http://www.w3.org/2000/svg"
+			height={size}
+			viewBox="0 -960 960 960"
+			width={size}
+			fill="#e8eaed"
+		>
+			<path d="M237.69-100q-23.59 0-40.64-17.05T180-157.69v-400.15q0-23.9 17.05-40.8t40.64-16.9h69.62v-91.77q0-71.89 50.44-122.29Q408.19-880 480.13-880q71.95 0 122.25 50.4 50.31 50.4 50.31 122.29v91.77h69.62q23.59 0 40.64 16.9t17.05 40.8v400.15q0 23.59-17.05 40.64T722.31-100H237.69Zm0-45.39h484.62q5.38 0 8.84-3.46t3.46-8.84v-400.15q0-5.39-3.46-8.85t-8.84-3.46H237.69q-5.38 0-8.84 3.46t-3.46 8.85v400.15q0 5.38 3.46 8.84t8.84 3.46ZM480.17-290q27.98 0 47.79-19.53t19.81-47.01q0-26.54-19.98-47.77-19.97-21.23-47.96-21.23-27.98 0-47.79 21.23t-19.81 48.27q0 27.04 19.98 46.54 19.97 19.5 47.96 19.5ZM352.69-615.54h254.62v-91.77q0-53.04-37.09-90.17t-90.08-37.13q-52.99 0-90.22 37.13t-37.23 90.17v91.77Zm-127.3 470.15v-424.76V-145.39Z" />
+		</svg>
 	);
 };
