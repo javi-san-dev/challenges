@@ -39,7 +39,7 @@ export default function SignInButton({ user }: ComponentProp) {
 						color="secondary"
 						name="Jason Hughes"
 						size="sm"
-						src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+						src={user.image}
 					/>
 				</DropdownTrigger>
 				<DropdownMenu
@@ -63,15 +63,15 @@ export default function SignInButton({ user }: ComponentProp) {
 					<DropdownSection aria-label="Profile & Actions" showDivider>
 						<DropdownItem isReadOnly key="profile" className="h-14 gap-2 opacity-100">
 							<User
-								name="Junior Garcia"
-								description="@jrgarciadev"
+								name={user.name}
+								description={user.email}
 								classNames={{
 									name: "text-default-600",
 									description: "text-default-500",
 								}}
 								avatarProps={{
 									size: "sm",
-									src: "https://avatars.githubusercontent.com/u/30373425?v=4",
+									src: `${user.image}`,
 								}}
 							/>
 						</DropdownItem>

@@ -16,7 +16,6 @@ export default function FooterComponent({ refName, testCases }) {
 
 	useEffect(() => {
 		serviceWorker.evento = (payload) => {
-			console.log("ZZZZ", payload);
 			if (payload.type === "test") {
 				updateData({ testCases: payload.testCases, passesAllTests: payload.passesAllTests, consoleMsg: payload.logs });
 			}
