@@ -1,11 +1,12 @@
-import { Button, Modal, ModalBody, ModalContent, useDisclosure } from "@nextui-org/react";
+import { Button, Modal, ModalBody, ModalContent, Spinner, useDisclosure } from "@nextui-org/react";
+import { signIn } from "auth-astro/client";
 import { useEffect, useState } from "react";
 import { GitHubIcon, GoogleIcon } from "../helpers/icons";
-import { signIn } from "auth-astro/client";
 
 export default function SignIn({ openModal }: { openModal: boolean }) {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const [isFirstRender, setIsFirstRender] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		if (isFirstRender) {
@@ -14,6 +15,11 @@ export default function SignIn({ openModal }: { openModal: boolean }) {
 		}
 		onOpen();
 	}, [openModal]);
+
+	const googleLogIn = () => {
+		setIsLoading(true);
+		signIn("google");
+	};
 
 	return (
 		<>
@@ -33,29 +39,33 @@ export default function SignIn({ openModal }: { openModal: boolean }) {
 								<p className="mb-4 text-neutral-500 font-extralight">
 									sign in to run your code and save your progress. With one of the following:
 								</p>
-								<Button
-									color="primary"
-									radius="sm"
-									className="bg-black dark:bg-white text-white dark:text-black font-bold mb-4"
-									onPress={onClose}
-									onClick={() => signIn("google")}
-								>
-									<span className="text-white">
-										<GoogleIcon size="1.5rem" />
-									</span>
-									Google
-								</Button>
-								<Button
-									color="primary"
-									radius="sm"
-									className="bg-black dark:bg-white text-white dark:text-black font-bold mb-4"
-									onPress={onClose}
-								>
-									<span className="text-white dark:text-black">
-										<GitHubIcon size="1.8rem" />
-									</span>
-									GitHub
-								</Button>
+								{isLoading && <Spinner size="lg" />}
+								{!isLoading && (
+									<div className="flex flex-col">
+										<Button
+											color="primary"
+											radius="sm"
+											className="bg-black dark:bg-white text-white dark:text-black font-bold mb-4"
+											onClick={() => googleLogIn()}
+										>
+											<span className="text-white">
+												<GoogleIcon size="1.5rem" />
+											</span>
+											Google
+										</Button>
+										<Button
+											color="primary"
+											radius="sm"
+											className="bg-black dark:bg-white text-white dark:text-black font-bold mb-4"
+											onPress={onClose}
+										>
+											<span className="text-white dark:text-black">
+												<GitHubIcon size="1.8rem" />
+											</span>
+											GitHub
+										</Button>
+									</div>
+								)}
 							</ModalBody>
 						</>
 					)}
