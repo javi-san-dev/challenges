@@ -34,7 +34,7 @@ export default function TableChallenges() {
 	const navigate = useNavigate();
 
 	function handleClick(challengeRefName) {
-		navigate(`/challenge/${titleToRef(challengeRefName)}`);
+		navigate(`/challenges/${titleToRef(challengeRefName)}`);
 	}
 	const titleToRef = (title: string) => {
 		return title

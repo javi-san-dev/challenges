@@ -1,15 +1,18 @@
 import { BrowserRouter } from "react-router-dom";
-import { StaticRouter } from "react-router-dom/server";
+import ChallengesPage from "../components/challengesPage";
 import type { userType } from "../helpers/types.ts";
-import App from "./App.tsx";
 
-export default ({ pathname, slug, user }: { pathname: string; slug: string; user: userType | null }) =>
-	import.meta.env.SSR ? (
-		<StaticRouter location={pathname}>
-			<App slug={slug} user={user} />
-		</StaticRouter>
-	) : (
-		<BrowserRouter>
-			<App slug={slug} user={user} />
-		</BrowserRouter>
-	);
+import { Route, Routes } from "react-router-dom";
+import DataProvider from "../helpers/dataContext";
+import Challenge from "./challenge";
+
+export default ({ pathname, slug, user }: { pathname: string; slug: string; user: userType | null }) => (
+	<BrowserRouter>
+		<DataProvider>
+			<Routes>
+				<Route path="/challenges" element={<ChallengesPage />} />
+				<Route path="/challenges/*" element={<Challenge slug={slug} user={user} />} />
+			</Routes>
+		</DataProvider>
+	</BrowserRouter>
+);

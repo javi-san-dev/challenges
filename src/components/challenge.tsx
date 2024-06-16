@@ -1,15 +1,15 @@
+import { Spinner } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Split from "react-split";
 import type { userType } from "../helpers/types";
-import Protected from "./protected";
 import Description from "./description";
 import Firework from "./firework";
 import FooterComponent from "./footer";
 import NavBarComponent from "./navBar";
+import Protected from "./protected";
 import RightBoxComponent from "./rightBox";
-import Subscription from "./subscription"
-
+import Subscription from "./subscription";
 export default function Challenge({ slug, user }: { slug: string; user: userType }) {
 	const [challenge, setChallenge] = useState();
 	const location = useLocation(); // Get location object
@@ -30,7 +30,12 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 	// return <Subscription />
 	// return <Protected />
 
-	if (challenge === undefined) return <p>Loading</p>;
+	if (challenge === undefined)
+	return (
+		<div className="flex items-center justify-center h-[100vh]">
+			<Spinner size="lg" />
+		</div>
+	);
 
 	return (
 		<div className="flex h-[100vh] flex-col overflow-hidden  bg-neutral-100 dark:bg-transparent">

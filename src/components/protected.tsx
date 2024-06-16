@@ -26,7 +26,8 @@ export default function Protected() {
 				backdrop="transparent"
 				// onOpenChange={onOpenChange}
 				classNames={{
-					base: "bg-white dark:bg-black border border-neutral-500 dark:border-neutral-800",
+					wrapper: "bg-neutral-100 dark:bg-black",
+					base: "bg-white dark:bg-black border border-neutral-300 dark:border-neutral-800",
 				}}
 			>
 				<ModalContent>

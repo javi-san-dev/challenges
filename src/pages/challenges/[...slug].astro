@@ -14,15 +14,15 @@ const titleToRef = (title: string) => {
 const session = await getSession(Astro.request);
 const { slug } = Astro.params;
 const { pathname } = new URL(Astro.request.url);
-if (slug === undefined) return Astro.redirect("/404");
+// if (slug === undefined) return Astro.redirect("/404");
 const challenge = challenges.All.All.some(
 	(challenge) => titleToRef(challenge[0]) === slug
 );
-if (!challenge) return Astro.redirect("/404");
+// if (!challenge) return Astro.redirect("/404");
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
+	<main class="bg-neutra-300 dark:bg-black">
 		{
 			session === null ? (
 				<Main client:only="react" {pathname} slug={slug} user={null} />
