@@ -1,11 +1,6 @@
 import Google from "@auth/core/providers/google";
-import { createClient } from "@libsql/client/web";
 import { defineConfig } from "auth-astro";
-
-export const tursoDB = createClient({
-	url: import.meta.env.TURSO_DATABASE_URL,
-	authToken: import.meta.env.TURSO_AUTH_TOKEN,
-});
+import { tursoDB } from "./src/helpers/turso";
 
 export default defineConfig({
 	providers: [
@@ -29,11 +24,12 @@ export default defineConfig({
 						args: [account.providerAccountId, token.sub, user.name, user.email, account.provider],
 					});
 				}
+
+				token.id = account.providerAccountId;
+				token.isPremium = true;
 			}
 			if (user) {
 				// User is available during sign-in
-				token.id = user.id;
-				token.isPremium = true;
 			}
 			return token;
 		},

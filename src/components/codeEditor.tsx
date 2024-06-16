@@ -13,11 +13,13 @@ export default function CodeEditor({ allStartedCode }) {
 	const editorRef = useRef(null);
 	const monacoEditor = useRef(null);
 	const codeLanguage = data.codeLanguage;
+	const submittedCode = data.submittedCode[data.codeLanguage];
 	const [startedCode, setStartedCode] = useState(allStartedCode[codeLanguage]);
 	const params = new URLSearchParams(window.location.search);
 	const getParam = params.get("code");
 	const currentCode = getParam !== null ? decode(decodeURIComponent(getParam)) : startedCode;
 	const [fontSize, setFontSize] = useState("13px");
+	const isSubmittedSolution = useRef(false);
 
 	useEffect(() => {
 		const startedCode = allStartedCode[data.codeLanguage];
@@ -50,6 +52,7 @@ export default function CodeEditor({ allStartedCode }) {
 	};
 
 	function updateHashedCode(code: string | undefined) {
+		if (isSubmittedSolution.current) return;
 		// if (tabIndex.current === 1) return;
 		if (code === undefined) return;
 		const hashedCode = encodeURIComponent(`${encode(code)}`);
@@ -86,9 +89,33 @@ export default function CodeEditor({ allStartedCode }) {
 		setFontSize(val.target.value);
 	};
 
+	const setSubmittedCode = () => {
+		isSubmittedSolution.current = true;
+		const code = decode(submittedCode);
+		editorRef?.current?.setValue(code);
+		editorRef.current.getAction("editor.action.formatDocument").run();
+	};
+
+	const setCurrentSolution = () => {
+		isSubmittedSolution.current = false;
+		const params = new URLSearchParams(window.location.search);
+		const URIcode = params.get("code") as string;
+		const code = decode(decodeURIComponent(URIcode)) as string;
+		console.log(code);
+		editorRef?.current?.setValue(code);
+		editorRef.current.getAction("editor.action.formatDocument").run();
+	};
+
 	return (
 		<div className="flex flex-col border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden bg-white dark:bg-transparent">
-			<CodeEditorTabs formatCode={formatCode} resetCode={resetCode} copyCode={copyCode} updateFont={updateFont} />
+			<CodeEditorTabs
+				formatCode={formatCode}
+				resetCode={resetCode}
+				copyCode={copyCode}
+				updateFont={updateFont}
+				setSubmittedCode={setSubmittedCode}
+				setCurrentSolution={setCurrentSolution}
+			/>
 			<Editor
 				className="px-0 pt-5 flex-1"
 				height="100%"

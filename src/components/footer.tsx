@@ -35,7 +35,7 @@ export default function FooterComponent({ refName, testCases, session }: compone
 					<RunCode refName={refName} testCases={testCases} session={session} />
 				</li>
 				<li>
-					<SubmitCode session={session} />
+					<SubmitCode session={session} refName={refName} />
 				</li>
 			</ul>
 		</footer>

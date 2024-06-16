@@ -1,7 +1,9 @@
 import { Spinner } from "@nextui-org/react";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { useLocation } from "react-router-dom";
 import Split from "react-split";
+import { DataContext } from "../helpers/dataContext";
 import type { userType } from "../helpers/types";
 import Description from "./description";
 import Firework from "./firework";
@@ -10,7 +12,9 @@ import NavBarComponent from "./navBar";
 import Protected from "./protected";
 import RightBoxComponent from "./rightBox";
 import Subscription from "./subscription";
+
 export default function Challenge({ slug, user }: { slug: string; user: userType }) {
+	const { updateData } = useContext(DataContext);
 	const [challenge, setChallenge] = useState();
 	const location = useLocation(); // Get location object
 
@@ -22,6 +26,20 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 			const challenge = (await res.json()) as challengeType;
 			setChallenge(challenge);
 			document.title = challenge.title;
+
+			const response = await fetch("/api/getSubmittedCode.json", {
+				method: "POST",
+				headers: {
+					Accept: "application/json",
+					"Content-type": "application/json",
+				},
+				body: JSON.stringify({
+					challengeName: challenge.refName,
+				}),
+			});
+			const data = (await response.json()) as challengeType;
+			console.log("DATAAAAAAA", JSON.parse(data[challenge.refName]));
+			updateData({ submittedCode: JSON.parse(data[challenge.refName]) });
 		};
 
 		void getChallenge();
@@ -31,11 +49,11 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 	// return <Protected />
 
 	if (challenge === undefined)
-	return (
-		<div className="flex items-center justify-center h-[100vh]">
-			<Spinner size="lg" />
-		</div>
-	);
+		return (
+			<div className="flex items-center justify-center h-[100vh]">
+				<Spinner size="lg" />
+			</div>
+		);
 
 	return (
 		<div className="flex h-[100vh] flex-col overflow-hidden  bg-neutral-100 dark:bg-transparent">

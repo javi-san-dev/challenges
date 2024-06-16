@@ -9,6 +9,7 @@ export interface DefaultStateType {
 	testCases: null | object;
 	errorMsg: string;
 	consoleMsg: string;
+	submittedCode: object;
 }
 
 export interface DataContextType {
@@ -23,6 +24,7 @@ const defaultState: DefaultStateType = {
 	testCases: null,
 	errorMsg: "",
 	consoleMsg: "",
+	submittedCode: {},
 };
 
 const defaultContextValue: DataContextType = {

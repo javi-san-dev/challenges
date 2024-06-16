@@ -20,11 +20,10 @@ import SignIn from "./signIn";
 
 type componentProps = {
 	refName: string;
-	testCases: testCasesType;
 	session: sessionType;
 };
 
-export default function SubmitCode({ session }: componentProps) {
+export default function SubmitCode({ session, refName }: componentProps) {
 	const { data, updateData } = useContext(DataContext);
 	const [loadingButton, setLoadingButton] = useState(false);
 	const [openSubmitModal, setOpenSubmitModal] = useState(false);
@@ -51,13 +50,14 @@ export default function SubmitCode({ session }: componentProps) {
 			>
 				Submit
 			</Button>
-			{session !== null && <SubmitModal openModal={openSubmitModal} />}
+			{session !== null && <SubmitModal openModal={openSubmitModal} refName={refName} />}
 			{session === null && <SignIn openModal={openSignInModal} />}
 		</>
 	);
 }
 
-function SubmitModal({ openModal }) {
+function SubmitModal({ openModal, refName }) {
+	const { data, updateData } = useContext(DataContext);
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const [isFirstRender, setIsFirstRender] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
@@ -71,12 +71,28 @@ function SubmitModal({ openModal }) {
 		onOpen();
 	}, [openModal]);
 
-	const submitHandler = () => {
+	const submitHandler = async () => {
 		setIsLoading(true);
-		setTimeout(() => {
-			setIsLoading(false);
-			setIsSubmitSuccess(true);
-		}, 2000);
+		const params = new URLSearchParams(window.location.search);
+		const URIcode = params.get("code") as string;
+		const code = decodeURIComponent(URIcode) as string;
+		const response = await fetch("/api/submitCode.json", {
+			method: "POST",
+			headers: {
+				Accept: "application/json",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				code: code,
+				codeLanguage: data.codeLanguage,
+				challengeName: refName,
+			}),
+		});
+		const result = await response.json();
+		console.log("DATA:", result);
+		updateData({ submittedCode: result });
+		setIsLoading(false);
+		setIsSubmitSuccess(true);
 	};
 
 	return (

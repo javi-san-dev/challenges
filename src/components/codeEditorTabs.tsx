@@ -28,10 +28,17 @@ const fontSize = [
 	{ label: "15px", value: "15px", description: "font size code 15 px" },
 	{ label: "16px", value: "16px", description: "font size code 16 px" },
 	{ label: "17px", value: "17px", description: "font size code 17 px" },
-	{ label: "18px", value: "18px", description: "font size code 18 px" }
+	{ label: "18px", value: "18px", description: "font size code 18 px" },
 ];
 
-export default function CodeEditorTabs({ formatCode, resetCode, copyCode, updateFont }) {
+export default function CodeEditorTabs({
+	formatCode,
+	resetCode,
+	copyCode,
+	updateFont,
+	setSubmittedCode,
+	setCurrentSolution,
+}) {
 	const { data, updateData } = useContext(DataContext);
 	const [order] = useState(["0", "1", "2", "3"]);
 	const [selectedKey, setSelectedKey] = useState(order[0]);
@@ -39,7 +46,8 @@ export default function CodeEditorTabs({ formatCode, resetCode, copyCode, update
 
 	const tabClickHandler = (index: number) => {
 		setSelectedKey(order[index]);
-		onTabChange(index);
+		if (index === 0) setCurrentSolution();
+		if (index === 1) setSubmittedCode();
 	};
 
 	const setFullScreen = () => {
