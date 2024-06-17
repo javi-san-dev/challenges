@@ -1,6 +1,8 @@
 import {
+	Button,
 	Chip,
 	type ChipProps,
+	Spinner,
 	Table,
 	TableBody,
 	TableCell,
@@ -11,7 +13,7 @@ import {
 	User,
 	getKeyValue,
 } from "@nextui-org/react";
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import challengeList from "../data/challengeList";
 import challenges from "../data/challenges";
@@ -31,15 +33,19 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
 	Hard: "danger",
 };
 
-export default function TableChallenges({closeModal}) {
+export default function TableChallenges({ closeModal }) {
 	const { data } = useContext(DataContext);
 	const submittedList = data.submittedList;
-	console.log(submittedList);
 	const navigate = useNavigate();
+	const [page, setPage] = useState(1);
+	const [isLoading, setIsLoading] = useState(false);
+	const [list, setList] = useState(challengeList.All.All.slice(0, 50));
+	const hasMin = list.length >= 50;
+	const [hasMore, setHasMore] = useState(true);
 
 	function handleClick(challengeRefName) {
 		navigate(`/challenges/${titleToRef(challengeRefName)}`);
-		closeModal()
+		closeModal();
 	}
 	const titleToRef = (title: string) => {
 		return title
@@ -104,9 +110,31 @@ export default function TableChallenges({closeModal}) {
 		}
 	}, []);
 
+	const loadMore = () => {
+		setIsLoading(true);
+		setTimeout(() => {
+			setList(challengeList.All.All);
+			setIsLoading(false);
+		}, 2000);
+	};
+
 	return (
 		<Table
 			aria-label="Example table with custom cells"
+			bottomContent={
+				hasMin &&
+				(hasMore && !isLoading ? (
+					<div className="flex w-full justify-center h-[50px]">
+						<Button isDisabled={isLoading} variant="flat" onClick={loadMore}>
+							Load More
+						</Button>
+					</div>
+				) : (
+					<div className="flex w-full justify-center h-[50px]">
+						<Spinner />
+					</div>
+				))
+			}
 			classNames={{
 				wrapper: "bg-white dark:bg-black p-0 shadow-none",
 				th: "bg-transparent text-default-500 border-b border-divider",
@@ -119,7 +147,7 @@ export default function TableChallenges({closeModal}) {
 					</TableColumn>
 				)}
 			</TableHeader>
-			<TableBody items={challengeList.All.All}>
+			<TableBody items={list}>
 				{(item) => (
 					<TableRow
 						key={item[0]}
