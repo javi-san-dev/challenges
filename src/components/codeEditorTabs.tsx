@@ -43,6 +43,7 @@ export default function CodeEditorTabs({
 	const [order] = useState(["0", "1", "2", "3"]);
 	const [selectedKey, setSelectedKey] = useState(order[0]);
 	const tabsRef = useRef(null);
+	const isSubmitted = data.submittedCode[data.codeLanguage] !== undefined;
 
 	const tabClickHandler = (index: number) => {
 		setSelectedKey(order[index]);
@@ -95,15 +96,17 @@ export default function CodeEditorTabs({
 							</div>
 						}
 					/>
-					<Tab
-						key={order[1]}
-						title={
-							<div className="flex items-center space-x-2">
-								<CheckSolutionIcon size="1.5rem" />
-								<span>Submitted Solution</span>
-							</div>
-						}
-					/>
+					{isSubmitted && (
+						<Tab
+							key={order[1]}
+							title={
+								<div className="flex items-center space-x-2">
+									<CheckSolutionIcon size="1.5rem" />
+									<span>Submitted Solution</span>
+								</div>
+							}
+						/>
+					)}
 				</Tabs>
 				<div className="hidden w-full md:block md:w-auto ml-auto" id="navbar-default">
 					<ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row space-x-1 rtl:space-x-reverse md:mt-0">
