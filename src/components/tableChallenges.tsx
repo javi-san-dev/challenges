@@ -11,16 +11,17 @@ import {
 	User,
 	getKeyValue,
 } from "@nextui-org/react";
-import React from "react";
+import { useContext, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import challengeList from "../data/challengeList";
 import challenges from "../data/challenges";
-import { BugIcon, ErrorIcon, JavaIcon, PythonIcon } from "../helpers/icons";
+import { DataContext } from "../helpers/dataContext";
+import { BugIcon, ErrorIcon, CheckIcon, JavaIcon, PythonIcon } from "../helpers/icons";
 
 const columns = [
 	{ name: "ID", uid: "id", sortable: true },
 	{ name: "NAME", uid: "name", sortable: true },
-	{ name: "SUPPORTED LANG", uid: "lang", sortable: true },
+	{ name: "LANGUAGES", uid: "lang", sortable: true },
 	{ name: "DIFFICULTY", uid: "difficulty", sortable: true },
 ];
 
@@ -31,6 +32,8 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
 };
 
 export default function TableChallenges() {
+	const { data } = useContext(DataContext);
+	const submittedList = data.submittedList;
 	const navigate = useNavigate();
 
 	function handleClick(challengeRefName) {
@@ -42,7 +45,7 @@ export default function TableChallenges() {
 			.replace(/^./, (match) => match.toLowerCase()); // replace first letter to lowercase
 	};
 
-	const renderCell = React.useCallback((challenge, columnKey: React.Key) => {
+	const renderCell = useCallback((challenge, columnKey: React.Key) => {
 		const cellValue = challenge[columnKey];
 		switch (columnKey) {
 			case "id":
@@ -51,7 +54,11 @@ export default function TableChallenges() {
 				return (
 					<div className="flex items-center">
 						<div className="bg-neutral-100 dark:bg-neutral-900 rounded-xl p-1 mr-2">
-							<ErrorIcon size="1.8rem" />
+							{submittedList.includes(titleToRef(challenge[0])) ? (
+								<span className="text-green-600"><CheckIcon size="1.8rem" /></span>
+							) : (
+								<ErrorIcon size="1.8rem" />
+							)}
 						</div>
 						<div>
 							<h1>{challenge[0]}</h1>

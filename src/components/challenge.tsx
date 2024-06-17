@@ -18,6 +18,27 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 	const [challenge, setChallenge] = useState();
 	const location = useLocation(); // Get location object
 
+	const findSubmitted = (challengeList) => {
+		const result = [];
+		for (const challenge in challengeList) {
+			if (challengeList[challenge] !== null) {
+				result.push(challenge);
+			}
+		}
+
+		return result;
+	};
+
+	useEffect(() => {
+		async function getSubmittedList() {
+			const response = await fetch("/api/submittedList.json");
+			const data = await response.json();
+			const submittedList = findSubmitted(data);
+			updateData({ submittedList: submittedList });
+		}
+		getSubmittedList();
+	}, []);
+
 	useEffect(() => {
 		const getChallenge = async () => {
 			const lastIndex = location.pathname.lastIndexOf("/");
@@ -38,7 +59,6 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 				}),
 			});
 			const data = (await response.json()) as challengeType;
-			console.log("DATAAAAAAA", JSON.parse(data[challenge.refName]));
 			updateData({ submittedCode: JSON.parse(data[challenge.refName]) });
 		};
 

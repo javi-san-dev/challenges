@@ -10,6 +10,7 @@ export interface DefaultStateType {
 	errorMsg: string;
 	consoleMsg: string;
 	submittedCode: object;
+	submittedList: array<string>;
 }
 
 export interface DataContextType {
@@ -25,6 +26,7 @@ const defaultState: DefaultStateType = {
 	errorMsg: "",
 	consoleMsg: "",
 	submittedCode: {},
+	submittedList: [],
 };
 
 const defaultContextValue: DataContextType = {

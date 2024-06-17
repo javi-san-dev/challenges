@@ -11,7 +11,6 @@ export const POST: APIRoute = async ({ request, params }) => {
 				sql: `SELECT ${challengeName} FROM submitted_code WHERE user_id = ?`,
 				args: [user.user.id],
 			});
-			console.log(rows)
 			return rows.length > 0 ? new Response(JSON.stringify(rows[0]), { status: 200 }) : new Response(null, { status: 200 });
 		}
 	} catch (error) {
