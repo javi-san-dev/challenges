@@ -43,7 +43,7 @@ export default function CodeEditorTabs({
 	const [order] = useState(["0", "1", "2", "3"]);
 	const [selectedKey, setSelectedKey] = useState(order[0]);
 	const tabsRef = useRef(null);
-	const isSubmitted = data.submittedCode[data.codeLanguage] !== undefined;
+	const isSubmitted = data.submittedCode?.[data.codeLanguage] !== undefined;
 
 	const tabClickHandler = (index: number) => {
 		setSelectedKey(order[index]);

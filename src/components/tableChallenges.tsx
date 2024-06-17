@@ -11,15 +11,15 @@ import {
 	User,
 	getKeyValue,
 } from "@nextui-org/react";
-import { useContext, useCallback } from "react";
+import { useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import challengeList from "../data/challengeList";
 import challenges from "../data/challenges";
 import { DataContext } from "../helpers/dataContext";
-import { BugIcon, ErrorIcon, CheckIcon, JavaIcon, PythonIcon } from "../helpers/icons";
+import { BugIcon, CheckIcon, ErrorIcon, JavaIcon, LockIcon, PythonIcon } from "../helpers/icons";
 
 const columns = [
-	{ name: "ID", uid: "id", sortable: true },
+	{ name: "STATUS", uid: "status", sortable: true },
 	{ name: "NAME", uid: "name", sortable: true },
 	{ name: "LANGUAGES", uid: "lang", sortable: true },
 	{ name: "DIFFICULTY", uid: "difficulty", sortable: true },
@@ -31,13 +31,15 @@ const statusColorMap: Record<string, ChipProps["color"]> = {
 	Hard: "danger",
 };
 
-export default function TableChallenges() {
+export default function TableChallenges({closeModal}) {
 	const { data } = useContext(DataContext);
 	const submittedList = data.submittedList;
+	console.log(submittedList);
 	const navigate = useNavigate();
 
 	function handleClick(challengeRefName) {
 		navigate(`/challenges/${titleToRef(challengeRefName)}`);
+		closeModal()
 	}
 	const titleToRef = (title: string) => {
 		return title
@@ -48,14 +50,20 @@ export default function TableChallenges() {
 	const renderCell = useCallback((challenge, columnKey: React.Key) => {
 		const cellValue = challenge[columnKey];
 		switch (columnKey) {
-			case "id":
-				return <span>1</span>;
+			case "status":
+				return (
+					<span>
+						<LockIcon size="1.5rem" />
+					</span>
+				);
 			case "name":
 				return (
 					<div className="flex items-center">
 						<div className="bg-neutral-100 dark:bg-neutral-900 rounded-xl p-1 mr-2">
 							{submittedList.includes(titleToRef(challenge[0])) ? (
-								<span className="text-green-600"><CheckIcon size="1.8rem" /></span>
+								<span className="text-green-600">
+									<CheckIcon size="1.8rem" />
+								</span>
 							) : (
 								<ErrorIcon size="1.8rem" />
 							)}
@@ -70,7 +78,7 @@ export default function TableChallenges() {
 				);
 			case "lang":
 				return (
-					<div aria-labelledby=":r2ri:" className="mt-1 flex items-center gap-x-2">
+					<div aria-labelledby=":r2ri:" className="mt-1 flex items-center gap-x-1">
 						<span className="inline-flex items-center rounded bg-yellow-500 px-2 py-0.5 text-xs font-semibold text-black dark:bg-neutral-800 dark:text-yellow-500">
 							JS
 						</span>
@@ -87,7 +95,7 @@ export default function TableChallenges() {
 				);
 			case "difficulty":
 				return (
-					<Chip className="capitalize" color={statusColorMap[challenge[1]]} size="sm" variant="flat">
+					<Chip radius="sm" className="capitalize" color={statusColorMap[challenge[1]]} size="sm" variant="flat">
 						{challenge[1]}
 					</Chip>
 				);

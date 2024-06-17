@@ -13,7 +13,7 @@ export default function CodeEditor({ allStartedCode }) {
 	const editorRef = useRef(null);
 	const monacoEditor = useRef(null);
 	const codeLanguage = data.codeLanguage;
-	const submittedCode = data.submittedCode[data.codeLanguage];
+	const submittedCode = data.submittedCode?.[data.codeLanguage];
 	const [startedCode, setStartedCode] = useState(allStartedCode[codeLanguage]);
 	const params = new URLSearchParams(window.location.search);
 	const getParam = params.get("code");

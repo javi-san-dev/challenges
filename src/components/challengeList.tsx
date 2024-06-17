@@ -86,12 +86,13 @@ export default function ChallengeList({ isSearch }) {
 										onClear={() => console.log("clear")}
 										// onValueChange={onSearchChange}
 									/>
+									<div className="flex ml-auto gap-x-2">
 									<Dropdown
 										showArrow
 										classNames={{
 											base: "before:bg-default-200", // change arrow background
 											content:
-												"py-1 px-1 border border-default-200 bg-gradient-to-br from-white to-default-200 dark:from-default-50 dark:to-black",
+												"py-1 px-1 border border-default-200 bg-white dark:bg-black",
 										}}
 									>
 										<DropdownTrigger>
@@ -107,6 +108,9 @@ export default function ChallengeList({ isSearch }) {
 											selectionMode="single"
 											selectedKeys={selectedCategoryKeys}
 											onSelectionChange={setSelectedCategoryKeys}
+											classNames={{
+												list: "max-h-[400px] overflow-scroll",
+											}}
 										>
 											<DropdownSection title="Filter by Category">
 												{categories.map((category, i) => {
@@ -129,7 +133,7 @@ export default function ChallengeList({ isSearch }) {
 										classNames={{
 											base: "before:bg-default-200", // change arrow background
 											content:
-												"py-1 px-1 border border-default-200 bg-gradient-to-br from-white to-default-200 dark:from-default-50 dark:to-black",
+												"py-1 px-1 border border-default-200 bg-white dark:bg-black",
 										}}
 									>
 										<DropdownTrigger>
@@ -174,10 +178,11 @@ export default function ChallengeList({ isSearch }) {
 											</DropdownSection>
 										</DropdownMenu>
 									</Dropdown>
+									</div>
 								</div>
 							</ModalHeader>
 							<ModalBody>
-								<TableChallenges />
+								<TableChallenges closeModal={onClose} />
 							</ModalBody>
 							<ModalFooter />
 						</>

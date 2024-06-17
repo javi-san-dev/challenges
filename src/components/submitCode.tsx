@@ -89,8 +89,9 @@ function SubmitModal({ openModal, refName }) {
 			}),
 		});
 		const result = await response.json();
-		console.log("DATA:", result);
-		updateData({ submittedCode: result });
+		const updateSubmittedList = data.submittedList;
+		updateSubmittedList.push(refName);
+		updateData({ submittedCode: result, submittedList: updateSubmittedList });
 		setIsLoading(false);
 		setIsSubmitSuccess(true);
 	};
