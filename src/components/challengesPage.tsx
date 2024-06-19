@@ -48,6 +48,7 @@ export default function ChallengesPage() {
 	const [selectedKeys, setSelectedKeys] = useState(new Set(["easy"]));
 	const [selectedCategoryKeys, setSelectedCategoryKeys] = useState(new Set(["all"]));
 	const iconClasses = "text-xl text-default-500 pointer-events-none flex-shrink-0";
+	const [isListReady, setIsListReady] = useState(false)
 
 	const findSubmitted = (challengeList) => {
 		const result = [];
@@ -66,6 +67,7 @@ export default function ChallengesPage() {
 			const data = await response.json();
 			const submittedList = findSubmitted(data);
 			updateData({ submittedList: submittedList });
+			setIsListReady(true)
 		}
 		getSubmittedList();
 	}, []);
@@ -74,7 +76,7 @@ export default function ChallengesPage() {
 
 	return (
 		<>
-			<Navbar classNames={{wrapper:"m-0 p-0 max-w-[900px]"}}>
+			<Navbar classNames={{ wrapper: "m-0 p-0 max-w-[900px]" }}>
 				<NavbarBrand>
 					<p className="font-bold text-inherit">CHALLENGES</p>
 				</NavbarBrand>
@@ -129,7 +131,7 @@ export default function ChallengesPage() {
 							showArrow
 							classNames={{
 								base: "before:bg-default-200", // change arrow background
-								
+
 								content: "py-1 px-1 border border-default-200 bg-white dark:bg-black",
 							}}
 						>
@@ -217,7 +219,7 @@ export default function ChallengesPage() {
 						</Dropdown>
 					</div>
 				</div>
-				<TableChallenges />
+				{isListReady && <TableChallenges />}
 			</div>
 		</>
 	);
