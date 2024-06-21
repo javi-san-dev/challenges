@@ -4,6 +4,7 @@ import { tursoDB } from "../../helpers/turso";
 export const GET = async ({ request, response }) => {
 	try {
 		const session = await getSession(request);
+		if (session === null) return new Response(null, { status: 400, msg: "no signed in" });
 		const userID = session.user.id;
 		const { rows } = await tursoDB.execute({
 			sql: "SELECT * FROM submitted_code WHERE user_id = ?",

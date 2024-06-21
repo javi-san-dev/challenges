@@ -1,0 +1,53 @@
+---
+import { Image } from "astro:assets";
+import darkPlatform from "./images/darkPlatform.png";
+---
+
+<div class="overflow-x-clip mt-[80px]">
+	<div class="mx-auto max-w-screen-xl px-5">
+		<main class="relative grid place-items-center lg:grid-cols-5">
+			<div class="max-w-sm md:max-w-max lg:col-span-2">
+				<h1 class="text-center text-3xl font-normal [text-wrap:balance] lg:text-start lg:text-4xl lg:tracking-tight xl:text-6xl xl:tracking-tighter">Increase your <span class="text-cyan-400 title">algorithms</span> skills</h1>
+				<p class="mt-4 max-w-lg text-center text-xl text-neutral-600 [text-wrap:balance] dark:text-neutral-400 lg:text-start font-extralight">
+					<strong>Embrace the challenge</strong>, and embark on a journey
+					towards coding excellence with <strong class="title"
+						>oChallenge</strong
+					>. Start mastering{" "}
+					<strong>data structures</strong> and <strong>algorithms</strong> today!
+				</p>
+				<div class="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+					<a
+						href="/challenges/uncompress"
+						rel="noopener"
+						class="backgroundStyle rounded-full overflow-hidden"
+					>
+						<p class="buttonStart rounded-full bg-white dark:bg-[#131314]">Get Started</p>
+					</a>
+				</div>
+			</div>
+			<div class="borderStyle p-[1px] overflow-hidden relative my-20 w-[100%]   rounded-2xl border border-neutral-800 lg:col-span-3 ">
+				<Image
+					src={darkPlatform}
+					alt="landing image"
+					width="2226"
+					height="1630"
+					class="rounded-2xl"
+				/>
+			</div>
+		</main>
+	</div>
+</div>
+
+<style>
+	.backgroundStyle {
+		background: linear-gradient(72.83deg, #4285f4 11.63%, #9b72cb 40.43%, #d96570 68.07%);
+		padding: 1px;
+	}
+	.buttonStart {
+		margin: 0;
+		padding: 15px 50px;
+	}
+	.borderStyle {
+		background: linear-gradient(to bottom right, rgba(82, 133, 236, 0) 28.79%, #5285ec 34.75%, #9576c4 54.79%, #ca6c72 74.83%, rgba(202, 108, 114, 0) 80.79%);
+	}
+</style>

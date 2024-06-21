@@ -94,20 +94,20 @@ export default function RunCode({ refName, testCases, session }: componentProps)
 	};
 
 	return (
-		<>
+		<div className="backgroundStyle rounded-lg">
 			<Button
 				isLoading={!!loadingButton}
 				variant="flat"
 				aria-label="Zoom in"
 				size="md"
 				radius="sm"
-				className={"border border-cyan-400 text-cyan-400 bg-white dark:bg-transparent"}
+				className={"bg-neutral-100 dark:bg-black"}
 				onClick={isJavaScript ? runCode : sendCode}
 			>
 				{!loadingButton && <PlayIcon size="1.2rem" />}
 				Run
 			</Button>
 			<SignIn openModal={openModal} />
-		</>
+		</div>
 	);
 }

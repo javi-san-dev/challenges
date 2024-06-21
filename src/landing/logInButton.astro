@@ -1,0 +1,16 @@
+---
+import { getSession } from "auth-astro/server";
+
+const session = await getSession(Astro.request);
+console.log("AA", session);
+---
+
+{
+	session === null ? (
+		<button class="rounded-lg overflow-hidden" id="signInButton">
+			Sign In
+		</button>
+	) : (
+		<p>logedd</p>
+	)
+}

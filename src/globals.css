@@ -151,3 +151,36 @@ h3 {
 .underlineAnimation:hover::before {
 	transform: scaleX(1);
 }
+
+.coloredChip {
+	background-image: linear-gradient(14deg, rgba(82, 133, 236, 0) -111.73%, rgba(82, 133, 236, .17) -73.97%, rgba(149, 118, 196, .17) 53.01%, rgba(202, 108, 114, .17) 179.99%, rgba(202, 108, 114, 0) 217.74%);
+	color: white;
+	background: linear-gradient(72.83deg, #4285f4 11.63%, #9b72cb 40.43%, #d96570 68.07%);
+
+	
+}
+
+
+
+.title {
+	color: transparent;
+	background-clip: text;
+	background-image: -webkit-linear-gradient(
+		17.17deg,
+		#4285f4 11.63%,
+		#9b72cb 40.43%,
+		#d96570 68.07%
+	);
+	background-image: linear-gradient(
+		72.83deg,
+		#4285f4 11.63%,
+		#9b72cb 40.43%,
+		#d96570 68.07%
+	);
+}
+
+.backgroundStyle, .borderStyle {
+	background: linear-gradient(72.83deg, #4285f4 11.63%, #9b72cb 40.43%, #d96570 68.07%);
+	padding: 1px;
+	border:none;
+}

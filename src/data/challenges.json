@@ -50,35 +50,34 @@
 			"Test_1": {
 				"test_input": ["2c3a1t"],
 				"test_expected": "ccaaat",
-				"code_output": null,
+				"code_output": "null",
 				"passed_test": false
 			},
 			"Test_2": {
 				"test_input": ["4s2b"],
 				"test_expected": "ssssbb",
-				"code_output": null,
+				"code_output": "null",
 				"passed_test": false
 			},
 			"Test_3": {
 				"test_input": ["2p1o5p"],
 				"test_expected": "ppoppppp",
-				"code_output": null,
+				"code_output": "null",
 				"passed_test": false
 			},
 			"Test_4": {
 				"test_input": ["3n12e2z"],
 				"test_expected": "nnneeeeeeeeeeeezz",
-				"code_output": null,
+				"code_output": "null",
 				"passed_test": false
 			},
 			"Test_5": {
 				"test_input": ["127y"],
 				"test_expected": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
-				"code_output": null,
+				"code_output": "null",
 				"passed_test": false
 			}
-		},
-		"platform": "structy"
+		}
 	},
 	"mostFrequentChar": {
 		"refName": "mostFrequentChar",
@@ -127,46 +126,187 @@
 			"Test_1": {
 				"test_input": ["bookeeper"],
 				"test_expected": "e",
-				"code_output": null,
+				"code_output": "null",
 				"passed_test": false
 			},
 			"Test_2": {
 				"test_input": ["david"],
 				"test_expected": "d",
-				"code_output": null,
+				"code_output": "null",
 				"passed_test": false
 			},
 			"Test_3": {
 				"test_input": ["abby"],
 				"test_expected": "b",
-				"code_output": null,
+				"code_output": "null",
 				"passed_test": false
 			},
 			"Test_4": {
 				"test_input": ["mississippi"],
 				"test_expected": "i",
-				"code_output": null,
+				"code_output": "null",
 				"passed_test": false
 			},
 			"Test_5": {
 				"test_input": ["potato"],
 				"test_expected": "o",
-				"code_output": null,
+				"code_output": "null",
 				"passed_test": false
 			},
 			"Test_6": {
 				"test_input": ["eleventennine"],
 				"test_expected": "e",
-				"code_output": null,
+				"code_output": "null",
 				"passed_test": false
 			},
 			"Test_7": {
 				"test_input": ["riverbed"],
 				"test_expected": "r",
-				"code_output": null,
+				"code_output": "null",
 				"passed_test": false
 			}
+		}
+	},
+	"romanToInteger": {
+		"refName": "romanToInteger",
+		"refNumber": 18,
+		"category": "String",
+		"difficulty": "Easy",
+		"title": "Roman To Integer",
+		"tags": ["Easy", "String"],
+		"description": "<p>Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M. Symbol Value I 1 V 5 X 10 L 50 C 100 D 500 M 1000</p><p>For example, 2 is written as II in Roman numeral, just two one's added together. 12 is written as XII, which is simply X + II. The number 27 is written as XXVII, which is XX + V + II.</p><p>Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not IIII. Instead, the number four is written as IV. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as IX. There are six instances where subtraction is used:</p><ul><li>I can be placed before V (5) and X (10) to make 4 and 9.</li><li>X can be placed before L (50) and C (100) to make 40 and 90.</li><li>C can be placed before D (500) and M (1000) to make 400 and 900.</li></ul><p>Given a roman numeral, convert it to an integer.</p><p>Constraints:</p><p>1 <= s.length <= 15 s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M'). It is guaranteed that s is a valid roman numeral in the range [1, 3999].</p>",
+		"examples": {
+			"example1": {
+				"input": "III",
+				"output": "3"
+			},
+			"example2": {
+				"input": "LVIII",
+				"output": "58"
+			}
 		},
-		"platform": "structy"
+		"hints": {
+			"hint_1": "...",
+			"hint_2": "...",
+			"hint_3": "...",
+			"Optimal_Space__Time_Complexity": "..."
+		},
+		"startedCode": {
+			"javascript": "function romanToInteger(s) {\n    // Write your solution...\n    return true;\n}",
+			"python": "def romanToInteger(s) -> str:\n  # write your solution...",
+			"java": "import java.util.*;\n\npublic class romanToInteger {\n   public static String romanToInteger(String s) {\n      // Write your solution...\n   }\n}",
+			"cpp": "string romanToInteger(const string& s) {\n   // Write your solution...\n}"
+		},
+		"solutionCode": {
+			"javascript": [
+				"// solution 1\nfunction romanToInteger(s) {\n    const sym = { \n        'I': 1,\n        'V': 5,\n        'X': 10,\n        'L': 50,\n        'C': 100,\n        'D': 500,\n        'M': 1000\n    }\n    let result = 0;\n    for (i=0; i < s.length; i++){\n        const cur = sym[s[i]];\n        const next = sym[s[i+1]];\n        if (cur < next){\n            result += next - cur // IV -> 5 - 1 = 4\n            i++\n        } else {\n            result += cur\n        }\n    }\n    return result; \n};"
+			],
+			"python": ["solution"],
+			"java": ["solution"],
+			"cpp": ["solution"]
+		},
+		"submittedCode": {
+			"javaScript": ""
+		},
+		"testCases": {
+			"Test_1": {
+				"test_input": ["III"],
+				"test_expected": 3,
+				"code_output": "null",
+				"passed_test": false
+			},
+			"Test_2": {
+				"test_input": ["LVIII"],
+				"test_expected": 58,
+				"code_output": "null",
+				"passed_test": false
+			},
+			"Test_3": {
+				"test_input": ["MCMXCIV"],
+				"test_expected": 1994,
+				"code_output": "null",
+				"passed_test": false
+			},
+			"Test_4": {
+				"test_input": ["IV"],
+				"test_expected": 4,
+				"code_output": "null",
+				"passed_test": false
+			}
+		}
+	},
+	"safeCombinationFinder": {
+		"refName": "safeCombinationFinder",
+		"refNumber": 80,
+		"category": "Graphs",
+		"difficulty": "Medium",
+		"title": "Safe Combination Finder",
+		"tags": ["Medium", "Graphs"],
+		"description": "<p>Oh no! You've lost the number sequence that unlocks your safe. Fortunately, you anticipated this and wrote down a set of clues that can help you figure out the correct sequence. Each clue is a pair of numbers 'x, y', which means digit 'x' must come before 'y' (though not necessarily right before).</p><p>The safe's keypad includes digits 0-9. Assume the clues will lead to exactly one valid combination and that each digit appears at most once in the final sequence.</p><p>Write a function, SafeCombinationFinder, that takes an array of clues and determines the combination to unlock the safe. The function should return a string representing the sequence.</p>",
+		"examples": {
+			"example1": {
+				"input": "hints = [[7, 1], [1, 8], [7, 8]]",
+				"output": "'718'"
+			},
+			"example2": {
+				"input": "hints = [   [3, 1],   [4, 7],   [5, 9],   [4, 3],   [7, 3],   [3, 5],   [9, 1], ]",
+				"output": "'473591'"
+			}
+		},
+		"hints": {
+			"hint_1": "...",
+			"hint_2": "...",
+			"hint_3": "...",
+			"Optimal_Space__Time_Complexity": "..."
+		},
+		"startedCode": {
+			"javascript": "function safeCombinationFinder(hints) {\n   // Write your solution...\n   return true;\n}",
+			"python": "def safeCombinationFinder(s) -> str:\n  # write your solution...",
+			"java": "import java.util.*;\n\npublic class SafeCombinationFinder {\n   public static String safeCombinationFinder(String s) {\n      // Write your solution...\n   }\n}",
+			"cpp": "string safeCombinationFinder(const string& s) {\n   // Write your solution...\n}"
+		},
+		"solutionCode": {
+			"javascript": [
+				"// e = number of hints\n// Time: O(e)\n// Space: O(e)\nfunction safeCombinationFinder(hints) {\n   const graph = buildGraph(hints);\n   return topologicalOrder(graph);\n};\nfunction buildGraph(edges) {\n   const graph = {};\n   for (let edge of edges) {\n      const [a, b] = edge;\n      if (!(a in graph)) graph[a] = [];\n      if (!(b in graph)) graph[b] = [];\n      graph[a].push(b);\n   }\n   return graph;\n};\nfunction topologicalOrder(graph) {\n   const numParents = {};\n   for (let node in graph) {\n      numParents[node] = 0;\n   }\n   for (let node in graph) {\n      for (let child of graph[node]) {\n         numParents[child] += 1;\n      }\n   }\n   const ready = [];\n   for (let node in numParents) {\n      if (numParents[node] === 0) ready.push(node);\n   }\n   let order = '';\n   while (ready.length > 0) {\n      const node = ready.pop();\n      order += node;\n      for (let child of graph[node]) {\n         numParents[child] -= 1;\n         if (numParents[child] === 0) ready.push(child)\n      }\n   }\n   return order;\n};"
+			],
+			"python": ["solution"],
+			"java": ["solution"],
+			"cpp": ["solution"]
+		},
+		"submittedCode": {
+			"javascript": ""
+		},
+		"testCases": {
+			"Test_1": {
+				"test_input": [[[7, 1], [1, 8], [7, 8]]],
+				"test_expected": "718",
+				"code_output": "null",
+				"passed_test": false
+			},
+			"Test_2": {
+				"test_input": [[[3, 1], [4, 7], [5, 9], [4, 3], [7, 3], [3, 5], [9, 1]]],
+				"test_expected": "473591",
+				"code_output": "null",
+				"passed_test": false
+			},
+			"Test_3": {
+				"test_input": [[[2, 5], [8, 6], [0, 6], [6, 2], [0, 8], [2, 3], [3, 5], [6, 5]]],
+				"test_expected": "086235",
+				"code_output": "null",
+				"passed_test": false
+			},
+			"Test_4": {
+				"test_input": [[[0, 1], [6, 0], [1, 8]]],
+				"test_expected": "6018",
+				"code_output": "null",
+				"passed_test": false
+			},
+			"Test_5": {
+				"test_input": [[[8, 9], [4, 2], [8, 2], [3, 8], [2, 9], [4, 9], [8, 4]]],
+				"test_expected": "38429",
+				"code_output": "null",
+				"passed_test": false
+			}
+		}
 	}
 }

@@ -10,6 +10,11 @@
         "Most Frequent Char",
         "Easy",
         "String"
+      ],
+      [
+        "Roman To Integer",
+        "Easy",
+        "String"
       ]
     ],
     "All": [
@@ -20,6 +25,11 @@
       ],
       [
         "Most Frequent Char",
+        "Easy",
+        "String"
+      ],
+      [
+        "Roman To Integer",
         "Easy",
         "String"
       ]
@@ -36,6 +46,11 @@
         "Most Frequent Char",
         "Easy",
         "String"
+      ],
+      [
+        "Roman To Integer",
+        "Easy",
+        "String"
       ]
     ],
     "All": [
@@ -48,6 +63,39 @@
         "Most Frequent Char",
         "Easy",
         "String"
+      ],
+      [
+        "Roman To Integer",
+        "Easy",
+        "String"
+      ],
+      [
+        "Safe Combination Finder",
+        "Medium",
+        "Graphs"
+      ]
+    ],
+    "Medium": [
+      [
+        "Safe Combination Finder",
+        "Medium",
+        "Graphs"
+      ]
+    ]
+  },
+  "Graphs": {
+    "Medium": [
+      [
+        "Safe Combination Finder",
+        "Medium",
+        "Graphs"
+      ]
+    ],
+    "All": [
+      [
+        "Safe Combination Finder",
+        "Medium",
+        "Graphs"
       ]
     ]
   }

@@ -1,0 +1,81 @@
+---
+import GoogleIcon from "./images/googleIcon.svg";
+import GitHubIcon from "./images/githubIcon.svg";
+import { Image } from "astro:assets";
+---
+
+<div class="w-full h-full fixed top-0 items-center justify-center hidden" id="signInModal">
+	<div id="signInModalChild" class="w-[380px] border bg-black rounded-2xl flex flex-col items-center gap-3 text-center p-8 text-white dark:bg-black border-neutral-500 dark:border-neutral-800">
+		<h1 class="font-bold text-3xl">Sign In</h1>
+		<p class="mb-4 text-neutral-500 font-extralight">sign in to run your code and save your progress. With one of the following:</p>
+		<button class="flex items-center justify-center w-full p-2 rounded-lg bg-black dark:bg-white text-white dark:text-black font-bold mb-2" id="googleSignInButton">
+			<Image src={GoogleIcon} alt="google image" width="24" height="24" />
+			Google
+		</button>
+		<button class="flex items-center justify-center w-full p-2 rounded-lg bg-black dark:bg-white text-white dark:text-black font-bold mb-4" id="githubSignInButton">
+			<Image src={GitHubIcon} alt="google image" width="24" height="24" />
+			GitHub
+		</button>
+		<div id="loader" class="loader hidden"></div>
+	</div>
+</div>
+
+<style>
+	.loader {
+		border: 5px solid transparent;
+		border-radius: 50%;
+		border-top: 5px solid white;
+		border-bottom: 5px solid white;
+		width: 60px;
+		height: 60px;
+		-webkit-animation: spin 1s linear infinite;
+		animation: spin 1s linear infinite;
+	}
+	@-webkit-keyframes spin {
+		0% {
+			-webkit-transform: rotate(0deg);
+		}
+		100% {
+			-webkit-transform: rotate(360deg);
+		}
+	}
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+</style>
+
+<script>
+	import { signIn } from "auth-astro/client";
+
+	const signInButton = document.getElementById("signInButton") as HTMLButtonElement;
+	const githubSignInButton = document.getElementById("githubSignInButton") as HTMLButtonElement;
+	const googleSignInButton = document.getElementById("googleSignInButton") as HTMLButtonElement;
+	const signInModal = document.getElementById("signInModal") as HTMLDivElement;
+	const signInModalChild = document.getElementById("signInModalChild") as HTMLDivElement;
+	const loader = document.getElementById("loader") as HTMLDivElement;
+
+	signInButton.addEventListener("click", () => {
+		const isDisplayed = signInModal!.style.display === "flex";
+		signInModal!.style.display = isDisplayed ? "none" : "flex";
+		signInModal!.style.background = "rgba(0,0,0,0.8)";
+	});
+	signInModal?.addEventListener("click", () => {
+		const isDisplayed = signInModal!.style.display === "flex";
+		signInModal!.style.display = isDisplayed ? "none" : "flex";
+	});
+	signInModalChild.addEventListener("click", function (event) {
+		event.stopPropagation();
+		console.log("Child clicked");
+	});
+	googleSignInButton.addEventListener("click", () => {
+		loader!.style.display = "inline";
+		signIn("google");
+		googleSignInButton.style.display = "none";
+		githubSignInButton!.style.display = "none";
+	});
+</script>

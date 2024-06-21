@@ -98,12 +98,9 @@ export default function ChallengesPage() {
 					</NavbarItem>
 				</NavbarContent>
 				<NavbarContent justify="end">
-					<NavbarItem className="hidden lg:flex">
-						<Link href="#">Login</Link>
-					</NavbarItem>
 					<NavbarItem>
 						<Button as={Link} color="primary" href="#" variant="flat">
-							Sign Up
+							Sign In
 						</Button>
 					</NavbarItem>
 				</NavbarContent>

@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import DarkTheme from "./images/darkTheme.svg";
+import LightTheme from "./images/lightTheme.svg";
+---
+
+<button
+	id="themeButton"
+	type="button"
+	class="bg-neutral-200 dark:bg-neutral-100 px-6 rounded-lg flex border"
+>
+	<Image
+		id="themeDarkImage"
+		class="hidden"
+		src={DarkTheme}
+		alt="theme image"
+		width="25"
+		height="25"
+	/>
+	<Image
+		id="themeLightImage"
+		class="hidden"
+		src={LightTheme}
+		alt="theme image"
+		width="25"
+		height="25"
+	/>
+</button>
+
+<script>
+	const themeButton = document.getElementById("themeButton");
+	const lightImage = document.getElementById("themeLightImage");
+	const darkImage = document.getElementById("themeDarkImage");
+	let theme = localStorage.getItem("theme");
+	if (theme === null) theme = "dark";
+	if (theme === null || theme === "dark") {
+		darkImage!.style.display = "inline";
+		lightImage!.style.display = "none";
+	}
+
+	function updateTheme(value: string) {
+		document.documentElement.classList.remove("light", "dark");
+		document.documentElement.classList.add(value);
+		localStorage.setItem("theme", value);
+	}
+
+	updateTheme(theme);
+
+	themeButton!.addEventListener("click", (event: Event) => {
+		theme = theme === "dark" ? "light" : "dark";
+		if (theme === "dark") {
+			darkImage!.style.display = "inline";
+			lightImage!.style.display = "none";
+		} else {
+			darkImage!.style.display = "none";
+			lightImage!.style.display = "inline";
+		}
+		document.documentElement.classList.remove("light", "dark");
+		document.documentElement.classList.add(theme);
+		localStorage.setItem("theme", theme);
+	});
+</script>

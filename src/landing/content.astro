@@ -1,0 +1,142 @@
+---
+import { Image } from "astro:assets";
+import darkPlatform from "./images/darkPlatform.png";
+import Tick from "./images/tick.svg";
+---
+
+<section class="mx-auto max-w-screen-xl px-5" id="about-us">
+	<div class="mx-auto mt-24 flex max-w-4xl flex-col items-center justify-center mb-12">
+		<div class="p-[1px] coloredChip rounded-full">
+			<p class="rounded-full px-3 py-1 text-xs font-medium bg-black p-0 m-0">FEATURES</p>
+		</div>
+		<h2 class="mt-4 text-center text-4xl lg:text-5xl lg:tracking-tight font-light">Why Challenge?</h2>
+		<p class="mt-4 text-center text-2xl text-neutral-800 [text-wrap:pretty] dark:text-neutral-400 font-light">
+			Beacuse practice makes the master! Challenge provides a robust platform to
+			start learning <span class="title">algorithms and data structures</span> by practicing and solving
+			complex problems efficiently.
+		</p>
+	</div>
+	<div class="grid py-10 md:grid-cols-2">
+		<div class="relative grid place-items-center overflow-hidden rounded-2xl border border-neutral-200 shadow-md dark:border-neutral-800">
+			<Image src={darkPlatform} alt="landing image" width="800" height="576.8" />
+		</div>
+		<div class="grid place-items-center">
+			<div class="max-w-lg">
+				<div class="p-[1px] coloredChip rounded-full w-[max-content]">
+					<p class="rounded-full px-3 py-1 text-xs font-medium bg-black p-0 m-0 w-[max-content]">Challenges</p>
+				</div>
+				<h3 class="mt-4 text-2xl font-medium [text-wrap:balance]">Up to 100 challenges, structured across 15 distinct categories.</h3>
+				<p class="mt-4 font-extralight text-neutral-800 [text-wrap:balance] dark:text-neutral-400">
+					Whether you're a novice or an experienced developer our platforms
+					covers from the basics of programming to advanced data structures and
+					algorithms, enhancing your coding skills, logical thinking, and
+					algorithmic efficiency.
+				</p>
+				<ul class="mt-6 grid gap-y-4 text-left">
+					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
+						<Image src={Tick} alt="tick image" width="24" height="24" />
+						<span class="text-sm text-neutral-800 dark:text-neutral-400">4 dificulty categories</span>
+					</li>
+					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
+						<svg width="1em" height="1em" viewBox="0 0 256 256" class="h-5 w-5" data-icon="ph:check-circle-fill">
+							<use xlink:href="#ai:ph:check-circle-fill"></use>
+						</svg>
+						<span class="text-sm text-neutral-800 dark:text-neutral-400">Up to 100 challenges</span>
+					</li>
+					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
+						<svg width="1em" height="1em" viewBox="0 0 256 256" class="h-5 w-5" data-icon="ph:check-circle-fill">
+							<use xlink:href="#ai:ph:check-circle-fill"></use>
+						</svg>
+						<span class="text-sm text-neutral-800 dark:text-neutral-400">15 data structure categories</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="grid py-10 md:grid-cols-2">
+		<div class="relative grid place-items-center overflow-hidden rounded-2xl border border-neutral-200 pb-10 shadow-md dark:border-neutral-800 md:order-2 md:pb-0">
+			<Image src={darkPlatform} alt="landing image" width="800" height="576.8" />
+		</div>
+		<div class="grid place-items-center">
+			<div class="max-w-lg">
+				<div class="p-[1px] coloredChip rounded-full w-[max-content]">
+					<p class="rounded-full px-3 py-1 text-xs font-medium bg-black p-0 m-0 w-[max-content]">Test Suit</p>
+				</div>
+				<h3 class="mt-4 text-2xl font-medium [text-wrap:balance]">Reach test suite that allow test your code agains diferent tests.</h3>
+				<p class="mt-4 font-light text-neutral-800 [text-wrap:balance] dark:text-neutral-400">
+					Validate your coding solution in real-time against our comprehensive,
+					integrated test suite directly within the browser. This seamless
+					verification process guarantees both accuracy and reliability by
+					providing immediate feedback on your work.
+				</p>
+				<ul class="mt-6 grid gap-y-4 text-left">
+					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
+						<svg width="1em" height="1em" viewBox="0 0 256 256" class="h-5 w-5" data-icon="ph:check-circle-fill">
+							<use xlink:href="#ai:ph:check-circle-fill"></use>
+						</svg>
+						<span class="text-sm text-neutral-800 dark:text-neutral-400">Smart Audience Segmentation</span>
+					</li>
+					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
+						<svg width="1em" height="1em" viewBox="0 0 256 256" class="h-5 w-5" data-icon="ph:check-circle-fill">
+							<use xlink:href="#ai:ph:check-circle-fill"></use>
+						</svg>
+						<span class="text-sm text-neutral-800 dark:text-neutral-400">Predictive Campaign Performance</span>
+					</li>
+					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
+						<svg width="1em" height="1em" viewBox="0 0 256 256" class="h-5 w-5" data-icon="ph:check-circle-fill">
+							<use xlink:href="#ai:ph:check-circle-fill"></use>
+						</svg>
+						<span class="text-sm text-neutral-800 dark:text-neutral-400">Real-time Data Visualization</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="grid py-10 md:grid-cols-2">
+		<div class="relative grid place-items-center overflow-hidden rounded-2xl border border-neutral-200 shadow-md dark:border-neutral-800">
+			<Image src={darkPlatform} alt="landing image" width="800" height="576.8" />
+		</div>
+		<div class="grid place-items-center">
+			<div class="max-w-lg">
+				<div class="p-[1px] coloredChip rounded-full w-[max-content]">
+					<p class="rounded-full px-3 py-1 text-xs font-medium bg-black p-0 m-0 w-[max-content]">
+						Console Tool
+					</p>
+				</div>
+				<h3 class="mt-4 text-2xl font-medium [text-wrap:balance]">Enhance your coding efficiency with our cutting-edge debugger tool.</h3>
+				<p class="mt-4 font-light text-neutral-800 [text-wrap:balance] dark:text-neutral-400">
+					Boost your coding efficiency and simplify your workflow with our
+					debugger tool, designed to cut down on development time. Quickly
+					identify and fix code issues, allowing you to concentrate on creating
+					innovative solutions instead of getting stuck in tedious debugging.
+				</p>
+				<ul class="mt-6 grid gap-y-4 text-left">
+					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
+						<svg width="1em" height="1em" viewBox="0 0 256 256" class="h-5 w-5" data-icon="ph:check-circle-fill">
+							<symbol id="ai:ph:check-circle-fill">
+								<path fill="currentColor"
+									d="M128 24a104 104 0 1 0 104 104A104.11 104.11 0 0 0 128 24m45.66 85.66l-56 56a8 8 0 0 1-11.32 0l-24-24a8 8 0 0 1 11.32-11.32L112 148.69l50.34-50.35a8 8 0 0 1 11.32 11.32">
+								</path>
+							</symbol>
+							<use xlink:href="#ai:ph:check-circle-fill"></use>
+						</svg>
+						<span class="text-sm text-neutral-800 dark:text-neutral-400">Default logs</span>
+					</li>
+					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
+						<svg width="1em" height="1em" viewBox="0 0 256 256" class="h-5 w-5" data-icon="ph:check-circle-fill">
+							<use xlink:href="#ai:ph:check-circle-fill"></use>
+						</svg>
+						<span class="text-sm text-neutral-800 dark:text-neutral-400">Warning logs</span>
+					</li>
+					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
+						<svg width="1em" height="1em" viewBox="0 0 256 256" class="h-5 w-5" data-icon="ph:check-circle-fill">
+							<use xlink:href="#ai:ph:check-circle-fill"></use>
+						</svg>
+						<span class="text-sm text-neutral-800 dark:text-neutral-400">Error logs</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+</section>

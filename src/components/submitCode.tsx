@@ -39,17 +39,19 @@ export default function SubmitCode({ session, refName }: componentProps) {
 
 	return (
 		<>
+		<div className="backgroundStyle rounded-lg">
 			<Button
 				isLoading={!!loadingButton}
 				variant="flat"
 				aria-label="Zoom in"
 				size="md"
 				radius="sm"
-				className={" text-white dark:text-white bg-green-600 dark:bg-green-700"}
+				className={"text-white"}
 				onClick={submitCode}
 			>
 				Submit
 			</Button>
+			</div>
 			{session !== null && <SubmitModal openModal={openSubmitModal} refName={refName} />}
 			{session === null && <SignIn openModal={openSignInModal} />}
 		</>
@@ -120,9 +122,11 @@ function SubmitModal({ openModal, refName }) {
 									{isSubmitSuccess && <TickAnimation />}
 								</div>
 								{!isLoading && !isSubmitSuccess && (
-									<Button color="primary" radius="sm" onClick={submitHandler}>
+									<div className="backgroundStyle rounded-lg">
+									<Button className={"bg-black"} radius="sm" onClick={submitHandler}>
 										Submit
 									</Button>
+									</div>
 								)}
 								{isLoading && !isSubmitSuccess && <Spinner />}
 							</ModalBody>

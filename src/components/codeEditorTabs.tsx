@@ -81,10 +81,10 @@ export default function CodeEditorTabs({
 					variant="underlined"
 					onSelectionChange={(key) => tabClickHandler(Number(key))}
 					classNames={{
-						tabList: "gap-6 relative rounded-none p-0  border-divider",
-						cursor: "w-full bg-cyan-400",
-						tab: "max-w-fit p-0 h-12",
-						tabContent: "group-data-[selected=true]:text-cyan-400",
+						tabList: "gap-0 relative rounded-none p-0  border-divider",
+						cursor: "w-full bg-white backgroundStyle",
+						tab: "max-w-fit p-0 h-12 px-3",
+						tabContent: "group-data-[selected=true]:text-black dark:group-data-[selected=true]:text-white",
 					}}
 				>
 					<Tab

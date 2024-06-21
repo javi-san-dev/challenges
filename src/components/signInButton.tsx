@@ -120,19 +120,19 @@ export default function SignInButton({ user }: ComponentProp) {
 	}
 
 	return (
-		<>
+		<div className="backgroundStyle rounded-lg">
 			<Button
 				variant="flat"
 				aria-label="sign in"
 				size="md"
 				radius="sm"
-				className={"border border-cyan-400 text-cyan-400 bg-transparent"}
+				className={"bg-neutral-100 dark:bg-black"}
 				onClick={() => setOpenModal((openModal) => !openModal)}
 			>
 				<SignInIcon />
 				Sign in
 			</Button>
 			<SignIn openModal={openModal} />
-		</>
+		</div>
 	);
 }

@@ -28,12 +28,12 @@
   "editor.insertSpaces": false,
   "editor.detectIndentation": false,
   "[astro]": {
-    "editor.defaultFormatter": "astro-build.astro-vscode",
+    // "editor.defaultFormatter": "astro-build.astro-vscode",
     "editor.codeActionsOnSave": {
       "source.organizeImports": "never"
     }
   },
-  "prettier.documentSelectors": ["**/*.astro"],
+  // "prettier.documentSelectors": ["**/*.astro"],
   "tailwindCSS.classAttributes": [
     "class",
     "className",
