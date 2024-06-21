@@ -708,7 +708,7 @@ export const TickAnimation = () => {
 	return (
 		<div className=" text-center">
 			<svg
-				className="tickAnimation"
+				className="tickAnimation "
 				role="img"
 				aria-label="svgImage"
 				version="1.1"
@@ -735,7 +735,7 @@ export const TickAnimation = () => {
 					points="100.2,40.2 51.5,88.8 29.8,67.5 "
 				/>
 			</svg>
-			<h1 className="mt-4">Submit Success</h1>
+			
 		</div>
 	);
 };

@@ -13,6 +13,7 @@ export default function TestCases({ testCases }) {
 	const lang = data.codeLanguage;
 	const [currentTests, setCurrentTests] = useState(testCases);
 	const theme = data.theme === "dark" ? "dark-plus" : "light-plus";
+	const testRunning = data.testRunning;
 
 	useEffect(() => {
 		if (data.testCases === null) return;
@@ -29,9 +30,18 @@ export default function TestCases({ testCases }) {
 		return result;
 	};
 
+	if (testRunning) {
+		return (
+			<div className=" flex flex-col items-center justify-center h-full">
+				<div id="loader" class="loader" />
+				<h1 className="mt-8 text-2xl ">Running tests...</h1>
+			</div>
+		);
+	}
+
 	return (
 		<div className="px-6">
-			<header className="flex items-center">
+			<header className="flex items-center mb-6">
 				{passesAllTests ? <CheckedIcon size="2rem" /> : <RoundedErrorIcon size="2.3rem" />}
 				{passesAllTests ? (
 					<h1 className="p-4 text-3xl font-light dark:text-neutral-400">Great! All Tests passed</h1>

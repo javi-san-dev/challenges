@@ -15,6 +15,12 @@ export default function TabsDescription({ onTabChange }: { onTabChange: (index: 
 		onTabChange(Number(order[1]));
 	}, [data.passesAllTests]);
 
+	useEffect(() => {
+		if (!data.testRunning) return;
+		setSelectedKey(order[1]);
+		onTabChange(Number(order[1]));
+	}, [data.testRunning]);
+
 	const tabClickHandler = (index: number) => {
 		setSelectedKey(order[index]);
 		onTabChange(index);
@@ -74,7 +80,7 @@ export default function TabsDescription({ onTabChange }: { onTabChange: (index: 
 						title={
 							<div className="flex items-center space-x-2">
 								<VideoIcon />
-								<span>Video description</span>
+								<span>Video explanation</span>
 							</div>
 						}
 					/>

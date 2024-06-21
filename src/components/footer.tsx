@@ -4,7 +4,6 @@ import type { sessionType, testCasesType } from "../helpers/types";
 import ChallengeList from "./challengeList";
 import PatternsModal from "./patternsModal";
 import RunCode from "./runCode";
-import SubmitCode from "./submitCode";
 
 type componentProps = {
 	refName: string;
@@ -33,9 +32,6 @@ export default function FooterComponent({ refName, testCases, session }: compone
 			<ul className="flex gap-2 flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 mt-0 ml-auto">
 				<li>
 					<RunCode refName={refName} testCases={testCases} session={session} />
-				</li>
-				<li>
-					<SubmitCode session={session} refName={refName} />
 				</li>
 			</ul>
 		</footer>

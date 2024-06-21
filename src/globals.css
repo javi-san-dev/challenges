@@ -56,72 +56,43 @@ h3 {
 	display: block;
 	margin: auto;
 }
-
 .tickAnimation h1 {
 	margin-top: 20px;
 }
-
-.path {
+/* .path {
 	stroke-dasharray: 1000;
 	stroke-dashoffset: 0;
-
 	&.circle {
-		-webkit-animation: dash 1s ease-in-out;
 		animation: dash 1s ease-in-out;
+		animation-delay: 1s;
 	}
-
 	&.line {
 		stroke-dashoffset: 1000;
-		-webkit-animation: dash 1s .5s ease-in-out forwards;
 		animation: dash 1s .5s ease-in-out forwards;
+		animation-delay: 1s;
 	}
-
 	&.check {
 		stroke-dashoffset: -100;
-		-webkit-animation: dash-check 1s .5s ease-in-out forwards;
 		animation: dash-check 1s .5s ease-in-out forwards;
+		animation-delay: 1s;
 	}
 }
-
-@-webkit-keyframes dash {
-	0% {
-		stroke-dashoffset: 1000;
-	}
-
-	100% {
-		stroke-dashoffset: 0;
-	}
-}
-
 @keyframes dash {
 	0% {
 		stroke-dashoffset: 1000;
 	}
-
 	100% {
 		stroke-dashoffset: 0;
 	}
 }
-
-@-webkit-keyframes dash-check {
-	0% {
-		stroke-dashoffset: -100;
-	}
-
-	100% {
-		stroke-dashoffset: 900;
-	}
-}
-
 @keyframes dash-check {
 	0% {
 		stroke-dashoffset: -100;
 	}
-
 	100% {
 		stroke-dashoffset: 900;
 	}
-}
+} */
 
 
 /* ----------------------------- */
@@ -183,4 +154,31 @@ h3 {
 	background: linear-gradient(72.83deg, #4285f4 11.63%, #9b72cb 40.43%, #d96570 68.07%);
 	padding: 1px;
 	border:none;
+}
+
+.loader {
+	border: 5px solid transparent;
+	border-radius: 50%;
+	border-top: 5px solid white;
+	border-bottom: 5px solid white;
+	width: 60px;
+	height: 60px;
+	-webkit-animation: spin 1s linear infinite;
+	animation: spin 1s linear infinite;
+}
+@-webkit-keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
 }

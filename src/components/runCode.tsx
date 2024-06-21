@@ -31,13 +31,15 @@ export default function RunCode({ refName, testCases, session }: componentProps)
 	}, []);
 
 	const runCode = () => {
+		updateData({ testRunning: true });
 		setLoadingButton(true);
+		const params = new URLSearchParams(window.location.search);
+		const getParam = params.get("code") as string;
+		const fun = decode(decodeURIComponent(getParam));
+		const payload: { fun: string; refName: string; testCases: object } = { fun, refName, testCases };
+		serviceWorker.executeWorker(payload);
 		setTimeout(() => {
-			const params = new URLSearchParams(window.location.search);
-			const getParam = params.get("code") as string;
-			const fun = decode(decodeURIComponent(getParam));
-			const payload: { fun: string; refName: string; testCases: object } = { fun, refName, testCases };
-			serviceWorker.executeWorker(payload);
+			updateData({ testRunning: false });
 			setLoadingButton(false);
 		}, 800);
 	};
@@ -47,6 +49,7 @@ export default function RunCode({ refName, testCases, session }: componentProps)
 			setOpenModal((openModal) => !openModal);
 			return;
 		}
+		updateData({ testRunning: true });
 		setLoadingButton(true);
 		const params = new URLSearchParams(window.location.search);
 		const URIcode = params.get("code") as string;
@@ -67,7 +70,7 @@ export default function RunCode({ refName, testCases, session }: componentProps)
 		const compilerOutput = await res.json();
 		if (compilerOutput.stderr !== null) {
 			setLoadingButton(false);
-			updateData({ errorMsg: compilerOutput.stderr });
+			updateData({ errorMsg: compilerOutput.stderr, testRunning: false });
 			return;
 		}
 		const a = compilerOutput.stdout.indexOf("$0lu1i0n") + "$0lu1i0n".length;
@@ -89,7 +92,7 @@ export default function RunCode({ refName, testCases, session }: componentProps)
 			passesAllTests = passTest;
 			i++;
 		}
-		updateData({ testCases: currentTestCases, passesAllTests });
+		updateData({ testCases: currentTestCases, passesAllTests, testRunning: false });
 		setLoadingButton(false);
 	};
 
@@ -105,7 +108,7 @@ export default function RunCode({ refName, testCases, session }: componentProps)
 				onClick={isJavaScript ? runCode : sendCode}
 			>
 				{!loadingButton && <PlayIcon size="1.2rem" />}
-				Run
+				Run Code
 			</Button>
 			<SignIn openModal={openModal} />
 		</div>

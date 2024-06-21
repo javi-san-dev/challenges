@@ -12,6 +12,7 @@ import NavBarComponent from "./navBar";
 import Protected from "./protected";
 import RightBoxComponent from "./rightBox";
 import Subscription from "./subscription";
+import SuccessModal from "./successModal";
 
 export default function Challenge({ slug, user }: { slug: string; user: userType }) {
 	const { updateData } = useContext(DataContext);
@@ -95,7 +96,8 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 				<RightBoxComponent allStartedCode={challenge.startedCode} />
 			</Split>
 			<FooterComponent refName={challenge.refName} testCases={challenge.testCases} session={user} />
-			<Firework />
+			{/* <Firework /> */}
+			<SuccessModal refName={challenge.refName} />
 		</div>
 	);
 }
