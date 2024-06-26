@@ -31,6 +31,10 @@ export default function RunCode({ refName, testCases, session }: componentProps)
 	}, []);
 
 	const runCode = () => {
+		if (session === null) {
+			setOpenModal((openModal) => !openModal);
+			return;
+		}
 		updateData({ testRunning: true });
 		setLoadingButton(true);
 		const params = new URLSearchParams(window.location.search);

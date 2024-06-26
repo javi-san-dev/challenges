@@ -1,13 +1,15 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { DataContext } from "../helpers/dataContext";
 import { TickAnimation } from "../helpers/icons";
 
-export default function SuccessModal({refName}) {
+export default function SuccessModal({ refName, user }) {
 	const { data, updateData } = useContext(DataContext);
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		setTimeout(() => {
@@ -39,6 +41,10 @@ export default function SuccessModal({refName}) {
 		setIsLoading(false);
 		setIsSubmitSuccess(true);
 	};
+
+	function redirectToPrice(challengeRefName) {
+		navigate("/price");
+	}
 
 	return (
 		<>
@@ -76,9 +82,15 @@ export default function SuccessModal({refName}) {
 							<ModalHeader />
 							<ModalBody>
 								<TickAnimation />
-								<p className="text-2xl text-center">
-									<span className="title">Well Done!</span> Submit your code to save progression
-								</p>
+								{user.isPremium ? (
+									<p className="text-2xl text-center">
+										<span className="title">Well Done!</span> Submit your code to save progression.
+									</p>
+								) : (
+									<p className="text-2xl text-center">
+										<span className="title">Well Done!</span> Purchase to save progression.
+									</p>
+								)}
 							</ModalBody>
 							<ModalFooter>
 								<div className="backgroundStyle rounded-lg">
@@ -86,9 +98,13 @@ export default function SuccessModal({refName}) {
 										<Button className={"bg-black"} radius="sm">
 											Next Challenge
 										</Button>
-									) : (
+									) : user.isPremium ? (
 										<Button isLoading={!!isLoading} className={"bg-black"} radius="sm" onClick={submitHandler}>
 											Submit
+										</Button>
+									) : (
+										<Button className={"bg-black"} radius="sm" onClick={redirectToPrice}>
+											Purchase
 										</Button>
 									)}
 								</div>

@@ -26,7 +26,7 @@ export default defineConfig({
 				}
 
 				token.id = account.providerAccountId;
-				token.isPremium = true;
+				token.isPremium = false;
 			}
 			if (user) {
 				// User is available during sign-in

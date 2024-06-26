@@ -51,7 +51,7 @@ export default function TestCases({ testCases }) {
 			</header>
 
 			<Accordion variant="splitted" selectionMode="multiple" isCompact className="">
-				{Object.entries(currentTests).map(([_, value], i) => {
+				{Object.entries(data.testCases).map(([_, value], i) => {
 					const { test_input, test_expected, code_output, passed_test } = value;
 					const icon = passed_test ? <CheckedIcon size="2.5rem" /> : <RoundedErrorIcon size="2.5rem" />;
 					const testTitle = passed_test ? "Test passed" : "Test failed";
@@ -61,7 +61,6 @@ export default function TestCases({ testCases }) {
 							startContent={icon}
 							aria-label={"Test ${i + 1}"}
 							title={testTitle}
-							// className={"m-0 border-[0.5px] p-0 font-medium"}
 							className=" !shadow-none border border-neutral-300 dark:border-none !bg-neutral-50 dark:!bg-content1"
 						>
 							<p className="m-0 mb-2">Input</p>

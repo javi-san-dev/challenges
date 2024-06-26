@@ -7,6 +7,8 @@ import JoinBox from "../landing/joinBox.astro";
 import Title from "../landing/title.astro";
 import Layout from "../layouts/Layout.astro";
 import Learn from "../landing/learn.astro";
+import Testimonials from "../landing/testimonials.astro";
+import StepsBox from "../landing/stepsBox.astro"
 import "../globals.css";
 
 export const prerender = true;
@@ -15,10 +17,11 @@ export const prerender = true;
 <Layout title="Welcome to challenge">
 	<Header />
 	<Title />
-	<Content />
-	<!-- <Testimonials /> -->
 	<Learn />
+	<StepsBox />
+	<Content />
 	<JoinBox />
+	<!-- <Testimonials /> -->
 	<Faq />
 	<Footer />
 </Layout>

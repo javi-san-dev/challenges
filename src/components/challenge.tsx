@@ -97,7 +97,7 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 			</Split>
 			<FooterComponent refName={challenge.refName} testCases={challenge.testCases} session={user} />
 			{/* <Firework /> */}
-			<SuccessModal refName={challenge.refName} />
+			<SuccessModal refName={challenge.refName} user={user} />
 		</div>
 	);
 }
