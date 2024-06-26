@@ -7,18 +7,13 @@ import { DataContext } from "../helpers/dataContext";
 import { CheckedIcon, RoundedErrorIcon } from "../helpers/icons";
 import { serviceWorker } from "../helpers/workerService";
 
-export default function TestCases({ testCases }) {
+export default function TestCases() {
 	const { data } = useContext(DataContext);
 	const passesAllTests = data.passesAllTests;
+	const testCases = data.testCases;
 	const lang = data.codeLanguage;
-	const [currentTests, setCurrentTests] = useState(testCases);
 	const theme = data.theme === "dark" ? "dark-plus" : "light-plus";
 	const testRunning = data.testRunning;
-
-	useEffect(() => {
-		if (data.testCases === null) return;
-		setCurrentTests(data.testCases);
-	}, [data.currentTests]);
 
 	const setInputCode = async (code: string) => {
 		const beautyCode = beautify(code, { indent_size: 3, space_in_empty_paren: true });
@@ -33,8 +28,16 @@ export default function TestCases({ testCases }) {
 	if (testRunning) {
 		return (
 			<div className=" flex flex-col items-center justify-center h-full">
-				<div id="loader" class="loader" />
+				<div class="loader border-[5px] border-transparent border-y-black dark:border-y-white" />
 				<h1 className="mt-8 text-2xl ">Running tests...</h1>
+			</div>
+		);
+	}
+
+	if (testCases === null) {
+		return (
+			<div className="flex h-full items-center justify-center">
+				<h1 className="text-xl">Run your code solution to Test again Test Cases</h1>
 			</div>
 		);
 	}
@@ -51,7 +54,7 @@ export default function TestCases({ testCases }) {
 			</header>
 
 			<Accordion variant="splitted" selectionMode="multiple" isCompact className="">
-				{Object.entries(data.testCases).map(([_, value], i) => {
+				{Object.entries(testCases).map(([_, value], i) => {
 					const { test_input, test_expected, code_output, passed_test } = value;
 					const icon = passed_test ? <CheckedIcon size="2.5rem" /> : <RoundedErrorIcon size="2.5rem" />;
 					const testTitle = passed_test ? "Test passed" : "Test failed";
