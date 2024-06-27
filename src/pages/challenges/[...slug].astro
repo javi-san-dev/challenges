@@ -5,19 +5,19 @@ import "../../globals.css";
 import Layout from "../../layouts/Layout.astro";
 import { getSession } from "auth-astro/server";
 
-const titleToRef = (title: string) => {
-	return title
-		.replace(/\s+/g, "") // remove spaces
-		.replace(/^./, (match) => match.toLowerCase()); // replace first letter to lowercase
-};
+// const titleToRef = (title: string) => {
+// 	return title
+// 		.replace(/\s+/g, "") // remove spaces
+// 		.replace(/^./, (match) => match.toLowerCase()); // replace first letter to lowercase
+// };
 
 const session = await getSession(Astro.request);
 const { slug } = Astro.params;
 const { pathname } = new URL(Astro.request.url);
 // if (slug === undefined) return Astro.redirect("/404");
-const challenge = challenges.All.All.some(
-	(challenge) => titleToRef(challenge[0]) === slug
-);
+// const challenge = challenges.All.All.some(
+// 	(challenge) => titleToRef(challenge[0]) === slug
+// );
 // if (!challenge) return Astro.redirect("/404");
 ---
 

@@ -1,5 +1,6 @@
 ---
 import { getSession } from "auth-astro/server";
+import { Image } from "astro:assets";
 
 const session = await getSession(Astro.request);
 console.log("AA", session);
@@ -11,6 +12,61 @@ console.log("AA", session);
 			Sign In
 		</button>
 	) : (
-		<p>logedd</p>
+		<div>
+			<button id="userButton" class=" rounded-full overflow-hidden">
+				<Image 
+					src="https://lh3.googleusercontent.com/a/ACg8ocK8n_nieydEFg2RTSh9ISxEc3GNCuGr2TZmqhx06jAi0xEt_Q=s96-c" 
+					alt="user image"
+					width="40"
+					height="40"
+				/>
+			</button>
+			<div id="userBox" class="fixed w-auto h-auto border border-neutral-700 bg-black p-4 rounded-lg hidden">
+				<div class="flex justify-center items-center">
+					<Image 
+						src="https://lh3.googleusercontent.com/a/ACg8ocK8n_nieydEFg2RTSh9ISxEc3GNCuGr2TZmqhx06jAi0xEt_Q=s96-c" 
+						alt="user image"
+						width="35"
+						height="35"
+						class="rounded-full mr-2"
+					/>
+					<div>
+					<p class="text-sm p-0 m-0">Javier Sanchez</p>
+					<p class="text-xs text-neutral-400 p-0 m-0">javier.san.mail@gmail.com</p>
+				</div>
+				
+				</div>
+				<ul class="text-neutral-400 text-sm mt-3">
+					<li class="mt-2 cursor-pointer hover:bg-neutral-700 p-1 rounded-md">Dashboard</li>
+					<li class="mt-1 cursor-pointer hover:bg-neutral-700 p-1 rounded-md">Settings</li>
+					<li class="shrink-0 bg-divider border-none w-full h-divider mt-2" role="separator"></li>
+					<li class="mt-1 cursor-pointer hover:bg-neutral-700 p-1 rounded-md">Contact</li>
+					<li id="signOutButton" class="mt-1 cursor-pointer hover:bg-neutral-700 p-1 rounded-md">Sign Out</li>
+				</ul>
+			</div>
+		</div>
 	)
 }
+
+<script>
+	import { signOut } from "auth-astro/client";
+
+	const signOutButton = document.getElementById("signOutButton");
+	const userButton = document.getElementById("userButton");
+	const userBox = document.getElementById("userBox");
+
+	signOutButton?.addEventListener("click", () => {
+		signOut()
+	})
+	userButton!.addEventListener("click", () => {
+		userBox!.style.display = "block";
+	})
+	userButton!.addEventListener("click", function (event) {
+		event.stopPropagation();
+	});
+
+	document.addEventListener("click" , () => {
+		userBox!.style.display = "none";
+	})
+
+</script>
