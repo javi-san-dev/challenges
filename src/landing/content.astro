@@ -23,6 +23,42 @@ import Tick from "./images/tick.svg";
 		<div class="grid place-items-center">
 			<div class="max-w-lg">
 				<div class="p-[1px] coloredChip rounded-full w-[max-content]">
+					<p class="rounded-full px-3 py-1 text-xs font-medium bg-black p-0 m-0 w-[max-content]">Environment</p>
+				</div>
+				<h3 class="mt-4 text-2xl font-medium [text-wrap:balance]">The perfect practice environment to coding out your solution.</h3>
+				<p class="mt-4 font-extralight text-neutral-800 [text-wrap:balance] dark:text-neutral-400">
+					Fully configuravle environment allowing to zoom in-out environment. Switch betweeng dark and light theme. Chose a language. Chose font-size. Follow our guide explanation video. Write your solution. Run your code. Check the output. View our solution. Pass the tests. All within the same platform.
+				</p>
+				<ul class="mt-6 grid gap-y-4 text-left">
+					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
+						<svg width="1em" height="1em" viewBox="0 0 256 256" class="h-5 w-5" data-icon="ph:check-circle-fill">
+							<use xlink:href="#ai:ph:check-circle-fill"></use>
+						</svg>
+						<span class="text-sm text-neutral-800 dark:text-neutral-400">Fully condigurable envirnoment</span>
+					</li>
+					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
+						<svg width="1em" height="1em" viewBox="0 0 256 256" class="h-5 w-5" data-icon="ph:check-circle-fill">
+							<use xlink:href="#ai:ph:check-circle-fill"></use>
+						</svg>
+						<span class="text-sm text-neutral-800 dark:text-neutral-400">Watch the videos & write and run your code</span>
+					</li>
+					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
+						<svg width="1em" height="1em" viewBox="0 0 256 256" class="h-5 w-5" data-icon="ph:check-circle-fill">
+							<use xlink:href="#ai:ph:check-circle-fill"></use>
+						</svg>
+						<span class="text-sm text-neutral-800 dark:text-neutral-400">Check the output & pass the tests</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="grid py-10 md:grid-cols-2">
+		<div class="relative grid place-items-center overflow-hidden rounded-2xl border border-neutral-200 shadow-md dark:border-neutral-800 md:order-2 md:pb-0">
+			<Image src={darkPlatform} alt="landing image" width="800" height="576.8" />
+		</div>
+		<div class="grid place-items-center">
+			<div class="max-w-lg">
+				<div class="p-[1px] coloredChip rounded-full w-[max-content]">
 					<p class="rounded-full px-3 py-1 text-xs font-medium bg-black p-0 m-0 w-[max-content]">Challenges</p>
 				</div>
 				<h3 class="mt-4 text-2xl font-medium [text-wrap:balance]">Up to 100 challenges, structured across 15 distinct categories.</h3>
@@ -34,7 +70,9 @@ import Tick from "./images/tick.svg";
 				</p>
 				<ul class="mt-6 grid gap-y-4 text-left">
 					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
-						<Image src={Tick} alt="tick image" width="24" height="24" />
+						<svg width="1em" height="1em" viewBox="0 0 256 256" class="h-5 w-5" data-icon="ph:check-circle-fill">
+							<use xlink:href="#ai:ph:check-circle-fill"></use>
+						</svg>
 						<span class="text-sm text-neutral-800 dark:text-neutral-400">4 dificulty categories</span>
 					</li>
 					<li class="flex items-center gap-3 text-neutral-800 dark:text-green-600">
@@ -54,7 +92,7 @@ import Tick from "./images/tick.svg";
 		</div>
 	</div>
 	<div class="grid py-10 md:grid-cols-2">
-		<div class="relative grid place-items-center overflow-hidden rounded-2xl border border-neutral-200 pb-10 shadow-md dark:border-neutral-800 md:order-2 md:pb-0">
+		<div class="relative grid place-items-center overflow-hidden rounded-2xl border border-neutral-200 pb-10 shadow-md dark:border-neutral-800">
 			<Image src={darkPlatform} alt="landing image" width="800" height="576.8" />
 		</div>
 		<div class="grid place-items-center">
@@ -93,7 +131,7 @@ import Tick from "./images/tick.svg";
 		</div>
 	</div>
 	<div class="grid py-10 md:grid-cols-2">
-		<div class="relative grid place-items-center overflow-hidden rounded-2xl border border-neutral-200 shadow-md dark:border-neutral-800">
+		<div class="relative grid place-items-center overflow-hidden rounded-2xl border border-neutral-200 shadow-md dark:border-neutral-800 md:order-2 md:pb-0">
 			<Image src={darkPlatform} alt="landing image" width="800" height="576.8" />
 		</div>
 		<div class="grid place-items-center">
