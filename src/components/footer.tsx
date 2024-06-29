@@ -1,7 +1,6 @@
 import { Button } from "@nextui-org/react";
 import { BugIcon, PlayIcon } from "../helpers/icons";
 import type { sessionType, testCasesType } from "../helpers/types";
-import ChallengeList from "./challengeList";
 import PatternsModal from "./patternsModal";
 import RunCode from "./runCode";
 
@@ -25,14 +24,6 @@ export default function FooterComponent({ refName, testCases, session }: compone
 				</li>
 			</ul>
 			<ul className="flex gap-2 items-center text-sm font-medium text-gray-500 dark:text-gray-400 absolute">
-				<li>
-					<ChallengeList isSearch={false} />
-				</li>
-			</ul>
-			<ul className="flex gap-2 flex-wrap items-center text-sm font-medium text-gray-500 dark:text-gray-400 mt-0 ml-auto">
-				<li>
-					<RunCode refName={refName} testCases={testCases} session={session} />
-				</li>
 			</ul>
 		</footer>
 	);

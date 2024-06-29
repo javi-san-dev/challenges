@@ -7,8 +7,9 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { getHighlighter } from "shiki";
 import { DataContext } from "../helpers/dataContext";
 import CodeEditorTabs from "./codeEditorTabs";
+import RunCode from "./runCode";
 
-export default function CodeEditor({ allStartedCode }) {
+export default function CodeEditor({ allStartedCode, refName, testCases, session }) {
 	const { data } = useContext(DataContext);
 	const editorRef = useRef(null);
 	const monacoEditor = useRef(null);
@@ -107,7 +108,7 @@ export default function CodeEditor({ allStartedCode }) {
 	};
 
 	return (
-		<div className="flex flex-col border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden bg-white dark:bg-transparent">
+		<div className="relative flex flex-col border-2 border-neutral-200 dark:border-neutral-800 rounded-xl overflow-hidden bg-white dark:bg-transparent">
 			<CodeEditorTabs
 				formatCode={formatCode}
 				resetCode={resetCode}
@@ -116,6 +117,7 @@ export default function CodeEditor({ allStartedCode }) {
 				setSubmittedCode={setSubmittedCode}
 				setCurrentSolution={setCurrentSolution}
 			/>
+
 			<Editor
 				className="px-0 pt-5 flex-1"
 				height="100%"
@@ -136,6 +138,8 @@ export default function CodeEditor({ allStartedCode }) {
 					contextmenu: false,
 				}}
 			/>
+			<RunCode refName={refName} testCases={testCases} session={session} />
+
 		</div>
 	);
 }

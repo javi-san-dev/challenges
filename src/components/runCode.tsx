@@ -101,7 +101,7 @@ export default function RunCode({ refName, testCases, session }: componentProps)
 	};
 
 	return (
-		<div className="backgroundStyle rounded-lg">
+		<div className="absolute bottom-4 right-4 backgroundStyle rounded-lg">
 			<Button
 				isLoading={!!loadingButton}
 				variant="flat"

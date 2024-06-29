@@ -75,6 +75,9 @@ export default function NavBarComponent({ user }) {
 				<div className="hidden w-full md:block md:w-auto" id="navbar-default">
 					<ul className="font-medium flex flex-col p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-2 rtl:space-x-reverse md:mt-0">
 						<li>
+							<ChallengeList isSearch={false} />
+						</li>
+						<li>
 							<ChallengeList isSearch={true} />
 						</li>
 						<li>

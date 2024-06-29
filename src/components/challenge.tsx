@@ -80,7 +80,7 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 		<div className="flex h-[100vh] flex-col overflow-hidden  bg-neutral-100 dark:bg-transparent">
 			<NavBarComponent user={user} />
 			<Split
-				className="split grow overflow-hidden bg-none flex px-4"
+				className="split grow overflow-hidden bg-none flex px-4 pb-4"
 				id="mainSplit"
 				sizes={[50, 50]}
 				minSize={100}
@@ -93,9 +93,14 @@ export default function Challenge({ slug, user }: { slug: string; user: userType
 				cursor="col-resize"
 			>
 				<Description challenge={challenge} />
-				<RightBoxComponent allStartedCode={challenge.startedCode} />
+				<RightBoxComponent
+					allStartedCode={challenge.startedCode}
+					refName={challenge.refName}
+					testCases={challenge.testCases}
+					session={user}
+				/>
 			</Split>
-			<FooterComponent refName={challenge.refName} testCases={challenge.testCases} session={user} />
+			{/* <FooterComponent refName={challenge.refName} testCases={challenge.testCases} session={user} /> */}
 			{/* <Firework /> */}
 			<SuccessModal refName={challenge.refName} user={user} />
 		</div>

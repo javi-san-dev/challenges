@@ -53,11 +53,11 @@ export default function CodeEditorTabs({
 
 	const setFullScreen = () => {
 		const navElement = document.getElementsByTagName("nav")[0];
-		const footerElement = document.getElementsByTagName("footer")[0];
+		// const footerElement = document.getElementsByTagName("footer")[0];
 		navElement.classList.toggle("hiddeNavBars");
-		footerElement.classList.toggle("hiddeNavBars");
+		// footerElement.classList.toggle("hiddeNavBars");
 		const mainSplitElement = document.getElementById("mainSplit");
-		mainSplit.classList.toggle("py-4");
+		mainSplit.classList.toggle("pt-4");
 	};
 
 	const updateLanguage = (e) => {
