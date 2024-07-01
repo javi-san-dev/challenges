@@ -17,7 +17,7 @@ export default function ConsoleTabs({ removeLogs }) {
 					classNames={{
 						tabList: "gap-0 w-full relative rounded-none p-0  border-divider",
 						cursor: "w-full bg-white backgroundStyle",
-						tab: "max-w-fit p-0 h-12 px-3",
+						tab: "max-w-fit p-0 h-10 px-3",
 						tabContent: "group-data-[selected=true]:text-black dark:group-data-[selected=true]:text-white",
 					}}
 				>

@@ -8,7 +8,7 @@ export default function RightBoxComponent({ allStartedCode, refName, testCases, 
 			<Split
 				className="splitHorizontal"
 				sizes={[80, 20]}
-				minSize={60}
+				minSize={52}
 				expandToMin={false}
 				gutterSize={10}
 				gutterAlign="center"
